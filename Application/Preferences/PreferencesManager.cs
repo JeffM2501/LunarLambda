@@ -14,22 +14,57 @@ namespace LunarLambda.Preferences
 			Values[key] = value;
 		}
 
-		public static string Get(string key)
+		public static string Get(string key, string defaultValue = null)
 		{
 			if (Values.ContainsKey(key))
 				return Values[key];
-			return string.Empty;
-		}
+
+            return defaultValue == null ? string.Empty : defaultValue;
+        }
 
 		public static bool GetValueB(string key)
 		{
 			if (Values.ContainsKey(key))
-				return Values[key] != string.Empty;
+				return Values[key] == "1";
 			return false;
 		}
 
+        public static int GetValueI(string key, int defaultValue)
+        {
+            if (Values.ContainsKey(key))
+            {
+                int val = 0;
+                if (int.TryParse(Values[key], out val))
+                    return val;
+            }
+            return defaultValue;
+        }
 
-		public static void Load(string filename)
+        public static float GetValueF(string key, float defaultValue)
+        {
+            if (Values.ContainsKey(key))
+            {
+                float val = 0;
+                if (float.TryParse(Values[key], out val))
+                    return val;
+            }
+            return defaultValue;
+        }
+
+        public static double GetValueD(string key, double defaultValue)
+        {
+            if (Values.ContainsKey(key))
+            {
+                double val = 0;
+                if (double.TryParse(Values[key], out val))
+                    return val;
+            }
+            return defaultValue;
+        }
+
+
+
+        public static void Load(string filename)
 		{
             ConfigReader reader = new ConfigReader();
             if (reader.Read(filename))

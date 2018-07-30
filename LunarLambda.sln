@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box2DNet", "..\LudicrousEle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Types", "..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj", "{FB7F6B89-80BB-4F09-8384-39107B57B754}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard", "Campaigns\Standard\Standard.csproj", "{7F1C013D-26D9-4917-8359-3D35085CBB8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Campaigns", "Campaigns", "{941FFE4D-B78C-4667-A833-C1DE39E17CFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1C013D-26D9-4917-8359-3D35085CBB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1C013D-26D9-4917-8359-3D35085CBB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1C013D-26D9-4917-8359-3D35085CBB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1C013D-26D9-4917-8359-3D35085CBB8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +51,7 @@ Global
 		{547B86A8-43A9-4683-A862-3D8136B3CF3D} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
 		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
 		{FB7F6B89-80BB-4F09-8384-39107B57B754} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
+		{7F1C013D-26D9-4917-8359-3D35085CBB8F} = {941FFE4D-B78C-4667-A833-C1DE39E17CFF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3252F77E-C262-49E9-808E-126979C400B4}

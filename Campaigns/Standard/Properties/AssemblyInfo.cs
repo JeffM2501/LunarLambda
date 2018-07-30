@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LunarLambda")]
+[assembly: AssemblyTitle("LunarLambda.Campaigns.Standard")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LunarLambda")]
-[assembly: AssemblyCopyright("Copyright @Jeffery Myers  2018")]
+[assembly: AssemblyProduct("LunarLambda.Campaigns.Standard")]
+[assembly: AssemblyCopyright("Copyright ©Jeffery Myers  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("30cc895b-bfc4-4402-8cc0-513ead76706f")]
+[assembly: Guid("7f1c013d-26d9-4917-8359-3d35085cbb8f")]
 
 // Version information for an assembly consists of the following four values:
 //

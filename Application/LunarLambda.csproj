@@ -48,6 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Databases\ModelDatabase.cs" />
+    <Compile Include="API\Events.cs" />
+    <Compile Include="API\Plugin.cs" />
+    <Compile Include="Common\Graphics.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="GUI\Config\ColorConfig.cs" />
     <Compile Include="GUI\Config\HotKeys.cs" />
     <Compile Include="Preferences\ConfigReader.cs" />
@@ -94,5 +99,6 @@
       <Name>LudicrousElectron.Types</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
