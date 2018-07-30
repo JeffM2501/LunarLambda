@@ -15,6 +15,7 @@ using LunarLambda.GUI.Config;
 using LunarLambda.Common;
 using LudicrousElectron.Engine.RenderChain.Effects;
 using LudicrousElectron.Engine.Window;
+using LunarLambda.API;
 
 namespace LunarLambda
 {
@@ -27,6 +28,7 @@ namespace LunarLambda
 		static void Main(string[] args)
 		{
 			LoadPreferences(args);
+            FindPlugins();
 			LoadResources();
 			LoadMods();
 
@@ -35,9 +37,32 @@ namespace LunarLambda
             SetupWindows();
             SetupSounds();
 
+            SetupDatabases();
+
             Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+
+            CleanUpPlugins();
 		}
+
+        static void SetupDatabases()
+        {
+            Events.CallSetupModelData(null);
+            Events.CallSetupShipTemplates(null);
+            Events.CallSetupFactions(null);
+            Events.CallSetupScienceDB(null);
+        }
+
+        static void CleanUpPlugins()
+        {
+            PluginLoader.UnloadAllPlugins();
+        }
+
+        static void FindPlugins()
+        {
+            PluginLoader.AddDir(FileLocations.GetApplicationDataDir("plugins"), true);
+            PluginLoader.AddDir(FileLocations.GetUserDataSubDir("plugins"), true);
+        }
 
         static void SetupSounds()
         {
@@ -100,6 +125,9 @@ namespace LunarLambda
 			Core.Textures.AutoSprite = false;
 
 			Core.Textures.GetTexture("Tokka_WalkingMan.png", new Vector2i(6, 1)); //Setup the sprite mapping.
+
+            PluginLoader.LoadAllPlugins();
+
 		}
 
 		static void LoadPreferences(string[] args)
@@ -116,7 +144,6 @@ namespace LunarLambda
 		static void LoadResources()
 		{
 			FileLocations.AddUserAndApplicationSubDirAssets("assets");
-			FileLocations.AddUserAndApplicationSubDirAssets("scripts");
 			
 			foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packs"), "*.pack"))
 				AssetManager.AddProvider(new PackAssetProvider(file));

@@ -51,6 +51,7 @@
     <Compile Include="API\Databases\ModelDatabase.cs" />
     <Compile Include="API\Events.cs" />
     <Compile Include="API\Plugin.cs" />
+    <Compile Include="API\PluginLoader.cs" />
     <Compile Include="Common\Graphics.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="GUI\Config\ColorConfig.cs" />
