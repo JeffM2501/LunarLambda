@@ -11,38 +11,29 @@ namespace LunarLambda.Preferences
 	{
 		public static void Set(string key, string value)
 		{
-			values[key] = value;
+			Values[key] = value;
 		}
 
 		public static string Get(string key)
 		{
-			if (values.ContainsKey(key))
-				return values[key];
+			if (Values.ContainsKey(key))
+				return Values[key];
 			return string.Empty;
 		}
 
 		public static bool GetValueB(string key)
 		{
-			if (values.ContainsKey(key))
-				return values[key] != string.Empty;
+			if (Values.ContainsKey(key))
+				return Values[key] != string.Empty;
 			return false;
 		}
 
 
 		public static void Load(string filename)
 		{
-			if (!File.Exists(filename))
-				return;
-
-			foreach (var line in File.ReadAllLines(filename))
-			{
-				if (line.StartsWith("#"))
-					continue;
-
-				string[] parts = line.Split(new string[] { " = " }, 2, StringSplitOptions.RemoveEmptyEntries);
-				if (parts.Length == 2)
-					values[parts[0]] = parts[1];
-			}
+            ConfigReader reader = new ConfigReader();
+            if (reader.Read(filename))
+                Values = reader.Values;
 		}
 
 		public static void Save(string filename)
@@ -55,13 +46,13 @@ namespace LunarLambda.Preferences
 			lines.Add("# This file will be overwritten by the application.");
 			lines.Add(string.Empty);
 
-			foreach (var item in values)
+			foreach (var item in Values)
 				lines.Add(item.Key + " = " + item.Value);
 
 			File.WriteAllLines(filename, lines);
 		}
 
-		private static SortedDictionary<string, string> values = new SortedDictionary<string, string>();
+		private static SortedDictionary<string, string> Values = new SortedDictionary<string, string>();
 
 	}
 }

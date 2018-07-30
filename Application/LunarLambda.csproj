@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Config\ColorConfig.cs" />
+    <Compile Include="GUI\Config\HotKeys.cs" />
+    <Compile Include="Preferences\ConfigReader.cs" />
     <Compile Include="Preferences\FileLocations.cs" />
     <Compile Include="Preferences\PreferencesManager.cs" />
     <Compile Include="Preferences\PrefNames.cs" />

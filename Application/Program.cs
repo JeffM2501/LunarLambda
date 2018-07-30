@@ -10,6 +10,7 @@ using LudicrousElectron.Assets;
 using LudicrousElectron.Assets.Providers;
 
 using LunarLambda.Preferences;
+using LunarLambda.GUI.Config;
 
 namespace LunarLambda
 {
@@ -26,10 +27,16 @@ namespace LunarLambda
 			LoadMods();
 
 			SetupCore();
+            SetupConfigs();
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 		}
+
+        static void  SetupConfigs()
+        {
+            ColorConfig.Load();
+        }
 
 		static void SetupCore()
 		{
