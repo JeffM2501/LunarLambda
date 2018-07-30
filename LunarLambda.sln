@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda", "Application\LunarLambda.csproj", "{30CC895B-BFC4-4402-8CC0-513EAD76706F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Engine", "..\LudicrousElectron\Engine\LudicrousElectron.Engine.csproj", "{547B86A8-43A9-4683-A862-3D8136B3CF3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{E92B3767-CB45-492C-B7E8-85D335C6F831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box2DNet", "..\LudicrousElectron\Box2DNet\Box2DNet\Box2DNet.csproj", "{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Types", "..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj", "{FB7F6B89-80BB-4F09-8384-39107B57B754}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30CC895B-BFC4-4402-8CC0-513EAD76706F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30CC895B-BFC4-4402-8CC0-513EAD76706F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30CC895B-BFC4-4402-8CC0-513EAD76706F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30CC895B-BFC4-4402-8CC0-513EAD76706F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547B86A8-43A9-4683-A862-3D8136B3CF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547B86A8-43A9-4683-A862-3D8136B3CF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547B86A8-43A9-4683-A862-3D8136B3CF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547B86A8-43A9-4683-A862-3D8136B3CF3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7F6B89-80BB-4F09-8384-39107B57B754}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{547B86A8-43A9-4683-A862-3D8136B3CF3D} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
+		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
+		{FB7F6B89-80BB-4F09-8384-39107B57B754} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3252F77E-C262-49E9-808E-126979C400B4}
+	EndGlobalSection
+EndGlobal
