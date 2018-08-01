@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using LudicrousElectron.Engine.RenderChain;
 using LudicrousElectron.Engine.RenderChain.Effects;
-using LudicrousElectron.Types;
+using OpenTK;
 
 namespace LunarLambda.Common
 {
     public static class Graphics
     {
-        public static Vector3f CameraPosition = new Vector3f();
+        public static Vector3 CameraPosition = new Vector3();
         public static float CameraYaw = 0;
         public static float CameraPitch = 0;
 

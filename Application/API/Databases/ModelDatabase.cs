@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-using LudicrousElectron.Types;
+using OpenTK;
 
 namespace LunarLambda.API.Databases
 {
@@ -13,13 +13,13 @@ namespace LunarLambda.API.Databases
     {
         public class EngineEmitterData
         {
-            public Vector3f Position = new Vector3f();
+            public Vector3 Position = new Vector3();
             public Color ExaustColor = Color.Wheat;
             public float ExauseScale = 1.0f;
 
-            public EngineEmitterData(Vector3f pos, Color color, float scale)
+            public EngineEmitterData(Vector3 pos, Color color, float scale)
             {
-                Position = pos.Clone();
+                Position = new Vector3(pos);
                 ExauseScale = scale;
                 ExaustColor = color;
             }
@@ -36,16 +36,16 @@ namespace LunarLambda.API.Databases
 
         internal bool Loaded = false;
 
-        internal Vector3f MeshOffset = new Vector3f();
+        internal Vector3 MeshOffset = new Vector3();
         internal float Scale = 1.0f;
         internal float Radius = 1.0f;
-        internal Vector2f CollisionBox = new Vector2f();
+        internal Vector2 CollisionBox = new Vector2();
 
-        internal List<Vector3f> BeamPositions = new List<Vector3f>();
-        public Vector3f[] Beams() { return BeamPositions.ToArray(); }
+        internal List<Vector3> BeamPositions = new List<Vector3>();
+        public Vector3[] Beams() { return BeamPositions.ToArray(); }
 
-        internal List<Vector3f> TubePositions = new List<Vector3f>();
-        public Vector3f[] Tubes() { return TubePositions.ToArray(); }
+        internal List<Vector3> TubePositions = new List<Vector3>();
+        public Vector3[] Tubes() { return TubePositions.ToArray(); }
 
         internal List<EngineEmitterData> EngineLocations = new List<EngineEmitterData>();
         public EngineEmitterData[] Engines() { return EngineLocations.ToArray(); }
@@ -56,28 +56,28 @@ namespace LunarLambda.API.Databases
         public ModelData SetTexture(string value) { TextureName = value; return this; }
         public ModelData SetSpecular(string value) { SpecularTextureName = value; return this; }
         public ModelData SetIllumination(string value) { IlluminationTextureName = value; return this; }
-        public ModelData SetRenderOffset(Vector3f value) { MeshOffset = value.Clone(); return this; }
-        public ModelData SetRenderOffset(float x, float y, float z) { MeshOffset = new Vector3f(x, y, z); return this; }
-        public ModelData SetRenderOffset(double x, double y, double z) { MeshOffset = new Vector3f((float)x, (float)y, (float)z); return this; }
+        public ModelData SetRenderOffset(Vector3 value) { MeshOffset = new Vector3(value); return this; }
+        public ModelData SetRenderOffset(float x, float y, float z) { MeshOffset = new Vector3(x, y, z); return this; }
+        public ModelData SetRenderOffset(double x, double y, double z) { MeshOffset = new Vector3((float)x, (float)y, (float)z); return this; }
         public ModelData SetScale(float value) { Scale = value; return this; }
         public ModelData SetRadius(float value) { Radius = value; return this; }
-        public ModelData SetCollisionBox(Vector2f value) { CollisionBox = value.Clone(); return this; }
-        public ModelData SetCollisionBox(float width, float height) { CollisionBox = new Vector2f(width, height); return this; }
+        public ModelData SetCollisionBox(Vector2 value) { CollisionBox = new Vector2(value.X,value.Y); return this; }
+        public ModelData SetCollisionBox(float width, float height) { CollisionBox = new Vector2(width, height); return this; }
 
-        public ModelData AddBeamPosition(Vector3f value) { BeamPositions.Add(value); return this; }
-        public ModelData AddBeamPosition(float x, float y, float z) { BeamPositions.Add(new Vector3f(x, y, z)); return this; }
-        public ModelData AddBeamPosition(double x, double y, double z) { BeamPositions.Add(new Vector3f((float)x, (float)y, (float)z)); return this; }
+        public ModelData AddBeamPosition(Vector3 value) { BeamPositions.Add(value); return this; }
+        public ModelData AddBeamPosition(float x, float y, float z) { BeamPositions.Add(new Vector3(x, y, z)); return this; }
+        public ModelData AddBeamPosition(double x, double y, double z) { BeamPositions.Add(new Vector3((float)x, (float)y, (float)z)); return this; }
 
-        public ModelData AddTubePosition(Vector3f value) { TubePositions.Add(value); return this; }
-        public ModelData AddTubePosition(float x, float y, float z) { TubePositions.Add(new Vector3f(x, y, z)); return this; }
-        public ModelData AddTubePosition(double x, double y, double z) { TubePositions.Add(new Vector3f((float)x, (float)y, (float)z)); return this; }
+        public ModelData AddTubePosition(Vector3 value) { TubePositions.Add(value); return this; }
+        public ModelData AddTubePosition(float x, float y, float z) { TubePositions.Add(new Vector3(x, y, z)); return this; }
+        public ModelData AddTubePosition(double x, double y, double z) { TubePositions.Add(new Vector3((float)x, (float)y, (float)z)); return this; }
 
 
-        public ModelData AddEngineEmitter(Vector3f pos, Color color, float scale = 1.0f) { EngineLocations.Add(new EngineEmitterData(pos, color, scale)); return this; }
+        public ModelData AddEngineEmitter(Vector3 pos, Color color, float scale = 1.0f) { EngineLocations.Add(new EngineEmitterData(pos, color, scale)); return this; }
 
         public ModelData AddEngineEmitter(float x, float y, float z, float r, float g, float b, float scale = 1.0f)
         {
-            Vector3f pos = new Vector3f(x, y, z);
+            Vector3 pos = new Vector3(x, y, z);
             Color color = Color.FromArgb((int)(r * byte.MaxValue), (int)(g * byte.MaxValue),(int)(b * byte.MaxValue));
 
             EngineLocations.Add(new EngineEmitterData(pos, color, scale));
@@ -86,7 +86,7 @@ namespace LunarLambda.API.Databases
 
         public ModelData AddEngineEmitter(double x, double y, double z, double r, double g, double b, double scale = 1.0f)
         {
-            Vector3f pos = new Vector3f((float)x, (float)y, (float)z);
+            Vector3 pos = new Vector3((float)x, (float)y, (float)z);
             Color color = Color.FromArgb((int)(r * byte.MaxValue), (int)(g * byte.MaxValue), (int)(b * byte.MaxValue));
 
             EngineLocations.Add(new EngineEmitterData(pos, color, (float)scale));
