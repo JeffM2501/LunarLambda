@@ -109,6 +109,9 @@ namespace LunarLambda.API
 
         internal static void AddDir(DirectoryInfo dir, bool recursive)
         {
+            if (!dir.Exists)
+                return;
+
             foreach (var f in dir.GetFiles("*.dll"))
             {
                 try

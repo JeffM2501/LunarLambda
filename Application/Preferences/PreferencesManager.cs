@@ -13,8 +13,27 @@ namespace LunarLambda.Preferences
 		{
 			Values[key] = value;
 		}
+        public static void Set(string key, bool value)
+        {
+            Values[key] = value ? "1" : "0";
+        }
 
-		public static string Get(string key, string defaultValue = null)
+        public static void Set(string key, int value)
+        {
+            Values[key] = value.ToString();
+        }
+
+        public static void Set(string key, float value)
+        {
+            Values[key] = value.ToString();
+        }
+
+        public static void Set(string key, double value)
+        {
+            Values[key] = value.ToString();
+        }
+
+        public static string Get(string key, string defaultValue = null)
 		{
 			if (Values.ContainsKey(key))
 				return Values[key];

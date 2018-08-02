@@ -16,6 +16,7 @@ using LunarLambda.Common;
 using LudicrousElectron.Engine.RenderChain.Effects;
 using LudicrousElectron.Engine.Window;
 using LunarLambda.API;
+using LudicrousElectron.Engine.Audio;
 
 namespace LunarLambda
 {
@@ -66,7 +67,12 @@ namespace LunarLambda
 
         static void SetupSounds()
         {
+            SoundManager.SetMusicVolume(PreferencesManager.GetValueF(PrefNames.MusicVolume, 50));
+            SoundManager.SetMasterSoundVolume(PreferencesManager.GetValueF(PrefNames.SoundVolume, 50));
 
+            // save the actual sounds
+            PreferencesManager.Set(PrefNames.MusicVolume, SoundManager.GetMusicVolume());
+            PreferencesManager.Set(PrefNames.SoundVolume, SoundManager.GetMasterSoundVolume());
         }
 
         static void SetupWindows()
@@ -144,8 +150,10 @@ namespace LunarLambda
 		static void LoadResources()
 		{
 			FileLocations.AddUserAndApplicationSubDirAssets("assets");
-			
-			foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packs"), "*.pack"))
+            FileLocations.AddUserAndApplicationSubDirAssets("music");
+
+
+            foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packs"), "*.pack"))
 				AssetManager.AddProvider(new PackAssetProvider(file));
 
 			foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packs"), "*.pack"))

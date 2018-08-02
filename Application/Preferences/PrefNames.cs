@@ -13,5 +13,8 @@ namespace LunarLambda.Preferences
         public static readonly string Fullscreen = "fullscreen";
         public static readonly string FSAA = "fsaa";
         public static readonly string DisableShader = "disable_shaders";
+
+        public static readonly string MusicVolume = "music_volume";
+        public static readonly string SoundVolume = "sound_volume";
     }
 }
