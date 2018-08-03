@@ -26,7 +26,7 @@ namespace LunarLambda.Preferences
 
 		public static string GetApplicationDataDir()
 		{
-			string dir = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "data");
+			string dir = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "../data")).FullName;
 			if (!Directory.Exists(dir))
 			{
 				dir = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "../../../data")).FullName;

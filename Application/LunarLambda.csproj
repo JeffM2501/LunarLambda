@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenTK, Version=3.0.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenTK.3.0.1\lib\net20\OpenTK.dll</HintPath>
@@ -89,10 +92,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LudicrousElectron\Box2DNet\Box2DNet\Box2DNet.csproj">
-      <Project>{8dce88bd-5355-4aed-b7fa-6844ec4fb9b2}</Project>
-      <Name>Box2DNet</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\LudicrousElectron\Engine\LudicrousElectron.Engine.csproj">
       <Project>{547b86a8-43a9-4683-a862-3d8136b3cf3d}</Project>
       <Name>LudicrousElectron.Engine</Name>
@@ -104,4 +103,10 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.exe $(SolutionDir)_bin_debug
+if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.dll $(SolutionDir)_bin_debug
+if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.exe $(SolutionDir)_bin_release
+if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.dll $(SolutionDir)_bin_release</PostBuildEvent>
+  </PropertyGroup>
 </Project>
