@@ -4,114 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using OpenTK;
+
 namespace LunarLambda.API.Databases
 {
-    public class BaseTemplate
-    {
-        public enum TemplateTypes
-        {
-            Other,
-            Ship,
-            PlayerShip,
-            Station
-        }
-
-        public TemplateTypes Type = TemplateTypes.Other;
-
-        public string Name = string.Empty;
-        public string ClassName = string.Empty;
-        public string SubClassName = string.Empty;
-        public string Description = string.Empty;
-        public string ModelName = string.Empty;
-        public string RadarTrace = string.Empty;
-
-        public float Hull = 0;
-        public List<float> Shields = new List<float>();
-
-        protected ModelData _Model = null;
-
-        public ModelData Model { get { if (_Model == null) _Model = ModelDatabase.GetModel(ModelName); return _Model; } }
-
-        public void SetName(string name)
-        {
-            Name = name;
-        }
-
-        public void SetClass(string class_name, string sub_class_name)
-        {
-            ClassName = class_name;
-            SubClassName = sub_class_name;
-        }
-
-        public void SetDescription(string description)
-        {
-            Description = description;
-        }
-
-        public void SetModel(string model_name)
-        {
-            ModelName = model_name;
-        }
-
-        public void SetHull(float amount)
-        {
-            Hull = amount;
-        }
-
-        public void SetShields(IEnumerable<float> values)
-        {
-            Shields.Clear();
-            Shields.AddRange(values.ToArray());
-        }
-
-        public void SetShields(float values)
-        {
-            Shields.Clear();
-            Shields.Add(values);
-        }
-
-        public void SetRadarTrace(string trace)
-        {
-            RadarTrace = trace;
-        }
-    }
-
-    public class StationTemplate : BaseTemplate
-    {
-        public StationTemplate()
-        {
-            Type = TemplateTypes.Station;
-        }
-    }
-
-    [Flags]
-    public enum EMissileWeapons
-    {
-        None,
-        Homing,
-        Nuke,
-        Mine,
-        EMP,
-        HVLI,
-        Count
-    }
-
-    public class ShipTemplate : BaseTemplate
-    {
-        public class TubeTemplate
-        {
-            public float LoadTIme = 0;
-            public EMissileWeapons AllowedLoadings = EMissileWeapons.None;
-            public float Direction = 0;
-        }
-
-        public List<TubeTemplate> WeaponTubes = new List<TubeTemplate>();
-
-        public ShipTemplate()
-        {
-            Type = TemplateTypes.Ship;
-        }
-    }
+   
 
     public static class TemplateDatabase
     {
@@ -126,11 +23,12 @@ namespace LunarLambda.API.Databases
             return template;
         }
 
-        public static StationTemplate AddStation(string name)
+        public static ShipTemplate AddStation(string name)
         {
-            StationTemplate station = new StationTemplate();
+            ShipTemplate station = new ShipTemplate();
+            station.Type = BaseTemplate.TemplateTypes.Station;
             station.Name = name;
-            return AddTemplate(station) as StationTemplate;
+            return AddTemplate(station) as ShipTemplate;
         }
 
         public static ShipTemplate AddShip(string name)

@@ -53,10 +53,13 @@
   <ItemGroup>
     <Compile Include="API\Databases\ModelDatabase.cs" />
     <Compile Include="API\Databases\TemplateDatabase.cs" />
+    <Compile Include="API\Databases\Templates\BaseTemplate.cs" />
+    <Compile Include="API\Databases\Templates\ShipTemplate.cs" />
     <Compile Include="API\Events.Calls.cs" />
     <Compile Include="API\Events.cs" />
     <Compile Include="API\Plugin.cs" />
     <Compile Include="API\PluginLoader.cs" />
+    <Compile Include="API\StateData.cs" />
     <Compile Include="Common\Graphics.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="GUI\Config\ColorConfig.cs" />

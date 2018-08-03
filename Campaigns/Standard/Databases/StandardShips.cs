@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+using LunarLambda.API;
 using LunarLambda.Campaigns.Standard.Databases.Templates;
 
 namespace LunarLambda.Campaigns.Standard.Databases
@@ -12,6 +9,11 @@ namespace LunarLambda.Campaigns.Standard.Databases
     {
         internal static void Load(object sender, EventArgs e)
         {
+            if (StateData.Exists("StandardShips.Loaded") || StateData.GetB("StandardShips.Ignore"))
+                return;
+
+            StateData.Set("StandardShips.Loaded", true);
+
             Stations.Load();
         }
     }

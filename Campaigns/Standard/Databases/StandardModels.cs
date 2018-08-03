@@ -1,9 +1,7 @@
-﻿using LunarLambda.API.Databases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+
+using LunarLambda.API;
+using LunarLambda.API.Databases;
 
 namespace LunarLambda.Campaigns.Standard.Databases
 {
@@ -11,6 +9,11 @@ namespace LunarLambda.Campaigns.Standard.Databases
     {
         internal static void Load(object sender, EventArgs e)
         {
+            if (StateData.Exists("StandardModels.Loaded") || StateData.GetB("StandardModels.Ignore"))
+                return;
+
+            StateData.Set("StandardModels.Loaded", true);
+
             var model = ModelDatabase.AddModel("space_station_4");
             model.SetMesh("space_station_4/space_station_4.model");
             model.SetTexture("space_station_4/space_station_4_color.jpg");
