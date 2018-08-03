@@ -21,8 +21,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetRadius(300);
             model.SetCollisionBox(400, 400);
 
-
-
             model = ModelDatabase.AddModel("space_station_3");
             model.SetMesh("space_station_3/space_station_3.model");
             model.SetTexture("space_station_3/space_station_3_color.jpg");
@@ -32,7 +30,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetScale(20);
             model.SetRadius(1000);
             model.SetCollisionBox(1200, 1000);
-
 
             model = ModelDatabase.AddModel("space_station_2");
             model.SetMesh("space_station_2/space_station_2.model");
@@ -44,7 +41,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetRadius(1300);
             model.SetCollisionBox(1400, 1000);
 
-
             model = ModelDatabase.AddModel("space_station_1");
             model.SetMesh("space_station_1/space_station_1.model");
             model.SetTexture("space_station_1/space_station_1_color.jpg");
@@ -54,7 +50,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetScale(20);
             model.SetRadius(1500);
             model.SetCollisionBox(2000, 1800);
-
 
             model = ModelDatabase.AddModel("small_fighter_1");
             model.SetMesh("small_fighter_1.model");
@@ -68,7 +63,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.AddBeamPosition(23, 0, -1.8);
             model.AddEngineEmitter(-8, 0, 0.5, 1.0, 0.2, 0.2, 1.5);
 
-
             model = ModelDatabase.AddModel("space_tug");
             model.SetMesh("space_tug.model");
             model.SetTexture("space_tug_color.jpg");
@@ -79,7 +73,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
 
             model.AddEngineEmitter(-13, -2.1500, 0.3, 0.2, 0.2, 1.0, 3.0);
             model.AddEngineEmitter(-13, 2.1500, 0.3, 0.2, 0.2, 1.0, 3.0);
-
 
             model = ModelDatabase.AddModel("space_frigate_6");
             model.SetMesh("space_frigate_6.model");
@@ -95,8 +88,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.AddTubePosition(18, 0, -3.5);
             model.AddEngineEmitter(-18, 0, -1, 0.2, 0.2, 1.0, 6.0);
 
-
-
             model = ModelDatabase.AddModel("space_cruiser_4");
             model.SetMesh("space_cruiser_4.model");
             model.SetTexture("space_cruiser_4_color.jpg");
@@ -110,7 +101,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.AddEngineEmitter(-13, -2.1500, 0.3, 0.2, 0.2, 1.0, 3.0);
             model.AddEngineEmitter(-13, 2.1500, 0.3, 0.2, 0.2, 1.0, 3.0);
 
-
             model = ModelDatabase.AddModel("dark_fighter_6");
             model.SetMesh("dark_fighter_6.model");
             model.SetTexture("dark_fighter_6_color.png");
@@ -123,8 +113,6 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.AddBeamPosition(21, 28.2, -2);
             model.AddEngineEmitter(-28, -1.5, -5, 1.0, 0.2, 0.2, 3.0);
             model.AddEngineEmitter(-28, 1.5, -5, 1.0, 0.2, 0.2, 3.0);
-
-
 
             model = ModelDatabase.AddModel("battleship_destroyer_1_upgraded");
             model.SetMesh("battleship_destroyer_1_upgraded/battleship_destroyer_1_upgraded.model");

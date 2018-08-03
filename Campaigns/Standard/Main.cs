@@ -9,6 +9,7 @@ using LunarLambda.API.Databases;
 
 using LunarLambda.Campaigns.Standard.Databases;
 
+
 namespace LunarLambda.Campaigns.Standard
 {
     public class Main : LLPlugin
@@ -16,8 +17,7 @@ namespace LunarLambda.Campaigns.Standard
         public override void Load()
         {
             Events.SetupModelData += StandardModels.Load;
+            Events.SetupShipTemplates += StandardShips.Load;
         }
-
-       
     }
 }
