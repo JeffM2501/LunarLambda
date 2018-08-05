@@ -44,29 +44,50 @@ namespace LunarLambda.API.Databases
 
         public List<DockingPortInfo> DockingPorts = new List<DockingPortInfo>();
 
-        public class TubeTemplate
+        public class WeaponTemplate
+        {
+            public enum WeaponTypes
+            {
+                Unknown,
+                Beam,
+                Missile,
+            }
+            public virtual WeaponTypes WeaponType { get; } = WeaponTypes.Unknown;
+        }
+
+        public class TubeTemplate : WeaponTemplate
         {
             public float LoadTIme = 0;
             public EMissileWeapons AllowedLoadings = EMissileWeapons.None;
             public float Direction = 0;
         }
 
-        public List<TubeTemplate> WeaponTubes = new List<TubeTemplate>();
-
-        public class BeamWeaponBankTemplate
+        public class BeamWeaponBankTemplate : WeaponTemplate
         {
             public string BeamTexture = string.Empty;
             public string BeamType = string.Empty;
-
-            public float 
-            public float LoadTIme = 0;
-            public EMissileWeapons AllowedLoadings = EMissileWeapons.None;
-            public float Direction = 0;
+            public float BeamArc = 0;
+            public float NominalCycleTime = 0;
+            public float NominalRange = 0;
+            public float NominalDamage = 0;
+            public float NominalEnergyCost = 0;
+            public float NominalHeatGeneration = 0;
         }
 
-        public List<TubeTemplate> WeaponTubes = new List<TubeTemplate>();
+        public class WeaponMount
+        {
+            public Vector3 Postion = Vector3.Zero;
+            public Quaternion BaseOrientation = Quaternion.Identity;
 
+            public bool IsTurret = false;
+            public float RotationArc = 0;
+            public float RotationSpeed = 0;
 
+            public WeaponTemplate MountedWeapon = null;
+        }
+
+        public List<WeaponMount> Weapons= new List<WeaponMount>();
+       
 
         public ShipTemplate()
         {
