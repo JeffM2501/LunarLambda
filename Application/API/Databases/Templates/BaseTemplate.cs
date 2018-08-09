@@ -33,6 +33,32 @@ namespace LunarLambda.API.Databases
 
         public ModelData Model { get { if (_Model == null) _Model = ModelDatabase.GetModel(ModelName); return _Model; } }
 
+        public virtual BaseTemplate Clone()
+        {
+            BaseTemplate obj = Create();
+            CopyTo(obj);
+            return obj;
+        }
+
+        protected virtual void CopyTo(BaseTemplate newTemplate)
+        {
+            newTemplate.Name = Name;
+            newTemplate.ClassName = ClassName;
+            newTemplate.SubClassName = SubClassName;
+            newTemplate.Description = Description;
+            newTemplate.ModelName = ModelName;
+            newTemplate.RadarTrace = RadarTrace;
+            newTemplate.DefaultAIName = DefaultAIName;
+
+            newTemplate.Hull = Hull;
+            newTemplate.Shields = new List<float>(Shields.ToArray());
+        }
+
+        protected virtual BaseTemplate Create()
+        {
+            return new BaseTemplate();
+        }
+
         public BaseTemplate SetName(string name)
         {
             Name = name;

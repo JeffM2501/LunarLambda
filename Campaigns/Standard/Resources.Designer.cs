@@ -61,6 +61,60 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5..
+        /// </summary>
+        internal static string Fighter_AdderMk4Description {
+            get {
+                return ResourceManager.GetString("Fighter_AdderMk4Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adder Mk. IV.
+        /// </summary>
+        internal static string Fighter_AdderMk4Name {
+            get {
+                return ResourceManager.GetString("Fighter_AdderMk4Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Adder line&apos;s fifth iteration proved to be a great success among pirates and law officers alike. It is cheap, fast, and easy to maintain, and it packs a decent punch..
+        /// </summary>
+        internal static string Fighter_AdderMk5Description {
+            get {
+                return ResourceManager.GetString("Fighter_AdderMk5Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adder Mk. V.
+        /// </summary>
+        internal static string Fighter_AdderMk5Name {
+            get {
+                return ResourceManager.GetString("Fighter_AdderMk5Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mark 6 Adder is a small upgrade compared to the highly successful mark 5 model.Since people still prefer the more familiar and reliable mark 5, the mark 6 has not seen the same level of success..
+        /// </summary>
+        internal static string Fighter_AdderMk6Description {
+            get {
+                return ResourceManager.GetString("Fighter_AdderMk6Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adder Mk. VI.
+        /// </summary>
+        internal static string Fighter_AdderMk6Name {
+            get {
+                return ResourceManager.GetString("Fighter_AdderMk6Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The MT52 Hornet is a basic interceptor found in many corners of the galaxy.It&apos;s easy to find spare parts for MT52s, not only because they are produced in large numbers, but also because they suffer high losses in combat..
         /// </summary>
         internal static string Fighter_HornetDescription {
@@ -70,11 +124,65 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The MU52 Hornet is a new, upgraded version of the MT52. All of its systems are slightly improved over the MT52 model..
+        /// </summary>
+        internal static string Fighter_HornetMk2Description {
+            get {
+                return ResourceManager.GetString("Fighter_HornetMk2Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MU52 Hornet Mk. II.
+        /// </summary>
+        internal static string Fighter_HornetMk2Name {
+            get {
+                return ResourceManager.GetString("Fighter_HornetMk2Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The MP52 Hornet is a significantly upgraded version of MU52 Hornet, with nearly twice the hull strength, nearly three times the shielding, better acceleration, impulse boosters, and a second laser cannon..
+        /// </summary>
+        internal static string Fighter_HornetMk3Description {
+            get {
+                return ResourceManager.GetString("Fighter_HornetMk3Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MP52 Hornet Mk. III.
+        /// </summary>
+        internal static string Fighter_HornetMk3Name {
+            get {
+                return ResourceManager.GetString("Fighter_HornetMk3Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MT52 Hornet.
         /// </summary>
         internal static string Fighter_HornetName {
             get {
                 return ResourceManager.GetString("Fighter_HornetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The WX - Lindworm, or &quot;Worm&quot; as it&apos;s often called, is a bomber-class starfighter. While one of the least-shielded starfighters in active duty, the Worm&apos;s two launchers can pack quite a punch.Its goal is to fly in, destroy its target, and fly out or be destroyed..
+        /// </summary>
+        internal static string Fighter_LindwormDescription {
+            get {
+                return ResourceManager.GetString("Fighter_LindwormDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WX-Lindworm.
+        /// </summary>
+        internal static string Fighter_LindwormName {
+            get {
+                return ResourceManager.GetString("Fighter_LindwormName", resourceCulture);
             }
         }
         

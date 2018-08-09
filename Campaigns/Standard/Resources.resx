@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Fighter_AdderMk4Description" xml:space="preserve">
+    <value>The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5.</value>
+  </data>
+  <data name="Fighter_AdderMk4Name" xml:space="preserve">
+    <value>Adder Mk. IV</value>
+  </data>
+  <data name="Fighter_AdderMk5Description" xml:space="preserve">
+    <value>The Adder line's fifth iteration proved to be a great success among pirates and law officers alike. It is cheap, fast, and easy to maintain, and it packs a decent punch.</value>
+  </data>
+  <data name="Fighter_AdderMk5Name" xml:space="preserve">
+    <value>Adder Mk. V</value>
+  </data>
+  <data name="Fighter_AdderMk6Description" xml:space="preserve">
+    <value>The mark 6 Adder is a small upgrade compared to the highly successful mark 5 model.Since people still prefer the more familiar and reliable mark 5, the mark 6 has not seen the same level of success.</value>
+  </data>
+  <data name="Fighter_AdderMk6Name" xml:space="preserve">
+    <value>Adder Mk. VI</value>
+  </data>
   <data name="Fighter_HornetDescription" xml:space="preserve">
     <value>The MT52 Hornet is a basic interceptor found in many corners of the galaxy.It's easy to find spare parts for MT52s, not only because they are produced in large numbers, but also because they suffer high losses in combat.</value>
   </data>
+  <data name="Fighter_HornetMk2Description" xml:space="preserve">
+    <value>The MU52 Hornet is a new, upgraded version of the MT52. All of its systems are slightly improved over the MT52 model.</value>
+  </data>
+  <data name="Fighter_HornetMk2Name" xml:space="preserve">
+    <value>MU52 Hornet Mk. II</value>
+  </data>
+  <data name="Fighter_HornetMk3Description" xml:space="preserve">
+    <value>The MP52 Hornet is a significantly upgraded version of MU52 Hornet, with nearly twice the hull strength, nearly three times the shielding, better acceleration, impulse boosters, and a second laser cannon.</value>
+  </data>
+  <data name="Fighter_HornetMk3Name" xml:space="preserve">
+    <value>MP52 Hornet Mk. III</value>
+  </data>
   <data name="Fighter_HornetName" xml:space="preserve">
     <value>MT52 Hornet</value>
+  </data>
+  <data name="Fighter_LindwormDescription" xml:space="preserve">
+    <value>The WX - Lindworm, or "Worm" as it's often called, is a bomber-class starfighter. While one of the least-shielded starfighters in active duty, the Worm's two launchers can pack quite a punch.Its goal is to fly in, destroy its target, and fly out or be destroyed.</value>
+  </data>
+  <data name="Fighter_LindwormName" xml:space="preserve">
+    <value>WX-Lindworm</value>
   </data>
   <data name="HugeStationDescription" xml:space="preserve">
     <value>The size of a sprawling town, stations at this scale represent a faction's center of space-borne power in a region. They serve many functions at once and represent an extensive investment of time, money, and labor. A huge station's shields and thick hull can keep it intact long enough for reinforcements to arrive, even when faced with an ongoing siege or massive, perfectly coordinated assault.</value>
