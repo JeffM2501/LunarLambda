@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Corvette_AtlantisX32Description" xml:space="preserve">
+    <value>The Atlantis X23 is the smallest model of destroyer, and its combination of frigate-like size and corvette-like power makes it an excellent escort ship when defending larger ships against multiple smaller enemies. Because the Atlantis X23 is fitted with a jump drive, it can also serve as an intersystem patrol craft.</value>
+  </data>
+  <data name="Corvette_AtlantisX32Name" xml:space="preserve">
+    <value>Atlantis X23</value>
+  </data>
   <data name="Fighter_AdderMk4Description" xml:space="preserve">
     <value>The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5.</value>
   </data>

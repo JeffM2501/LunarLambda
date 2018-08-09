@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Databases\StandardModels.cs" />
     <Compile Include="Databases\StandardShips.cs" />
+    <Compile Include="Databases\Templates\Corvettes.cs" />
     <Compile Include="Databases\Templates\StarFighters.cs" />
     <Compile Include="Databases\Templates\Stations.cs" />
     <Compile Include="Main.cs" />

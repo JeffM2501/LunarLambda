@@ -36,6 +36,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             // Arc, Dir, Range, CycleTime, Dmg
             template.SetupBeamWeapon(0, 30, 0, 700.0f, 4.0f, 2);
 
+
+            // mk2 upgrade
             ShipTemplate variation = template.CloneShip();
             variation.SetName(Resources.Fighter_HornetMk2Name);
             variation.SetDescription(Resources.Fighter_HornetMk2Description);
@@ -45,6 +47,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             variation.SetSpeed(125, 32, 25);
             variation.SetupBeamWeapon(0, 30, 0, 900.0f, 4.0f, 2.5f);
 
+
+            // mk 3 player variant
             variation = template.CloneShip();
             variation.SetName(Resources.Fighter_HornetMk3Name);
             variation.SetDescription(Resources.Fighter_HornetMk3Description);
@@ -95,7 +99,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             template.SetupBeamWeapon(1, 70, 30, 600, 5.0f, 2.0f);
             template.SetupBeamWeapon(2, 70, -35, 600, 5.0f, 2.0f);
             template.SetMissleTubeCount(1, 15);
-            template.SetMissleWeaponLoadout(MissileWeaponTypes.HVLI, 4);
+            template.SetupMissileMagazine(MissileWeaponTypes.HVLI, 4);
 
 
             // MK4
@@ -106,27 +110,18 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             variation.SetHull(40);
             variation.SetShields(20);
             variation.SetSpeed(60, 20, 20);
-            template.SetMissleTubeCount(1, 20);
-            template.SetMissleWeaponLoadout(MissileWeaponTypes.HVLI, 2);
+            variation.SetMissleTubeCount(1, 20);
+            variation.ClearMagazines();
+            variation.SetupMissileMagazine(MissileWeaponTypes.HVLI, 2);
 
 
             // MK6
             variation = template.CloneShip();
-            variation.SetName(Resources.Fighter_AdderMk4Name);
-            variation.SetDescription(Resources.Fighter_AdderMk4Description);
-            variation.SetModel("AdlerLongRangeScoutBlue");
-            variation.SetHull(40);
-            variation.SetShields(20);
-            variation.SetSpeed(60, 20, 20);
-            template.SetMissleTubeCount(1, 20);
-            template.SetMissleWeaponLoadout(MissileWeaponTypes.HVLI, 2);
-
-
-            variation = template.CloneShip();
             variation.SetName(Resources.Fighter_AdderMk6Name);
             variation.SetDescription(Resources.Fighter_AdderMk6Description);
-            template.SetupBeamWeapon(3, 35, 180, 600, 6.0f, 2.0f);
-            template.SetMissleWeaponLoadout(MissileWeaponTypes.HVLI,8);
+            variation.SetupBeamWeapon(3, 35, 180, 600, 6.0f, 2.0f);
+            variation.ClearMagazines();
+            variation.SetupMissileMagazine(MissileWeaponTypes.HVLI,8);
 
         }
 
@@ -142,8 +137,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             template.SetSpeed(50, 15, 25);
    
             template.SetMissleTubeCount(3, 15);
-            template.SetMissleWeaponLoadout(MissileWeaponTypes.HVLI, 4);
-            template.SetMissleWeaponLoadout(MissileWeaponTypes.Homing, 1);
+            template.SetupMissileMagazine(MissileWeaponTypes.HVLI, 4);
+            template.SetupMissileMagazine(MissileWeaponTypes.Homing, 1);
 
             template.SetMissileWeaponLoadingTypes(1, MissileWeaponTypes.HVLI);
             template.SetMissileWeaponLoadingTypes(2, MissileWeaponTypes.HVLI);

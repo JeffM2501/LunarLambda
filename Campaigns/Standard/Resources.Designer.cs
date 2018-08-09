@@ -61,6 +61,24 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Atlantis X23 is the smallest model of destroyer, and its combination of frigate-like size and corvette-like power makes it an excellent escort ship when defending larger ships against multiple smaller enemies. Because the Atlantis X23 is fitted with a jump drive, it can also serve as an intersystem patrol craft..
+        /// </summary>
+        internal static string Corvette_AtlantisX32Description {
+            get {
+                return ResourceManager.GetString("Corvette_AtlantisX32Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atlantis X23.
+        /// </summary>
+        internal static string Corvette_AtlantisX32Name {
+            get {
+                return ResourceManager.GetString("Corvette_AtlantisX32Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5..
         /// </summary>
         internal static string Fighter_AdderMk4Description {

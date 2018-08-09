@@ -28,7 +28,14 @@ namespace LunarLambda.API.Databases
         HVLI,
         Probe,
         All = Homing | Nuke | Mine | EMP | HVLI | Probe,
+    }
 
+    [Flags]
+    public enum FTLDriveTypes
+    {
+        None,
+        Warp,
+        Jump,
     }
 
     public class ShipSystemTypes
@@ -49,7 +56,13 @@ namespace LunarLambda.API.Databases
         public float ImpulseSpeed = 0;
         public float ImpulseAcceleration = 0;
         public float TurnSpeed = 0;
+
+        public float CombatManuverBoostSpeed = 0;
+        public float CombatManuverStrafeSpeed = 0;
+
         public float WarpSpeed = 0;
+        public double[] JumpRanges = new double[] { 0, 0 };
+        public FTLDriveTypes DriveType = FTLDriveTypes.None;
 
         public bool IsPlayable = false;
 
@@ -205,8 +218,17 @@ namespace LunarLambda.API.Databases
 
         public Dictionary<HardpointID, WeaponMount> Weapons= new Dictionary<HardpointID, WeaponMount>();
 
-        public Dictionary<MissileWeaponTypes, int> InitialMissileLoadout = new Dictionary<MissileWeaponTypes, int>();
-        public Dictionary<MissileWeaponTypes, int> MaxMissileStorage = new Dictionary<MissileWeaponTypes, int>();
+
+        public class MissileMagazine
+        {
+            public MissileWeaponTypes AllowedTypes = new MissileWeaponTypes();
+            public int Capacity = 0;
+            public List<MissileWeaponTypes> Loadout = new List<MissileWeaponTypes>();
+            public float LoadModificationFactor = 1.0f;
+            public bool Indexable = false;
+        }
+
+        public List<MissileMagazine> Magazines = new List<MissileMagazine>();
 
         public class Room
         {
@@ -415,22 +437,75 @@ namespace LunarLambda.API.Databases
             return r;
         }
 
-        public void SetMissleWeaponLoadout(MissileWeaponTypes type, int count)
+        public void ClearMagazines()
         {
-            if (!MaxMissileStorage.ContainsKey(type))
-                MaxMissileStorage.Add(type, count);
-            else if (MaxMissileStorage[type] < count)
-                MaxMissileStorage[type] = count;
-
-            InitialMissileLoadout[type] = count;
+            Magazines.Clear();
         }
 
-        public void SetMissileWeaponMaxStorage(MissileWeaponTypes type, int count)
+        protected MissileWeaponTypes GetSingleMissileType(MissileWeaponTypes types)
         {
-            if (!MaxMissileStorage.ContainsKey(type))
-                MaxMissileStorage.Add(type, count);
-            else
-                MaxMissileStorage[type] = count;
+            if (types.HasFlag(MissileWeaponTypes.Homing))
+                return MissileWeaponTypes.Homing;
+
+            if (types.HasFlag(MissileWeaponTypes.Nuke))
+                return MissileWeaponTypes.Nuke;
+            if (types.HasFlag(MissileWeaponTypes.Mine))
+                return MissileWeaponTypes.Mine;
+            if (types.HasFlag(MissileWeaponTypes.EMP))
+                return MissileWeaponTypes.EMP;
+            if (types.HasFlag(MissileWeaponTypes.HVLI))
+                return MissileWeaponTypes.HVLI;
+            if (types.HasFlag(MissileWeaponTypes.Probe))
+                return MissileWeaponTypes.Probe;
+
+            return MissileWeaponTypes.None;
+        }
+
+        public void SetupMissileMagazine(MissileWeaponTypes type, int capacity, MissileWeaponTypes fillWith)
+        {
+            if (type == MissileWeaponTypes.None)
+                return;
+
+            MissileMagazine magazine = new MissileMagazine();
+            magazine.Capacity = capacity;
+            magazine.AllowedTypes = type;
+
+            var fill = GetSingleMissileType(fillWith);
+
+            if (fill != MissileWeaponTypes.None && type.HasFlag(fill))
+            {
+                for (int i = 0; i < capacity; i++)
+                    magazine.Loadout.Add(fill);
+            }
+
+            Magazines.Add(magazine);
+        }
+
+        public void SetupMissileMagazine(MissileWeaponTypes type, int capacity)
+        {
+            SetupMissileMagazine(type, capacity, GetSingleMissileType(type));
+        }
+
+        public void SetJumpDrive()
+        {
+            DriveType = FTLDriveTypes.Jump;
+        }
+
+        public void SetWarpDrive()
+        {
+            DriveType = FTLDriveTypes.Warp;
+        }
+
+        public void SetJumpRanges(double min, double max)
+        {
+            JumpRanges[0] = min;
+            JumpRanges[1] = max;
+        }
+
+        public void SetCombatManeuvers(float boost, float strafe )
+        {
+            CombatManuverBoostSpeed = boost;
+            CombatManuverStrafeSpeed = strafe;
         }
     }
 }
