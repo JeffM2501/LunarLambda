@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Databases\FactionDatabase.cs" />
     <Compile Include="API\Databases\ModelDatabase.cs" />
     <Compile Include="API\Databases\TemplateDatabase.cs" />
     <Compile Include="API\Databases\Templates\BaseTemplate.cs" />
