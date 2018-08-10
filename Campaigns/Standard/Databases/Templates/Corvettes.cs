@@ -46,13 +46,60 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             template.SetMissleWeaponDirection(2, 90);
             template.SetMissleWeaponDirection(3, 90);
 
+            var variation = template.CloneShip();
+            variation.SetName(Resources.Corvette_AtlantisX32PName);
+            variation.SetPlayable();
+            variation.SetDescription(Resources.Corvette_AtlantisX32PDescription);
+            variation.SetShields(new float[] { 200, 200 });
+            variation.SetHull(250);
+            variation.SetSpeed(90, 10, 20);
+            variation.SetCombatManeuvers(400, 250);
 
+            variation.RemoveBeamWeapon(2);
+            variation.SetupMissileMagazine(MissileWeaponTypes.HVLI, 12);
+            variation.SetupMissileMagazine(MissileWeaponTypes.Homing, 12);
+            variation.SetupMissileMagazine(MissileWeaponTypes.Nuke, 4);
+            variation.SetupMissileMagazine(MissileWeaponTypes.Mine, 8);
+            variation.SetupMissileMagazine(MissileWeaponTypes.EMP, 6);
 
+            variation.SetMissleTubeCount(5, 8);
+            for (int i = 0; i < 4; i++)
+                variation.RemoveTubeLoadTypes(i, MissileWeaponTypes.Mine);
+
+            variation.SetMissileWeaponLoadingTypes(4, MissileWeaponTypes.Mine);
+
+            variation.AddRoom(1, 0, 2, 1, ShipSystemTypes.Maneuver);
+            variation.AddRoom(1, 1, 2, 1, ShipSystemTypes.Beams);
+            variation.AddRoom(2, 2, 2, 1);
+            variation.AddRoom(0, 3, 1, 2, ShipSystemTypes.Shields(1));
+            variation.AddRoom(1, 3, 2, 2, ShipSystemTypes.Reactor);
+            variation.AddRoom(3, 3, 2, 2, ShipSystemTypes.FTL);
+            variation.AddRoom(5, 3, 1, 2, ShipSystemTypes.Jump);
+            variation.AddRoom(6, 3, 2, 1);
+            variation.AddRoom(6, 4, 2, 1);
+            variation.AddRoom(8, 3, 1, 2, ShipSystemTypes.Shields(0));
+            variation.AddRoom(2, 5, 2, 1);
+            variation.AddRoom(1, 6, 2, 1, ShipSystemTypes.Missiles);
+            variation.AddRoom(1, 7, 2, 1, ShipSystemTypes.Sublight);
+
+            variation.AddDoor(1, 1, true);
+            variation.AddDoor(2, 2, true);
+            variation.AddDoor(3, 3, true);
+            variation.AddDoor(1, 3, false);
+            variation.AddDoor(3, 4, false);
+            variation.AddDoor(3, 5, true);
+            variation.AddDoor(2, 6, true);
+            variation.AddDoor(1, 7, true);
+            variation.AddDoor(5, 3, false);
+            variation.AddDoor(6, 3, false);
+            variation.AddDoor(6, 4, false);
+            variation.AddDoor(8, 3, false);
+            variation.AddDoor(8, 4, false);
         }
 
         internal static void Load()
         {
-
+            LoadAtlantis();
         }
     }
 }

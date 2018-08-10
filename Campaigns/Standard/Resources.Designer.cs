@@ -79,6 +79,24 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A refitted Atlantis X23 for more general tasks.The large shield system has been replaced with an advanced combat maneuvering systems and improved impulse engines.Its missile loadout is also more diverse.Mistaking the modified Atlantis for an Atlantis X23 would be a deadly mistake..
+        /// </summary>
+        internal static string Corvette_AtlantisX32PDescription {
+            get {
+                return ResourceManager.GetString("Corvette_AtlantisX32PDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atlantis X23 NX.
+        /// </summary>
+        internal static string Corvette_AtlantisX32PName {
+            get {
+                return ResourceManager.GetString("Corvette_AtlantisX32PName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5..
         /// </summary>
         internal static string Fighter_AdderMk4Description {

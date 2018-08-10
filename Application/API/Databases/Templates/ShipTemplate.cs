@@ -355,6 +355,12 @@ namespace LunarLambda.API.Databases
             beam.NominalDamage = damage;
         }
 
+        public void RemoveBeamWeapon(int hardpointIndex)
+        {
+            if (Weapons.ContainsKey(new HardpointID(HardpointTypes.Beam, hardpointIndex)))
+                Weapons.Remove(new HardpointID(HardpointTypes.Beam, hardpointIndex));
+        }
+
         public void SetupMissileWeapon(int hardpointIndex, float loadTime, MissileWeaponTypes loadTypes)
         {
             WeaponMount mount = FindWeaponMount(HardpointTypes.Tube, hardpointIndex);
@@ -367,6 +373,12 @@ namespace LunarLambda.API.Databases
             tube.LoadTime = loadTime;
         }
 
+        public void RemoveMissleWeapon(int hardpointIndex)
+        {
+            if (Weapons.ContainsKey(new HardpointID(HardpointTypes.Tube, hardpointIndex)))
+                Weapons.Remove(new HardpointID(HardpointTypes.Tube, hardpointIndex));
+        }
+
         public void SetMissleWeaponDirection(int hardpointIndex, float direction)
         {
             WeaponMount mount = FindWeaponMount(HardpointTypes.Tube, hardpointIndex);
@@ -376,7 +388,33 @@ namespace LunarLambda.API.Databases
             TubeTemplate tube = mount.MountedWeapon as TubeTemplate;
 
             mount.DefaultFacing = direction;
+        }
 
+        public MissileWeaponTypes GetTubeLoadTypes(int hardpointIndex)
+        {
+            HardpointID id = new HardpointID(HardpointTypes.Tube, hardpointIndex);
+            if (!Weapons.ContainsKey(id) || Weapons[id].MountedWeapon as TubeTemplate == null)
+                return MissileWeaponTypes.None;
+
+            return (Weapons[id].MountedWeapon as TubeTemplate).AllowedLoadings;
+        }
+
+        public void AddTubeLoadTypes(int hardpointIndex, MissileWeaponTypes types)
+        {
+            HardpointID id = new HardpointID(HardpointTypes.Tube, hardpointIndex);
+            if (!Weapons.ContainsKey(id) || Weapons[id].MountedWeapon as TubeTemplate == null)
+                return;
+
+            (Weapons[id].MountedWeapon as TubeTemplate).AllowedLoadings |= types;
+        }
+
+        public void RemoveTubeLoadTypes(int hardpointIndex, MissileWeaponTypes types)
+        {
+            HardpointID id = new HardpointID(HardpointTypes.Tube, hardpointIndex);
+            if (!Weapons.ContainsKey(id) || Weapons[id].MountedWeapon as TubeTemplate == null)
+                return;
+
+            (Weapons[id].MountedWeapon as TubeTemplate).AllowedLoadings &= ~types;
         }
 
         public void SetMissleWeapoLoadTime(int hardpointIndex, float time)
@@ -416,11 +454,11 @@ namespace LunarLambda.API.Databases
                 SetupMissileWeapon(i, nomialDir, MissileWeaponTypes.All);
         }
 
-        public Room AddRoom(int posX, int posY, int width, int height, string initalSystem)
+        public Room AddRoom(int posX, int posY, int width, int height, string initalSystem = null)
         {
             Room r = new Room();
             r.Rectangle = new Rect2Di(posX, posY, width, height);
-            if (initalSystem != string.Empty)
+            if (initalSystem == null || initalSystem != string.Empty)
                 r.Systems.Add(initalSystem);
 
             Rooms.Add(r);
