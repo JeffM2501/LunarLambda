@@ -15,6 +15,8 @@ namespace LunarLambda.Campaigns.Standard.Databases
             StateData.Set("StandardShips.Loaded", true);
 
             Stations.Load();
+            StarFighters.Load();
+            Corvettes.Load();
         }
     }
 }

@@ -97,6 +97,70 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This stationary defense platform operates like a station, with docking and resupply functions, but is armed with powerful beam weapons and can slowly rotate. Larger systems often use these platforms to resupply patrol ships..
+        /// </summary>
+        internal static string Corvette_DefensePlatformDescription {
+            get {
+                return ResourceManager.GetString("Corvette_DefensePlatformDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defense Platform.
+        /// </summary>
+        internal static string Corvette_DefensePlatformName {
+            get {
+                return ResourceManager.GetString("Corvette_DefensePlatformName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Jump Carrier is a specialized Freigher. It does not carry any cargo, as it&apos;s cargo bay is taken up by a specialized jump drive and the energy storage required to run this jump drive.
+        ///It is designed to carry other ships deep into space. So it has special docking parameters, allowing other ships to attach themselves to this ship..
+        /// </summary>
+        internal static string Corvette_JumpCarrierDescription {
+            get {
+                return ResourceManager.GetString("Corvette_JumpCarrierDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump Carrier.
+        /// </summary>
+        internal static string Corvette_JumpCarrierName {
+            get {
+                return ResourceManager.GetString("Corvette_JumpCarrierName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contrary to its predecessor, the Starhammer II lives up to its name. By resolving the original Starhammer&apos;s power and heat management issues, the updated model makes for a phenomenal frontal assault ship. Its low speed makes it difficult to position, but when in the right place at the right time, even the strongest shields can&apos;t withstand a Starhammer&apos;s assault for long..
+        /// </summary>
+        internal static string Corvette_StarhammerDescription {
+            get {
+                return ResourceManager.GetString("Corvette_StarhammerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starhammer II.
+        /// </summary>
+        internal static string Corvette_StarhammerName {
+            get {
+                return ResourceManager.GetString("Corvette_StarhammerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A freighter that hauls large loads of cargo across long distances..
+        /// </summary>
+        internal static string DefaultFreightHaulerDescription {
+            get {
+                return ResourceManager.GetString("DefaultFreightHaulerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5..
         /// </summary>
         internal static string Fighter_AdderMk4Description {
@@ -223,6 +287,33 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Freighter.
+        /// </summary>
+        internal static string FreighterBaseName {
+            get {
+                return ResourceManager.GetString("FreighterBaseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ;Cargo freighters haul large loads of cargo across long distances on impulse power. Their cargo bays include climate control and stabilization systems that keep the cargo in good condition;These freighters are specially designed to haul garbage and waste. They are fitted with a trash compactor and fewer stabilzation systems than cargo freighters.;Equipment freighters have specialized environmental and stabilization systems to safely carry delicate machinery and complex instruments.;Fuel freighters have mass [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string HaulFreighterDescriptions {
+            get {
+                return ResourceManager.GetString("HaulFreighterDescriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personnel;Goods;Garbage;Equipment;Fuel.
+        /// </summary>
+        internal static string HaulTypes {
+            get {
+                return ResourceManager.GetString("HaulTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The size of a sprawling town, stations at this scale represent a faction&apos;s center of space-borne power in a region. They serve many functions at once and represent an extensive investment of time, money, and labor. A huge station&apos;s shields and thick hull can keep it intact long enough for reinforcements to arrive, even when faced with an ongoing siege or massive, perfectly coordinated assault..
         /// </summary>
         internal static string HugeStationDescription {
@@ -237,6 +328,15 @@ namespace LunarLambda.Campaigns.Standard {
         internal static string HugeStationName {
             get {
                 return ResourceManager.GetString("HugeStationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump Freighter.
+        /// </summary>
+        internal static string JumpFreighterBaseName {
+            get {
+                return ResourceManager.GetString("JumpFreighterBaseName", resourceCulture);
             }
         }
         

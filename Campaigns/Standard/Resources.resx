@@ -129,6 +129,28 @@
   <data name="Corvette_AtlantisX32PName" xml:space="preserve">
     <value>Atlantis X23 NX</value>
   </data>
+  <data name="Corvette_DefensePlatformDescription" xml:space="preserve">
+    <value>This stationary defense platform operates like a station, with docking and resupply functions, but is armed with powerful beam weapons and can slowly rotate. Larger systems often use these platforms to resupply patrol ships.</value>
+  </data>
+  <data name="Corvette_DefensePlatformName" xml:space="preserve">
+    <value>Defense Platform</value>
+  </data>
+  <data name="Corvette_JumpCarrierDescription" xml:space="preserve">
+    <value>The Jump Carrier is a specialized Freigher. It does not carry any cargo, as it's cargo bay is taken up by a specialized jump drive and the energy storage required to run this jump drive.
+It is designed to carry other ships deep into space. So it has special docking parameters, allowing other ships to attach themselves to this ship.</value>
+  </data>
+  <data name="Corvette_JumpCarrierName" xml:space="preserve">
+    <value>Jump Carrier</value>
+  </data>
+  <data name="Corvette_StarhammerDescription" xml:space="preserve">
+    <value>Contrary to its predecessor, the Starhammer II lives up to its name. By resolving the original Starhammer's power and heat management issues, the updated model makes for a phenomenal frontal assault ship. Its low speed makes it difficult to position, but when in the right place at the right time, even the strongest shields can't withstand a Starhammer's assault for long.</value>
+  </data>
+  <data name="Corvette_StarhammerName" xml:space="preserve">
+    <value>Starhammer II</value>
+  </data>
+  <data name="DefaultFreightHaulerDescription" xml:space="preserve">
+    <value>A freighter that hauls large loads of cargo across long distances.</value>
+  </data>
   <data name="Fighter_AdderMk4Description" xml:space="preserve">
     <value>The mark 4 Adder is a rare sight these days due to the success its successor, the mark 5 Adder, which often replaces this model.Its similar hull, however, means careless buyers are sometimes conned into buying mark 4 models disguised as the mark 5.</value>
   </data>
@@ -171,11 +193,23 @@
   <data name="Fighter_LindwormName" xml:space="preserve">
     <value>WX-Lindworm</value>
   </data>
+  <data name="FreighterBaseName" xml:space="preserve">
+    <value>Freighter</value>
+  </data>
+  <data name="HaulFreighterDescriptions" xml:space="preserve">
+    <value>;Cargo freighters haul large loads of cargo across long distances on impulse power. Their cargo bays include climate control and stabilization systems that keep the cargo in good condition;These freighters are specially designed to haul garbage and waste. They are fitted with a trash compactor and fewer stabilzation systems than cargo freighters.;Equipment freighters have specialized environmental and stabilization systems to safely carry delicate machinery and complex instruments.;Fuel freighters have massive tanks for hauling fuel, and delicate internal sensors that watch for any changes to their cargo's potentially volatile state.</value>
+  </data>
+  <data name="HaulTypes" xml:space="preserve">
+    <value>Personnel;Goods;Garbage;Equipment;Fuel</value>
+  </data>
   <data name="HugeStationDescription" xml:space="preserve">
     <value>The size of a sprawling town, stations at this scale represent a faction's center of space-borne power in a region. They serve many functions at once and represent an extensive investment of time, money, and labor. A huge station's shields and thick hull can keep it intact long enough for reinforcements to arrive, even when faced with an ongoing siege or massive, perfectly coordinated assault.</value>
   </data>
   <data name="HugeStationName" xml:space="preserve">
     <value>Huge Station</value>
+  </data>
+  <data name="JumpFreighterBaseName" xml:space="preserve">
+    <value>Jump Freighter</value>
   </data>
   <data name="LargeStationDescription" xml:space="preserve">
     <value>These space-borne communities often represent permanent bases in a sector.Stations of this size can be military installations, commercial hubs, deep - space settlements, and small shipyards.Only a concentrated attack can penetrate a large station's shields, and its hull can withstand all but the most powerful weaponry.</value>
