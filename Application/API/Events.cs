@@ -31,5 +31,9 @@ namespace LunarLambda.API
         public static event EventHandler SetupFactions = null;
         public static event EventHandler SetupScienceDB = null;
 
+		public static event EventHandler FinalizeDatabases = null;
+
+		public static event EventHandler MissionStart = null;
+
     }
 }

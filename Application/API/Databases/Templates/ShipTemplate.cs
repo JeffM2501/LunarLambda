@@ -269,9 +269,9 @@ namespace LunarLambda.API.Databases
             Type = TemplateTypes.Ship;
         }
 
-        public ShipTemplate CloneShip()
+        public ShipTemplate CloneShip(string name)
         {
-            return base.Clone() as ShipTemplate;
+            return base.Clone(name) as ShipTemplate;
         }
 
         protected override void CopyTo(BaseTemplate newTemplate)
@@ -442,14 +442,17 @@ namespace LunarLambda.API.Databases
 
         public void SetMissleTubeCount(int count, float nomialDir)
         {
-            foreach (var item in Weapons.Keys)  // flush any existing tubes
-            {
-                if (item.Type != HardpointTypes.Tube)
-                    continue;
+			List<HardpointID> toKill = new List<HardpointID>();
+			foreach (var item in Weapons.Keys)  // flush any existing tubes
+			{
+				if (item.Type != HardpointTypes.Tube)
+					continue;
+				toKill.Add(item);
+			}
 
-                Weapons.Remove(item);
-            }
-
+			foreach (var item in toKill)
+				Weapons.Remove(item);
+ 
             for (int i = 0; i < count; i++)
                 SetupMissileWeapon(i, nomialDir, MissileWeaponTypes.All);
         }

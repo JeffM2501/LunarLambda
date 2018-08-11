@@ -14,5 +14,8 @@ namespace LunarLambda.API
         internal static void CallSetupShipTemplates(object sender = null) { SetupShipTemplates?.Invoke(sender, EventArgs.Empty); }
         internal static void CallSetupFactions(object sender = null) { SetupFactions?.Invoke(sender, EventArgs.Empty); }
         internal static void CallSetupScienceDB(object sender = null) { SetupScienceDB?.Invoke(sender, EventArgs.Empty); }
-    }
+
+		internal static void CallFinalizeDatabases(object sender = null) { FinalizeDatabases?.Invoke(sender, EventArgs.Empty); }
+		internal static void CallMissionStart(object sender = null) { MissionStart?.Invoke(sender, EventArgs.Empty); }
+	}
 }

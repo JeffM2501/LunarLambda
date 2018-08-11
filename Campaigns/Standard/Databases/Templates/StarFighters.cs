@@ -24,8 +24,9 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
     {
         private static void LoadHorrents()
         {
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Fighter_HornetName);
-            template.SetDescription(Resources.Fighter_HornetDescription);
+            ShipTemplate template = TemplateDatabase.AddShip("HornetMk1");
+			template.SetName(Resources.Fighter_HornetName);
+			template.SetDescription(Resources.Fighter_HornetDescription);
             template.SetClass("Starfighter", "Interceptor");
             template.SetModel("WespeScoutYellow");
             template.SetRadarTrace("radar_fighter.png");
@@ -36,9 +37,33 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             // Arc, Dir, Range, CycleTime, Dmg
             template.SetupBeamWeapon(0, 30, 0, 700.0f, 4.0f, 2);
 
+			template.SetFuelCapcity(400);
 
-            // mk2 upgrade
-            ShipTemplate variation = template.CloneShip();
+			template.SetReairCrew(1);
+
+			template.AddRoom(3, 0, 1, 1, ShipSystemTypes.Maneuver);
+			template.AddRoom(1, 0, 2, 1, ShipSystemTypes.Beams);
+			template.AddRoom(0, 1, 1, 2, ShipSystemTypes.Shields(2));
+			template.AddRoom(1, 1, 2, 2, ShipSystemTypes.Reactor);
+			template.AddRoom(3, 1, 2, 1, ShipSystemTypes.FTL);
+			template.AddRoom(3, 2, 2, 1, ShipSystemTypes.Jump);
+			template.AddRoom(5, 1, 1, 2, ShipSystemTypes.Shields(1));
+			template.AddRoom(1, 3, 2, 1, ShipSystemTypes.Missiles);
+			template.AddRoom(3, 3, 1, 1, ShipSystemTypes.Sublight);
+
+			template.AddDoor(2, 1, true);
+			template.AddDoor(3, 1, true);
+			template.AddDoor(1, 1, false);
+			template.AddDoor(3, 1, false);
+			template.AddDoor(3, 2, false);
+			template.AddDoor(3, 3, true);
+			template.AddDoor(2, 3, true);
+			template.AddDoor(5, 1, false);
+			template.AddDoor(5, 2, false);
+
+
+			// mk2 upgrade
+			ShipTemplate variation = template.CloneShip("HornetMk2");
             variation.SetName(Resources.Fighter_HornetMk2Name);
             variation.SetDescription(Resources.Fighter_HornetMk2Description);
             variation.SetModel("WespeScoutRed");
@@ -49,7 +74,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // mk 3 player variant
-            variation = template.CloneShip();
+            variation = template.CloneShip("HornetMk3P");
             variation.SetName(Resources.Fighter_HornetMk3Name);
             variation.SetDescription(Resources.Fighter_HornetMk3Description);
 
@@ -58,36 +83,15 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             variation.SetSpeed(125, 32, 25);
             variation.SetupBeamWeapon(0, 30, 0, 900.0f, 4.0f, 2.5f);
             variation.SetupBeamWeapon(1, 30, -5, 900.0f, 4.0f, 2.5f);
-            variation.SetFuelCapcity(400);
-
-            variation.SetReairCrew(1);
-
-            variation.AddRoom(3, 0, 1, 1, ShipSystemTypes.Maneuver);
-            variation.AddRoom(1, 0, 2, 1, ShipSystemTypes.Beams);
-            variation.AddRoom(0, 1, 1, 2, ShipSystemTypes.Shields(2));
-            variation.AddRoom(1, 1, 2, 2, ShipSystemTypes.Reactor);
-            variation.AddRoom(3, 1, 2, 1, ShipSystemTypes.FTL);
-            variation.AddRoom(3, 2, 2, 1, ShipSystemTypes.Jump);
-            variation.AddRoom(5, 1, 1, 2, ShipSystemTypes.Shields(1));
-            variation.AddRoom(1, 3, 2, 1, ShipSystemTypes.Missiles);
-            variation.AddRoom(3, 3, 1, 1, ShipSystemTypes.Sublight);
-
-            variation.AddDoor(2, 1, true);
-            variation.AddDoor(3, 1, true);
-            variation.AddDoor(1, 1, false);
-            variation.AddDoor(3, 1, false);
-            variation.AddDoor(3, 2, false);
-            variation.AddDoor(3, 3, true);
-            variation.AddDoor(2, 3, true);
-            variation.AddDoor(5, 1, false);
-            variation.AddDoor(5, 2, false);
+           
         }
 
         private static void LoadAdders()
         {
             // MK5
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Fighter_AdderMk5Name);
-            template.SetDescription(Resources.Fighter_AdderMk5Description);
+            ShipTemplate template = TemplateDatabase.AddShip("AdderMk5");
+			template.SetName(Resources.Fighter_AdderMk5Name);
+			template.SetDescription(Resources.Fighter_AdderMk5Description);
             template.SetClass("Starfighter", "Gunship");
             template.SetModel("AdlerLongRangeScoutYellow");
             template.SetRadarTrace("radar_cruiser.png");
@@ -103,7 +107,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // MK4
-            ShipTemplate variation = template.CloneShip();
+            ShipTemplate variation = template.CloneShip("AdderMk4");
             variation.SetName(Resources.Fighter_AdderMk4Name);
             variation.SetDescription(Resources.Fighter_AdderMk4Description);
             variation.SetModel("AdlerLongRangeScoutBlue");
@@ -116,7 +120,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // MK6
-            variation = template.CloneShip();
+            variation = template.CloneShip("AdderMk6");
             variation.SetName(Resources.Fighter_AdderMk6Name);
             variation.SetDescription(Resources.Fighter_AdderMk6Description);
             variation.SetupBeamWeapon(3, 35, 180, 600, 6.0f, 2.0f);
@@ -127,7 +131,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
         private static void LoadLindworm()
         {
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Fighter_LindwormName);
+            ShipTemplate template = TemplateDatabase.AddShip("Lindworm");
+			template.SetName(Resources.Fighter_LindwormName);
             template.SetDescription(Resources.Fighter_LindwormDescription);
             template.SetClass("Starfighter", "Bomber");
             template.SetModel("LindwurmFighterYellow");

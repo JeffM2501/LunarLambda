@@ -25,7 +25,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
     {
         private static void LoadStarhammer()
         {
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Corvette_StarhammerName);
+            ShipTemplate template = TemplateDatabase.AddShip("Starhammer2");
+			template.SetName(Resources.Corvette_StarhammerName);
             template.SetDescription(Resources.Corvette_StarhammerDescription);
             template.SetClass("Corvette", "Destroyer");
             template.SetModel("battleship_destroyer_4_upgraded");
@@ -49,7 +50,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
         private static void LoadAtlantis()
         {
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Corvette_AtlantisX32Name);
+            ShipTemplate template = TemplateDatabase.AddShip("AtlantisAI");
+			template.SetName(Resources.Corvette_AtlantisX32Name);
             template.SetDescription(Resources.Corvette_AtlantisX32Description);
             template.SetClass("Corvette", "Destroyer");
             template.SetModel("battleship_destroyer_1_upgraded");
@@ -100,7 +102,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // player version
-            var variation = template.CloneShip();
+            var variation = template.CloneShip("AtlantisPlayer");
             variation.SetName(Resources.Corvette_AtlantisX32PName);
             variation.SetPlayable();
             variation.SetDescription(Resources.Corvette_AtlantisX32PDescription);
@@ -125,8 +127,9 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
         private static void LoadSupport()
         {
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Corvette_StarhammerName);
-            template.SetDescription(Resources.Corvette_StarhammerDescription);
+            ShipTemplate template = TemplateDatabase.AddShip("DefensePlatform");
+			template.SetName(Resources.Corvette_DefensePlatformName);
+            template.SetDescription(Resources.Corvette_DefensePlatformDescription);
             template.SetClass("Corvette", "Support");
             template.SetModel("space_station_4");
             template.SetRadarTrace("radartrace_smallstation.png");
@@ -149,11 +152,13 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
         }
 
-        private static void AddFreighter(string haul, string description, int index, int baseModelIndex, bool jump)
+        private static void AddFreighter(string haul, string displayName, string description, int index, int baseModelIndex, bool jump)
         {
-            string name = haul + " " + (jump ? Resources.JumpFreighterBaseName : Resources.FreighterBaseName) + " " + index.ToString();
+            string name = displayName + (jump ? "JumpFreighter" : "Freighter")+ index.ToString();
+			string display = displayName + " " + (jump ? Resources.JumpFreighterBaseName : Resources.FreighterBaseName) + " " + index.ToString();
 
-            ShipTemplate template = TemplateDatabase.AddShip(name);
+			ShipTemplate template = TemplateDatabase.AddShip(name);
+			template.SetName(display);
             template.SetDescription(description);
             template.SetClass("Corvette", "Freighter");
             template.SetModel("transport_" + baseModelIndex.ToString() + "_" + index.ToString());
@@ -171,7 +176,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
         private static void LoadFreighters()
         {
             string[] hauls = Resources.HaulTypes.Split(";".ToCharArray());
-            string[] descriptions = Resources.HaulFreighterDescriptions.Split(";".ToCharArray());
+			string[] haulDisplayNames = Resources.HaulDisplayNames.Split(";".ToCharArray());
+			string[] descriptions = Resources.HaulFreighterDescriptions.Split(";".ToCharArray());
             for (int i = 0; i < hauls.Length; i++)
             {
                 string description = string.Empty;
@@ -181,13 +187,14 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
                     description = Resources.DefaultFreightHaulerDescription;
 
                 for (int j = 0; j < 5; j++)
-                    AddFreighter(hauls[i], description, j + 1, i + 1, j < 2);
+                    AddFreighter(hauls[i], haulDisplayNames[i], description, j + 1, i + 1, j < 2);
             }
         }
 
         private static void LoadJumpCarrier()
         {
-            ShipTemplate template = TemplateDatabase.AddShip(Resources.Corvette_JumpCarrierName);
+            ShipTemplate template = TemplateDatabase.AddShip("JumpCarrier");
+			template.SetName(Resources.Corvette_JumpCarrierName);
             template.SetDescription(Resources.Corvette_JumpCarrierDescription);
             template.SetClass("Corvette", "Freighter");
             template.SetModel("transport_4_2");

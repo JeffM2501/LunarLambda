@@ -19,7 +19,8 @@ namespace LunarLambda.API.Databases
         public TemplateTypes Type = TemplateTypes.Other;
 
         public string Name = string.Empty;
-        public string ClassName = string.Empty;
+		public string DisplayName = string.Empty;
+		public string ClassName = string.Empty;
         public string SubClassName = string.Empty;
         public string Description = string.Empty;
         public string ModelName = string.Empty;
@@ -35,17 +36,19 @@ namespace LunarLambda.API.Databases
 
         public ModelData Model { get { if (_Model == null) _Model = ModelDatabase.GetModel(ModelName); return _Model; } }
 
-        public virtual BaseTemplate Clone()
+        public virtual BaseTemplate Clone(string newName)
         {
             BaseTemplate obj = Create();
             CopyTo(obj);
+			obj.Name = newName;
             return obj;
         }
 
         protected virtual void CopyTo(BaseTemplate newTemplate)
         {
             newTemplate.Name = Name;
-            newTemplate.ClassName = ClassName;
+			newTemplate.DisplayName = DisplayName;
+			newTemplate.ClassName = ClassName;
             newTemplate.SubClassName = SubClassName;
             newTemplate.Description = Description;
             newTemplate.ModelName = ModelName;
@@ -63,7 +66,7 @@ namespace LunarLambda.API.Databases
 
         public BaseTemplate SetName(string name)
         {
-            Name = name;
+            DisplayName = name;
             return this;
         }
 

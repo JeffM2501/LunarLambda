@@ -196,11 +196,15 @@ It is designed to carry other ships deep into space. So it has special docking p
   <data name="FreighterBaseName" xml:space="preserve">
     <value>Freighter</value>
   </data>
+  <data name="HaulDisplayNames" xml:space="preserve">
+    <value>Personnel;Goods;Garbage;Equipment;Fuel</value>
+  </data>
   <data name="HaulFreighterDescriptions" xml:space="preserve">
     <value>;Cargo freighters haul large loads of cargo across long distances on impulse power. Their cargo bays include climate control and stabilization systems that keep the cargo in good condition;These freighters are specially designed to haul garbage and waste. They are fitted with a trash compactor and fewer stabilzation systems than cargo freighters.;Equipment freighters have specialized environmental and stabilization systems to safely carry delicate machinery and complex instruments.;Fuel freighters have massive tanks for hauling fuel, and delicate internal sensors that watch for any changes to their cargo's potentially volatile state.</value>
   </data>
   <data name="HaulTypes" xml:space="preserve">
     <value>Personnel;Goods;Garbage;Equipment;Fuel</value>
+    <comment>Do Not Translate</comment>
   </data>
   <data name="HugeStationDescription" xml:space="preserve">
     <value>The size of a sprawling town, stations at this scale represent a faction's center of space-borne power in a region. They serve many functions at once and represent an extensive investment of time, money, and labor. A huge station's shields and thick hull can keep it intact long enough for reinforcements to arrive, even when faced with an ongoing siege or massive, perfectly coordinated assault.</value>

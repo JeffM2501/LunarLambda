@@ -296,6 +296,15 @@ namespace LunarLambda.Campaigns.Standard {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Personnel;Goods;Garbage;Equipment;Fuel.
+        /// </summary>
+        internal static string HaulDisplayNames {
+            get {
+                return ResourceManager.GetString("HaulDisplayNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ;Cargo freighters haul large loads of cargo across long distances on impulse power. Their cargo bays include climate control and stabilization systems that keep the cargo in good condition;These freighters are specially designed to haul garbage and waste. They are fitted with a trash compactor and fewer stabilzation systems than cargo freighters.;Equipment freighters have specialized environmental and stabilization systems to safely carry delicate machinery and complex instruments.;Fuel freighters have mass [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HaulFreighterDescriptions {

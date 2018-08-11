@@ -28,6 +28,9 @@ namespace LunarLambda
 		[STAThread]
 		static void Main(string[] args)
 		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+
 			LoadPreferences(args);
             FindPlugins();
 			LoadResources();
@@ -40,8 +43,7 @@ namespace LunarLambda
 
             SetupDatabases();
 
-            Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
+			Core.Run();
 
             CleanUpPlugins();
 		}
@@ -52,7 +54,9 @@ namespace LunarLambda
             Events.CallSetupShipTemplates(null);
             Events.CallSetupFactions(null);
             Events.CallSetupScienceDB(null);
-        }
+
+			Events.CallFinalizeDatabases(null);
+		}
 
         static void CleanUpPlugins()
         {
