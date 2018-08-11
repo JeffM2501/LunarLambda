@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Databases\ScienceDataStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScienceDataStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Databases\StandardFactions.cs" />
     <Compile Include="Databases\StandardModels.cs" />
+    <Compile Include="Databases\StandardScienceDB.cs" />
     <Compile Include="Databases\StandardShips.cs" />
     <Compile Include="Databases\Templates\Corvettes.cs" />
     <Compile Include="Databases\Templates\StarFighters.cs" />
@@ -74,6 +80,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Databases\ScienceDataStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScienceDataStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="FactionStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FactionStrings.Designer.cs</LastGenOutput>

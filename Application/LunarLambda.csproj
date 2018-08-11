@@ -53,9 +53,15 @@
   <ItemGroup>
     <Compile Include="API\Databases\FactionDatabase.cs" />
     <Compile Include="API\Databases\ModelDatabase.cs" />
+    <Compile Include="API\Databases\ScienceDatabase.cs" />
     <Compile Include="API\Databases\TemplateDatabase.cs" />
     <Compile Include="API\Databases\Templates\BaseTemplate.cs" />
     <Compile Include="API\Databases\Templates\ShipTemplate.cs" />
+    <Compile Include="API\DefaultDatabaseStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultDatabaseStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="API\Events.Calls.cs" />
     <Compile Include="API\Events.cs" />
     <Compile Include="API\Plugin.cs" />
@@ -71,6 +77,10 @@
     <Compile Include="Preferences\PrefNames.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="API\DefaultDatabaseStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultDatabaseStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -19,6 +19,8 @@ namespace LunarLambda.Campaigns.Standard
             Events.SetupModelData += StandardModels.Load;
             Events.SetupShipTemplates += StandardShips.Load;
             Events.SetupFactions += StandardFactions.Load;
-        }
+			Events.SetupScienceDB += StandardScienceDB.Load;
+
+		}
     }
 }

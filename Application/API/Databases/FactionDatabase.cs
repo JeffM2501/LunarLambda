@@ -23,6 +23,7 @@ namespace LunarLambda.API.Databases
         public string Logo = string.Empty;
 
         public bool Playable = false;
+		public bool Known = true;
 
         public Dictionary<int, Relations> Relationships = new Dictionary<int, Relations>();
 
@@ -97,10 +98,31 @@ namespace LunarLambda.API.Databases
         {
             return Factions.Find((x) => x.Name == name);
         }
+		public static FactionInfo GetFaction(int id)
+		{
+			return Factions.Find((x) => x.ID == id);
+		}
 
-        public static List<FactionInfo> GetFactionsWithRelation(FactionInfo faction, FactionInfo.Relations relation)
+		public static List<FactionInfo> GetFactionsWithRelation(FactionInfo faction, FactionInfo.Relations relation)
         {
             return Factions.FindAll((x) => x != faction && x.GetRelationship(faction) == relation);
         }
+
+
+		public static string GetLocalRelationString(FactionInfo.Relations relation)
+		{
+			switch (relation)
+			{
+				case FactionInfo.Relations.Friendly:
+					return DefaultDatabaseStrings.FriendlyRelation;
+				case FactionInfo.Relations.Hostile:
+					return DefaultDatabaseStrings.HostileRelation;
+				case FactionInfo.Relations.Neutral:
+					return DefaultDatabaseStrings.NeutralRelation;
+				case FactionInfo.Relations.Unaware:
+					return DefaultDatabaseStrings.UnawareRelation;
+			}
+			return string.Empty;
+		}
     }
 }

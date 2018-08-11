@@ -26,6 +26,8 @@ namespace LunarLambda.API.Databases
         public string RadarTrace = string.Empty;
         public string DefaultAIName = string.Empty;
 
+		public bool Known = true;
+
         public float Hull = 0;
         public List<float> Shields = new List<float>();
 
