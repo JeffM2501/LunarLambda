@@ -69,7 +69,7 @@ namespace LunarLambda.API.Databases
 
         public void SetColor(int r, int g, int b)
         {
-            GMColor = Color.FromArgb(r,g,b);
+            GMColor = Color.FromArgb(Math.Min(r,255), Math.Min(g, 255), Math.Min(b, 255));
         }
 
         public void SetLogo(string logo)

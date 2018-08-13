@@ -29,7 +29,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
 
             var arlenians = FactionDatabase.AddFaction(FactionStrings.Arlenian);
             arlenians.SetDescription(FactionStrings.ArlenianDesc);
-            arlenians.SetColor(2255, 128, 0);
+            arlenians.SetColor(255, 128, 0);
             arlenians.SetRelationShip(kraylor, FactionInfo.Relations.Hostile, true);
 
             var exuari = FactionDatabase.AddFaction(FactionStrings.Exuari);

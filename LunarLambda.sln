@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scenarios", "Scenarios", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicScenarios", "Campaigns\Scenarios\BasicScenarios\BasicScenarios.csproj", "{94264F3D-4DC1-4760-B83F-4D9947D79F09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.GUI", "..\LudicrousElectron\LudicrousElectron.GUI\LudicrousElectron.GUI.csproj", "{317F7C93-22EC-4C95-AEC6-918E2E93A11B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,18 @@ Global
 		{94264F3D-4DC1-4760-B83F-4D9947D79F09}.Release|x64.Build.0 = Release|Any CPU
 		{94264F3D-4DC1-4760-B83F-4D9947D79F09}.Release|x86.ActiveCfg = Release|Any CPU
 		{94264F3D-4DC1-4760-B83F-4D9947D79F09}.Release|x86.Build.0 = Release|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Debug|x64.Build.0 = Debug|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Debug|x86.Build.0 = Debug|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Release|x64.ActiveCfg = Release|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Release|x64.Build.0 = Release|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Release|x86.ActiveCfg = Release|Any CPU
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,6 +143,7 @@ Global
 		{8DCE88BD-5355-4AED-B7FA-6844EC4FB9B2} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
 		{D1F55F35-394C-4220-91E1-204EECB13D2E} = {941FFE4D-B78C-4667-A833-C1DE39E17CFF}
 		{94264F3D-4DC1-4760-B83F-4D9947D79F09} = {D1F55F35-394C-4220-91E1-204EECB13D2E}
+		{317F7C93-22EC-4C95-AEC6-918E2E93A11B} = {E92B3767-CB45-492C-B7E8-85D335C6F831}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3252F77E-C262-49E9-808E-126979C400B4}

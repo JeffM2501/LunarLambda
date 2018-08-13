@@ -109,7 +109,7 @@ namespace LunarLambda.GUI.Config
         public static bool Load()
         {
             ConfigReader reader = new ConfigReader();
-            if (reader.Read(AssetManager.GetAssetStream("gui/colors.ini")))
+            if (reader.Read(AssetManager.GetAssetStream("ui/colors.ini")))
             {
                 foreach (var item in reader.Values)
                 {

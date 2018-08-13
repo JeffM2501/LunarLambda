@@ -72,12 +72,19 @@
     <Compile Include="Constants.cs" />
     <Compile Include="GUI\Config\ColorConfig.cs" />
     <Compile Include="GUI\Config\HotKeys.cs" />
+    <Compile Include="GUI\MenuManager.cs" />
+    <Compile Include="GUI\Menus\MainMenu.cs" />
     <Compile Include="Preferences\ConfigReader.cs" />
     <Compile Include="Preferences\FileLocations.cs" />
     <Compile Include="Preferences\PreferencesManager.cs" />
     <Compile Include="Preferences\PrefNames.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="API\DefaultDatabaseStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DefaultDatabaseStrings.Designer.cs</LastGenOutput>
@@ -91,6 +98,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -110,6 +121,10 @@
     <ProjectReference Include="..\..\LudicrousElectron\Engine\LudicrousElectron.Engine.csproj">
       <Project>{547b86a8-43a9-4683-a862-3d8136b3cf3d}</Project>
       <Name>LudicrousElectron.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LudicrousElectron\LudicrousElectron.GUI\LudicrousElectron.GUI.csproj">
+      <Project>{317f7c93-22ec-4c95-aec6-918e2e93a11b}</Project>
+      <Name>LudicrousElectron.GUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj">
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>

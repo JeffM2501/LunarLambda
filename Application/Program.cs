@@ -9,6 +9,9 @@ using LudicrousElectron.Engine;
 using LudicrousElectron.Assets;
 using LudicrousElectron.Assets.Providers;
 using LudicrousElectron.Engine.RenderChain;
+using LudicrousElectron.Engine.Audio;
+using LudicrousElectron.GUI;
+
 
 using LunarLambda.Preferences;
 using LunarLambda.GUI.Config;
@@ -16,7 +19,7 @@ using LunarLambda.Common;
 using LudicrousElectron.Engine.RenderChain.Effects;
 using LudicrousElectron.Engine.Window;
 using LunarLambda.API;
-using LudicrousElectron.Engine.Audio;
+using LunarLambda.GUI;
 
 namespace LunarLambda
 {
@@ -42,6 +45,8 @@ namespace LunarLambda
             SetupSounds();
 
             SetupDatabases();
+
+			MenuManager.Setup();
 
 			Core.Run();
 
@@ -81,20 +86,10 @@ namespace LunarLambda
 
         static void SetupWindows()
         {
-            if (PreferencesManager.GetValueB(PrefNames.Headless))
+			WindowManager.WindowTitleText = Resources.WindowTitle;
+
+			if (PreferencesManager.GetValueB(PrefNames.Headless))
                 return;
-
-            Graphics.BackgroundLayer = new RenderLayer();
-            Graphics.ObjectLayer = new RenderLayer(Graphics.BackgroundLayer);
-            Graphics.EffectLayer = new RenderLayer(Graphics.ObjectLayer);
-            Graphics.HudLayer = new RenderLayer(Graphics.EffectLayer);
-            Graphics.MouseLayer = new RenderLayer(Graphics.HudLayer);
-            Graphics.GlitchPostProcessor = new PostProcessor("glitch", Graphics.MouseLayer);
-            Graphics.GlitchPostProcessor.Enable(false);
-            Graphics.WarpPostProcessor = new PostProcessor("warp", Graphics.GlitchPostProcessor);
-            Graphics.WarpPostProcessor.Enable(false);
-            RenderLayer.DefaultLayer = Graphics.ObjectLayer;
-
 
             WindowManager.WindowInfo info = new WindowManager.WindowInfo();
             info.Size.x = 1200;
@@ -113,10 +108,24 @@ namespace LunarLambda
                 info.Size.y = OpenTK.DisplayDevice.Default.Height;
             }
 
-            WindowManager.Init(info, Graphics.WarpPostProcessor);
+            WindowManager.Init(info);
 
+			WindowManager.ClearRenderLayers();
 
-            if (PreferencesManager.GetValueB(PrefNames.DisableShader))
+			Graphics.BackgroundLayer = WindowManager.AddRenderLayer(new RenderLayer());
+			Graphics.ObjectLayer = WindowManager.AddRenderLayer(new RenderLayer());
+			Graphics.EffectLayer = WindowManager.AddRenderLayer(new RenderLayer());
+			Graphics.HudLayer = WindowManager.AddRenderLayer(GUIManager.GetGUILayer(WindowManager.MainWindowID));
+			Graphics.MouseLayer = WindowManager.AddRenderLayer(new RenderLayer());
+
+			RenderLayer.DefaultLayer = Graphics.ObjectLayer;
+
+			Graphics.GlitchPostProcessor = WindowManager.AddRenderLayer(new PostProcessor("glitch")) as PostProcessor;
+			Graphics.GlitchPostProcessor.Enable(false);
+			Graphics.WarpPostProcessor = WindowManager.AddRenderLayer(new PostProcessor("warp")) as PostProcessor;
+			Graphics.WarpPostProcessor.Enable(false);
+
+			if (PreferencesManager.GetValueB(PrefNames.DisableShader))
                 PostProcessor.EnableEffects(false);
         }
 
