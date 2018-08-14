@@ -6,6 +6,7 @@ using LudicrousElectron.GUI;
 
 using LudicrousElectron.Engine.Window;
 using LudicrousElectron.GUI.Elements;
+using LudicrousElectron.GUI.Geometry;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -14,9 +15,11 @@ namespace LunarLambda.GUI.Menus
 		public override void Activate()
 		{
 			base.Activate();
+
 			var overlay = new Overlay();
+            overlay.Rect = new RelativeRect(RelativeLoc.XCenter, RelativeLoc.YCenter, RelativeSize.HalfWidth, RelativeSize.HalfHeight);
 			overlay.BaseColor = Color.Navy;
-			this.GUIElements.Add(overlay);
+			AddElement(overlay);
 		}
 	}
 }
