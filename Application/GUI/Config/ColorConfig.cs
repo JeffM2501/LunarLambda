@@ -7,6 +7,8 @@ using System.Reflection;
 
 using System.Drawing;
 using LudicrousElectron.Assets;
+using LudicrousElectron.Engine.IO;
+
 using LunarLambda.Preferences;
 
 namespace LunarLambda.GUI.Config
@@ -23,16 +25,15 @@ namespace LunarLambda.GUI.Config
 
             Text = text;
 
-            byte[] bytes = new byte[4] { 0, 0, 0, byte.MaxValue };
+            byte[] bytes =ParseUtils.HexStringToBytes(text);
 
-            for(int i = 0; i < text.Length && i < 8; i+=2)
-            {
-                string s = text.Substring(i, 2);
-                Byte.TryParse(s, out bytes[i / 2]);
-            }
-
-            Color = Color.FromArgb(bytes[3], bytes[0], bytes[1], bytes[2]);
-        }
+			if (bytes.Length == 3)
+				Color = Color.FromArgb(bytes[0], bytes[1], bytes[2]);
+			else if (bytes.Length == 4)
+				Color = Color.FromArgb(bytes[3], bytes[0], bytes[1], bytes[2]);
+			else
+				Color = Color.White;
+		}
     }
 
     public class ColorSet
