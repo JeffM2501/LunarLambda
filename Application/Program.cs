@@ -87,9 +87,6 @@ namespace LunarLambda
 
         static void SetupWindows()
         {
-			MenuManager.MainFont = FontManager.LoadFont("ui/fonts/BebasNeue Regular.otf");
-			MenuManager.BoldFont = FontManager.LoadFont("ui/fonts/BebasNeue Bold.otf");
-
 			WindowManager.WindowTitleText = Resources.WindowTitle;
 
 			if (PreferencesManager.GetValueB(PrefNames.Headless))
@@ -131,6 +128,9 @@ namespace LunarLambda
 
 			if (PreferencesManager.GetValueB(PrefNames.DisableShader))
                 PostProcessor.EnableEffects(false);
+
+            MenuManager.MainFont = FontManager.LoadFont("ui/fonts/BebasNeue Regular.otf");
+            MenuManager.BoldFont = FontManager.LoadFont("ui/fonts/BebasNeue Bold.otf");
         }
 
         static void  SetupConfigs()
