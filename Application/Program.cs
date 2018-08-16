@@ -20,6 +20,7 @@ using LudicrousElectron.Engine.RenderChain.Effects;
 using LudicrousElectron.Engine.Window;
 using LunarLambda.API;
 using LunarLambda.GUI;
+using LudicrousElectron.GUI.Text;
 
 namespace LunarLambda
 {
@@ -86,6 +87,9 @@ namespace LunarLambda
 
         static void SetupWindows()
         {
+			MenuManager.MainFont = FontManager.LoadFont("ui/fonts/BebasNeue Regular.otf");
+			MenuManager.BoldFont = FontManager.LoadFont("ui/fonts/BebasNeue Bold.otf");
+
 			WindowManager.WindowTitleText = Resources.WindowTitle;
 
 			if (PreferencesManager.GetValueB(PrefNames.Headless))

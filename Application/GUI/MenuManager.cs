@@ -20,6 +20,9 @@ namespace LunarLambda.GUI
 	{
 		private static MainMenu Main = new MainMenu();
 
+		public static int MainFont = -1;
+		public static int BoldFont = -1;
+
 		public static void Setup()
 		{
 			GUIManager.PushCanvas(Main);

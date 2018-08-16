@@ -9,6 +9,7 @@ using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 
 using LunarLambda.GUI.Config;
+using OpenTK;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -16,14 +17,18 @@ namespace LunarLambda.GUI.Menus
 	{
 		public override void Activate()
 		{
+
+			int layerIndex = 0;
 			base.Activate();
 
-			var background = new Panel(RelativeRect.Full, ColorConfig.background.Color);
-			background.Children.Add(new Panel(RelativeRect.Full, Color.White, "ui/BackgroundCrosses.png"));
-			AddElement(background);
+			var background = new UIPanel(RelativeRect.Full, ColorConfig.background.Color);
+			background.Children.Add(new UIPanel(RelativeRect.Full, Color.White, "ui/BackgroundCrosses.png"));
+			AddElement(background, layerIndex);
 
- //			overlay = new Panel(new RelativeRect(RelativeLoc.XCenter, RelativeLoc.YCenter, RelativeSize.HalfWidth, RelativeSize.HalfHeight),Color.White, "ui/BackgroundCrosses.png");
- //			AddElement(overlay,1);
+			layerIndex++;
+
+			var logo = new UIImage("ui/LL_logo_full.png", RelativePoint.UpperThirdCenter, OriginLocation.Center,RelativeSize.FullWidth);
+			AddElement(logo, layerIndex);
 		}
 	}
 }
