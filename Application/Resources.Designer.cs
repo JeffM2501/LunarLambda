@@ -61,6 +61,40 @@ namespace LunarLambda {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to $Credits
+        ///Inspired By:
+        ///Empty Epsilon by &quot;daid&quot;
+        ///	http://daid.github.io/EmptyEpsilon/
+        ///	
+        ///Programming:
+        ///Jeffery Myers
+        ///
+        ///Graphics:
+        ///Interesting John  (From EmptyEpsilon)
+        ///
+        ///Music:
+        ///Matthew Pablo  (From EmptyEpsilon)
+        ///Alexandr Zhelanov  (From EmptyEpsilon)
+        ///Joe Baxter-Webb (From EmptyEpsilon)
+        ///neocrey  (From EmptyEpsilon)
+        ///FoxSynergy  (From EmptyEpsilon).
+        /// </summary>
+        internal static string Credits {
+            get {
+                return ResourceManager.GetString("Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version v.$V -|- Engine (v.$E).
+        /// </summary>
+        internal static string VersionLabel {
+            get {
+                return ResourceManager.GetString("VersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lunar Lambda.
         /// </summary>
         internal static string WindowTitle {

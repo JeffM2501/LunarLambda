@@ -117,6 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Credits" xml:space="preserve">
+    <value>$Credits
+Inspired By:
+Empty Epsilon by "daid"
+	http://daid.github.io/EmptyEpsilon/
+	
+Programming:
+Jeffery Myers
+
+Graphics:
+Interesting John  (From EmptyEpsilon)
+
+Music:
+Matthew Pablo  (From EmptyEpsilon)
+Alexandr Zhelanov  (From EmptyEpsilon)
+Joe Baxter-Webb (From EmptyEpsilon)
+neocrey  (From EmptyEpsilon)
+FoxSynergy  (From EmptyEpsilon)</value>
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Version v.$V -|- Engine (v.$E)</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Lunar Lambda</value>
   </data>
