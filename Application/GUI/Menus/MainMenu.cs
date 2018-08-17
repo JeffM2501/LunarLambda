@@ -28,7 +28,11 @@ namespace LunarLambda.GUI.Menus
 			layerIndex++;
 
 			var logo = new UIImage("ui/LL_logo_full.png", RelativePoint.UpperThirdCenter, OriginLocation.Center,RelativeSize.FullWidth);
+          
 			AddElement(logo, layerIndex);
-		}
+
+            layerIndex++;
+            AddElement(new UILabel(MenuManager.MainFont, "This is some text",RelativePoint.Center, RelativeSize.EightHeight), layerIndex);
+        }
 	}
 }
