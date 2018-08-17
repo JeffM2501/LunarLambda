@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Diagnostics;
 
-using LudicrousElectron.GUI;
+using OpenTK;
 
-using LudicrousElectron.Engine.Window;
+using LudicrousElectron.GUI;
+using LudicrousElectron.Engine;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 
 using LunarLambda.GUI.Config;
-using OpenTK;
-using LudicrousElectron.Engine;
+using LunarLambda.GUI.Menus.Controls;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -27,19 +27,66 @@ namespace LunarLambda.GUI.Menus
 			SetupBackground(layerIndex++);
 			SetupLogo(layerIndex++);
 			SetupCredits(layerIndex++);
+            SetupButons(layerIndex++);
+        }
 
-			RelativePoint p = new RelativePoint(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset);
-			RelativeRect rect = new RelativeRect(p, new RelativeSizeXY(ButtonWidth, ButtonHeight));
-			rect.AnchorLocation = OriginLocation.LowerLeft;
-			UIButton button = new UIButton(rect);
-			button.DefaultTexture = "ui/ButtonBackground.png";
+        private void Tutorials_Clicked(object sender, UIButton e)
+        {
+        }
 
-			button.Children.Add(new UILabel(MenuManager.MainFont, "Quit",RelativePoint.Center,RelativeSize.FullHeight + (0.3f)));
+        private void StartServer_Clicked(object sender, UIButton e)
+        {
+        }
 
-			AddElement(button, layerIndex);
-		}
+        private void StartClient_Clicked(object sender, UIButton e)
+        {
+        }
 
-		protected void SetupLogo(int layerIndex)
+        private void Options_Clicked(object sender, UIButton e)
+        {
+        }
+
+
+        private void Quit_Clicked(object sender, UIButton e)
+        {
+        }
+
+        protected void SetupButons(int layerIndex)
+        {
+            float buttonShift = 1.25f;
+
+            // colum 1 buttons
+            RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+
+            MenuButton quit = new MenuButton(rect, MenuRes.Quit);
+            quit.Clicked += Quit_Clicked;
+            AddElement(quit, layerIndex);
+
+            rect.Y.Shift(ButtonHeight * buttonShift);
+            MenuButton options = new MenuButton(rect, MenuRes.Options);
+            options.Clicked += Options_Clicked;
+            AddElement(options, layerIndex);
+
+            rect.Y.Shift(ButtonHeight * buttonShift);
+            MenuButton startClient = new MenuButton(rect, MenuRes.StartClient);
+            startClient.Clicked += StartClient_Clicked;
+            AddElement(startClient, layerIndex);
+
+            rect.Y.Shift(ButtonHeight * buttonShift);
+            MenuButton startServer = new MenuButton(rect, MenuRes.StartServer);
+            startServer.Clicked += StartServer_Clicked;
+            AddElement(startServer, layerIndex);
+
+            // colum 2 buttons
+            rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+
+            MenuButton tutorials = new MenuButton(rect, MenuRes.Tutorials);
+            tutorials.Clicked += Tutorials_Clicked;
+            tutorials.Disable();
+            AddElement(tutorials, layerIndex);
+        }
+
+        protected void SetupLogo(int layerIndex)
 		{
 			var logo = new UIImage("ui/LL_logo_full.png", RelativePoint.UpperThirdCenter, OriginLocation.Center, RelativeSize.FullWidth);
 
@@ -51,7 +98,6 @@ namespace LunarLambda.GUI.Menus
 			string versString = Resources.VersionLabel.Replace("$V", version).Replace("$E", engine);
 
 			AddElement(new UILabel(MenuManager.MainFont, versString, RelativePoint.Center, RelativeSize.BorderHeight), layerIndex);
-
 		}
 
 		protected void SetupBackground(int layerIndex)

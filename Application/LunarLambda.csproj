@@ -76,7 +76,13 @@
     <Compile Include="GUI\Config\ColorConfig.cs" />
     <Compile Include="GUI\Config\HotKeys.cs" />
     <Compile Include="GUI\MenuManager.cs" />
+    <Compile Include="GUI\Menus\Controls\MenuButton.cs" />
     <Compile Include="GUI\Menus\MainMenu.cs" />
+    <Compile Include="GUI\Menus\MenuRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Preferences\ConfigReader.cs" />
     <Compile Include="Preferences\FileLocations.cs" />
     <Compile Include="Preferences\PreferencesManager.cs" />
@@ -91,6 +97,10 @@
     <EmbeddedResource Include="API\DefaultDatabaseStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DefaultDatabaseStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Menus\MenuRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

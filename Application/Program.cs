@@ -132,6 +132,7 @@ namespace LunarLambda
 
             MenuManager.MainFont = FontManager.LoadFont("ui/fonts/BebasNeue Regular.otf");
             MenuManager.BoldFont = FontManager.LoadFont("ui/fonts/BebasNeue Bold.otf");
+            FontManager.DefaultFont = MenuManager.MainFont;
         }
 
         static void  SetupConfigs()
