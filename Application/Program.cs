@@ -21,6 +21,7 @@ using LudicrousElectron.Engine.Window;
 using LunarLambda.API;
 using LunarLambda.GUI;
 using LudicrousElectron.GUI.Text;
+using LudicrousElectron.Engine.Graphics.Textures;
 
 namespace LunarLambda
 {
@@ -143,11 +144,9 @@ namespace LunarLambda
 		{
 			Core.Setup();
 
-			Core.Textures.DefaultSmooth = true;
-			Core.Textures.DefaultRepeat = true;
-			Core.Textures.AutoSprite = false;
+			TextureManager.AutoSprite = false;
 
-			Core.Textures.GetTexture("Tokka_WalkingMan.png", new Vector2i(6, 1)); //Setup the sprite mapping.
+            TextureManager.GetTexture("Tokka_WalkingMan.png", new Vector2i(6, 1), TextureInfo.TextureFormats.Sprite); //Setup the sprite mapping.
 
             PluginLoader.LoadAllPlugins();
 
