@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LudicrousElectron.Engine, Version=0.0.2.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin_release\LudicrousElectron.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="LudicrousElectron.Types, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin_release\LudicrousElectron.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="LunarLambda, Version=0.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin_release\LunarLambda.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Speech" />
@@ -45,18 +57,8 @@
     <Compile Include="SpeachSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\LudicrousElectron\Engine\LudicrousElectron.Engine.csproj">
-      <Project>{547b86a8-43a9-4683-a862-3d8136b3cf3d}</Project>
-      <Name>LudicrousElectron.Engine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Application\LunarLambda.csproj">
-      <Project>{30cc895b-bfc4-4402-8cc0-513ead76706f}</Project>
-      <Name>LunarLambda</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)data\plugins</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)..\..\data\plugins</PostBuildEvent>
   </PropertyGroup>
 </Project>
