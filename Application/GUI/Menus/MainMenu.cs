@@ -12,6 +12,7 @@ using LudicrousElectron.GUI.Geometry;
 
 using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus.Controls;
+using LudicrousElectron.Engine.Graphics.Textures;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -102,8 +103,12 @@ namespace LunarLambda.GUI.Menus
 
 		protected void SetupBackground(int layerIndex)
 		{
+			string bgRepeat = "ui/BackgroundCrosses.png";
+
+			TextureManager.GetTexture(bgRepeat).SetTextureFormat(TextureInfo.TextureFormats.TextureMap); // force this to repeat
+
 			var background = new UIPanel(RelativeRect.Full, ColorConfig.background.Color);
-			background.Children.Add(new UIPanel(RelativeRect.Full, Color.White, "ui/BackgroundCrosses.png"));
+			background.Children.Add(new UIPanel(RelativeRect.Full, Color.White, bgRepeat));
 			AddElement(background, layerIndex);
 		}
 
