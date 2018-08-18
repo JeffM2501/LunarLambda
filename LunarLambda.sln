@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicScenarios", "Campaigns
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.GUI", "..\LudicrousElectron\LudicrousElectron.GUI\LudicrousElectron.GUI.csproj", "{317F7C93-22EC-4C95-AEC6-918E2E93A11B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plug-Ins", "Plug-Ins", "{2FC13151-A761-4448-863E-0452C7A40815}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

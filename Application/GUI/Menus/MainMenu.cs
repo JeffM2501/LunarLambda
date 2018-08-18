@@ -78,7 +78,6 @@ namespace LunarLambda.GUI.Menus
 
 		protected void RegisterButton(MenuAPI.MenuAPIEventArgs buttonInfo)
 		{
-			
 			int col = buttonInfo.Col;
 			if (col < 0)
 				col = 0;

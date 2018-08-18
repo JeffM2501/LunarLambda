@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{94264F3D-4DC1-4760-B83F-4D9947D79F09}</ProjectGuid>
+    <ProjectGuid>{15FFBB6A-909E-40ED-B00A-C8B09E052288}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LunarLambda.Campaigns.BasicScenarios</RootNamespace>
-    <AssemblyName>LunarLambda.Campaigns.BasicScenarios</AssemblyName>
+    <RootNamespace>LunarLambda.Speach</RootNamespace>
+    <AssemblyName>LunarLambda.Speach</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,22 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
+    <Compile Include="SpeachSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuickBasic.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj">
-      <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
-      <Name>LudicrousElectron.Types</Name>
+    <ProjectReference Include="..\..\..\LudicrousElectron\Engine\LudicrousElectron.Engine.csproj">
+      <Project>{547b86a8-43a9-4683-a862-3d8136b3cf3d}</Project>
+      <Name>LudicrousElectron.Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Application\LunarLambda.csproj">
+    <ProjectReference Include="..\..\Application\LunarLambda.csproj">
       <Project>{30cc895b-bfc4-4402-8cc0-513ead76706f}</Project>
       <Name>LunarLambda</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

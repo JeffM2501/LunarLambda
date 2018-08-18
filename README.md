@@ -53,13 +53,15 @@ These folders are setup with runtime folder layouts that the system needs.
 	At this time only windows has a bat file, but the other OS libs are in the Libs dir, just copy them manually.
 	
 	Note that this will probalby need a relatively new version of Mono Develop, one that supports C#6 and the.net framework v4.7.1
+	Note also that this process may not work, main development happens in Visual Studio 2017
 	
 ### msbuild(or xbuild) (Windows, Linux, and OSX using Mono command line tools)
 	msbuild is the command line tool for building .net sln files. In older versions of mono it is named xbuild. It is included with mono and visual studio.
 	It can be used on any OS (See notes in mono develop about native libs on non windows platforms, it appies here too)
 	
 	Like mono develop this build process requires a version of mono that supports C#6 and the .net 4.7.1 framework
-
+	Note also that this process may not work, main development happens in Visual Studio 2017, but it will be worked out at some point
+	
 #### Getting Dependencies	
 	The nuget command line tool can get the dependencies direclty from the sln file
 	'nuget restore LunarLambda.sln'
