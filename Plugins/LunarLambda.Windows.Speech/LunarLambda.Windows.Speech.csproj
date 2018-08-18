@@ -7,8 +7,8 @@
     <ProjectGuid>{15FFBB6A-909E-40ED-B00A-C8B09E052288}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LunarLambda.Speach</RootNamespace>
-    <AssemblyName>LunarLambda.Speach</AssemblyName>
+    <RootNamespace>LunarLambda.Windows.Speech</RootNamespace>
+    <AssemblyName>LunarLambda.Windows.Speech</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpeachSupport.cs" />
+    <Compile Include="SpeechSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

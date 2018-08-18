@@ -9,9 +9,9 @@ using System.Speech.Synthesis;
 using LunarLambda.API;
 using LudicrousElectron.Engine.Audio;
 
-namespace LunarLambda.Speach
+namespace LunarLambda.Windows.Speech
 {
-    public class SpeachSupport : LLPlugin
+    public class SpeechSupport : LLPlugin
 	{
 		public SpeechSynthesizer Synth = null;
 
