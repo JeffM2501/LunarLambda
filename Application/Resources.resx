@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Credits" xml:space="preserve">
-    <value>$Credits
+    <value>© 2018 Jeffery Myers
+$Credits
 Inspired By:
 Empty Epsilon by "daid"
 	http://daid.github.io/EmptyEpsilon/
-	
 Programming:
 Jeffery Myers
 

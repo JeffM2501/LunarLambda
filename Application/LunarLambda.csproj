@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="API\Events.Calls.cs" />
     <Compile Include="API\Events.cs" />
+    <Compile Include="API\MenuAPI.cs" />
     <Compile Include="API\Scenarios.cs" />
     <Compile Include="API\Plugin.cs" />
     <Compile Include="API\PluginLoader.cs" />

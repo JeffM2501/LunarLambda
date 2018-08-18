@@ -13,6 +13,7 @@ using LudicrousElectron.GUI.Geometry;
 using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus.Controls;
 using LudicrousElectron.Engine.Graphics.Textures;
+using LunarLambda.API;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -20,6 +21,27 @@ namespace LunarLambda.GUI.Menus
 	{
 		public static RelativeSize ButtonWidth = new RelativeSize(1.0f / 4.0f, true);
 		public static RelativeSize ButtonHeight = new RelativeSize(1.0f / 18.0f, false);
+
+		protected int[] ColCounts = new int[] {0,0};
+
+		protected float ButtonShift = 1.25f;
+
+		protected int ButtonLayerIndex = 0;
+
+		internal MainMenu()
+		{
+			MenuAPI.ButtonAdded += MenuAPI_ButtonAdded;
+		}
+
+		private void MenuAPI_ButtonAdded(object sender, MenuAPI.MenuAPIEventArgs e)
+		{
+			if (e.MenuName != MenuAPI.MainMenuName || !Active)
+				return;
+
+			RegisterButton(e);
+		}
+
+
 		public override void Activate()
 		{
 			base.Activate();
@@ -29,6 +51,8 @@ namespace LunarLambda.GUI.Menus
 			SetupLogo(layerIndex++);
 			SetupCredits(layerIndex++);
             SetupButons(layerIndex++);
+
+			SetupAPIButtons();
         }
 
         private void Tutorials_Clicked(object sender, UIButton e)
@@ -52,40 +76,77 @@ namespace LunarLambda.GUI.Menus
         {
         }
 
-        protected void SetupButons(int layerIndex)
-        {
-            float buttonShift = 1.25f;
+		protected void RegisterButton(MenuAPI.MenuAPIEventArgs buttonInfo)
+		{
+			
+			int col = buttonInfo.Col;
+			if (col < 0)
+				col = 0;
+			if (col > 1)
+				col = 1;
 
-            // colum 1 buttons
-            RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+			RelativeRect rect = null;
+
+			if (col == 0)
+				rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+			else
+				rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+
+			rect.Y.Shift(ButtonHeight * ButtonShift * ColCounts[col]);
+			buttonInfo.Row = ColCounts[col];
+			ColCounts[col]++;
+
+			buttonInfo.Button.Rect = rect;
+			MenuButton quit = new MenuButton(rect, MenuRes.Quit);
+			quit.Clicked += Quit_Clicked;
+			AddElement(buttonInfo.Button, ButtonLayerIndex);
+		}
+
+
+		protected void SetupAPIButtons()
+		{
+			foreach (var buttonInfo in MenuAPI.GetAPIButtons(MenuAPI.MainMenuName))
+				RegisterButton(buttonInfo);
+		}
+
+		protected void SetupButons(int layerIndex)
+        {
+			ButtonLayerIndex = layerIndex;
+
+			// column 1 buttons
+			RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
 
             MenuButton quit = new MenuButton(rect, MenuRes.Quit);
             quit.Clicked += Quit_Clicked;
             AddElement(quit, layerIndex);
 
-            rect.Y.Shift(ButtonHeight * buttonShift);
+            rect.Y.Shift(ButtonHeight * ButtonShift);
             MenuButton options = new MenuButton(rect, MenuRes.Options);
             options.Clicked += Options_Clicked;
             AddElement(options, layerIndex);
 
-            rect.Y.Shift(ButtonHeight * buttonShift);
+            rect.Y.Shift(ButtonHeight * ButtonShift);
             MenuButton startClient = new MenuButton(rect, MenuRes.StartClient);
             startClient.Clicked += StartClient_Clicked;
             AddElement(startClient, layerIndex);
 
-            rect.Y.Shift(ButtonHeight * buttonShift);
+            rect.Y.Shift(ButtonHeight * ButtonShift);
             MenuButton startServer = new MenuButton(rect, MenuRes.StartServer);
             startServer.Clicked += StartServer_Clicked;
             AddElement(startServer, layerIndex);
 
-            // colum 2 buttons
-            rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+			ColCounts[0] = 4;
+
+			// column 2 buttons
+			rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
 
             MenuButton tutorials = new MenuButton(rect, MenuRes.Tutorials);
             tutorials.Clicked += Tutorials_Clicked;
             tutorials.Disable();
             AddElement(tutorials, layerIndex);
-        }
+
+			ColCounts[1] = 1;
+		}
 
         protected void SetupLogo(int layerIndex)
 		{

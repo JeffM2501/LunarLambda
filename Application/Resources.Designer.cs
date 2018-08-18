@@ -61,11 +61,11 @@ namespace LunarLambda {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $Credits
+        ///   Looks up a localized string similar to © 2018 Jeffery Myers
+        ///$Credits
         ///Inspired By:
         ///Empty Epsilon by &quot;daid&quot;
         ///	http://daid.github.io/EmptyEpsilon/
-        ///	
         ///Programming:
         ///Jeffery Myers
         ///

@@ -12,8 +12,9 @@ namespace LunarLambda.GUI
 {
 	public class Menu : Canvas
 	{
-		public virtual void Activate() { }
-		public virtual void Deactivate() { }
+		public bool Active { get; protected set; }
+		public virtual void Activate() { Active = true; }
+		public virtual void Deactivate() { Active = false; }
 	}
 
 	public static class MenuManager
