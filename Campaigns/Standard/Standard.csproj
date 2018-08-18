@@ -67,6 +67,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\LudicrousElectron\LudicrousElectron.GUI\LudicrousElectron.GUI.csproj">
+      <Project>{317f7c93-22ec-4c95-aec6-918e2e93a11b}</Project>
+      <Name>LudicrousElectron.GUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj">
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>
