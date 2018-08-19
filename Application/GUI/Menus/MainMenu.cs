@@ -74,6 +74,7 @@ namespace LunarLambda.GUI.Menus
 
         private void Quit_Clicked(object sender, UIButton e)
         {
+			Core.Exit();
         }
 
 		protected void RegisterButton(MenuAPI.MenuAPIEventArgs buttonInfo)
@@ -100,7 +101,6 @@ namespace LunarLambda.GUI.Menus
 			quit.Clicked += Quit_Clicked;
 			AddElement(buttonInfo.Button, ButtonLayerIndex);
 		}
-
 
 		protected void SetupAPIButtons()
 		{
