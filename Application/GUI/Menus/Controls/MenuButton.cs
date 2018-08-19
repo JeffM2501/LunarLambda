@@ -32,6 +32,9 @@ namespace LunarLambda.GUI.Menus.Controls
             Active = new GUIMaterial("ui/ButtonBackground.active.png", Color.White);
             Disabled = new GUIMaterial("ui/ButtonBackground.disabled.png", Color.White);
             Hover = new GUIMaterial("ui/ButtonBackground.hover.png", Color.White);
+
+			ActiveTextColor = Color.Black;
+			HoverTextColor = Color.LightSteelBlue;
         }
 
     }
