@@ -4,12 +4,22 @@ using System.Collections.Generic;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using LunarLambda.GUI.Menus.Controls;
+using static LunarLambda.API.Events;
 
 namespace LunarLambda.API
 {
 	public static class MenuAPI
 	{
 		public static readonly string MainMenuName = "LL.Main.Menu";
+		public static readonly string OptionsMenuName = "LL.Options.Menu";
+		public static readonly string StartServerMenuName = "LL.StartServer.Menu";
+		public static readonly string StartClientMenuName = "LL.StartClient.Menu";
+
+		public static event EventHandler SetupMenus = null;
+		internal static void CallSetupMenus() { SetupMenus?.Invoke(null, EventArgs.Empty); }
+
+		public static event EventHandler<StringDataEventArgs> MenuChanged = null;
+		internal static void CallMenuChanged(string newName) { MenuChanged?.Invoke(null, new StringDataEventArgs(newName)); }
 
 		public static UIButton AddButton(string menuName, string displayName, int column, int row = -1)
 		{

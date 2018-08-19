@@ -20,13 +20,9 @@ namespace LunarLambda.GUI.Menus
 	public class MainMenu : Menu
 	{
 		public static RelativeSize ButtonWidth = new RelativeSize(1.0f / 4.0f, true);
-		public static RelativeSize ButtonHeight = new RelativeSize(1.0f / 18.0f, false);
 
-		protected int[] ColCounts = new int[] {0,0};
+		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] {null,null};
 
-		protected float ButtonShift = 1.25f;
-
-		protected int ButtonLayerIndex = 0;
 
 		internal MainMenu()
 		{
@@ -41,7 +37,6 @@ namespace LunarLambda.GUI.Menus
 			RegisterButton(e);
 		}
 
-
 		public override void Activate()
 		{
 			base.Activate();
@@ -52,10 +47,18 @@ namespace LunarLambda.GUI.Menus
 			SetupCredits(layerIndex++);
             SetupButons(layerIndex++);
 
-			SetupAPIButtons();
+			AddAPIButtons(MenuAPI.MainMenuName);
         }
 
-        private void Tutorials_Clicked(object sender, UIButton e)
+		public override LayoutContainer GetContainerForAPIButton(int row, int col)
+		{
+			if (col == 0)
+				return Columns[0];
+			else
+				return Columns[1];
+		}
+
+		private void Tutorials_Clicked(object sender, UIButton e)
         {
         }
 
@@ -69,82 +72,56 @@ namespace LunarLambda.GUI.Menus
 
         private void Options_Clicked(object sender, UIButton e)
         {
+			MenuManager.PushMenu(MenuAPI.OptionsMenuName);
         }
-
 
         private void Quit_Clicked(object sender, UIButton e)
         {
 			Core.Exit();
         }
 
-		protected void RegisterButton(MenuAPI.MenuAPIEventArgs buttonInfo)
-		{
-			int col = buttonInfo.Col;
-			if (col < 0)
-				col = 0;
-			if (col > 1)
-				col = 1;
-
-			RelativeRect rect = null;
-
-			if (col == 0)
-				rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
-			else
-				rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
-
-			rect.Y.Shift(ButtonHeight * ButtonShift * ColCounts[col]);
-			buttonInfo.Row = ColCounts[col];
-			ColCounts[col]++;
-
-			buttonInfo.Button.Rect = rect;
-			MenuButton quit = new MenuButton(rect, MenuRes.Quit);
-			quit.Clicked += Quit_Clicked;
-			AddElement(buttonInfo.Button, ButtonLayerIndex);
-		}
-
-		protected void SetupAPIButtons()
-		{
-			foreach (var buttonInfo in MenuAPI.GetAPIButtons(MenuAPI.MainMenuName))
-				RegisterButton(buttonInfo);
-		}
-
 		protected void SetupButons(int layerIndex)
         {
-			ButtonLayerIndex = layerIndex;
+			RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, RelativeSize.HalfHeight, OriginLocation.LowerLeft);
 
-			// column 1 buttons
-			RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+			Columns[0] = new VerticalLayoutGroup(rect);
+			Columns[0].ChildSpacing = 5;
+			Columns[0].MaxChildSize = 45;
+			Columns[0].TopDown = false;
+			Columns[0].FitChildToWidth = true;
 
-            MenuButton quit = new MenuButton(rect, MenuRes.Quit);
-            quit.Clicked += Quit_Clicked;
-            AddElement(quit, layerIndex);
+			MenuButton quit = new MenuButton(new RelativeRect(), MenuRes.Quit);
+			quit.Clicked += Quit_Clicked;
+			Columns[0].AddChild(quit);
+			
+			MenuButton options = new MenuButton(new RelativeRect(), MenuRes.Options);
+			options.Clicked += Options_Clicked;
+			Columns[0].AddChild(options);
+			
+			MenuButton startClient = new MenuButton(new RelativeRect(), MenuRes.StartClient);
+			startClient.Clicked += StartClient_Clicked;
+			Columns[0].AddChild(startClient);
+			
+			MenuButton startServer = new MenuButton(new RelativeRect(), MenuRes.StartServer);
+			startServer.Clicked += StartServer_Clicked;
+			Columns[0].AddChild(startServer);
 
-            rect.Y.Shift(ButtonHeight * ButtonShift);
-            MenuButton options = new MenuButton(rect, MenuRes.Options);
-            options.Clicked += Options_Clicked;
-            AddElement(options, layerIndex);
-
-            rect.Y.Shift(ButtonHeight * ButtonShift);
-            MenuButton startClient = new MenuButton(rect, MenuRes.StartClient);
-            startClient.Clicked += StartClient_Clicked;
-            AddElement(startClient, layerIndex);
-
-            rect.Y.Shift(ButtonHeight * ButtonShift);
-            MenuButton startServer = new MenuButton(rect, MenuRes.StartServer);
-            startServer.Clicked += StartServer_Clicked;
-            AddElement(startServer, layerIndex);
-
-			ColCounts[0] = 4;
+			AddElement(Columns[0], layerIndex);
 
 			// column 2 buttons
-			rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerLeft);
+			rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, RelativeSize.HalfHeight, OriginLocation.LowerLeft);
 
-            MenuButton tutorials = new MenuButton(rect, MenuRes.Tutorials);
+			Columns[1] = new VerticalLayoutGroup(rect);
+			Columns[1].ChildSpacing = 5;
+			Columns[1].MaxChildSize = 45;
+			Columns[1].TopDown = false;
+			Columns[1].FitChildToWidth = true;
+
+            MenuButton tutorials = new MenuButton(new RelativeRect(), MenuRes.Tutorials);
             tutorials.Clicked += Tutorials_Clicked;
             tutorials.Disable();
-            AddElement(tutorials, layerIndex);
-
-			ColCounts[1] = 1;
+			Columns[1].AddChild(tutorials);
+			AddElement(Columns[1], layerIndex);
 		}
 
         protected void SetupLogo(int layerIndex)
@@ -159,17 +136,6 @@ namespace LunarLambda.GUI.Menus
 			string versString = Resources.VersionLabel.Replace("$V", version).Replace("$E", engine);
 
 			AddElement(new UILabel(MenuManager.MainFont, versString, RelativePoint.Center, RelativeSize.BorderHeight), layerIndex);
-		}
-
-		protected void SetupBackground(int layerIndex)
-		{
-			string bgRepeat = "ui/BackgroundCrosses.png";
-
-			TextureManager.GetTexture(bgRepeat).SetTextureFormat(TextureInfo.TextureFormats.TextureMap); // force this to repeat
-
-			var background = new UIPanel(RelativeRect.Full, ColorConfig.background.Color);
-			background.Children.Add(new UIPanel(RelativeRect.Full, Color.White, bgRepeat));
-			AddElement(background, layerIndex);
 		}
 
 		protected void SetupCredits(int layerIndex)

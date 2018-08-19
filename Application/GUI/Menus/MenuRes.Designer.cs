@@ -61,6 +61,24 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fullscreen Toggle.
+        /// </summary>
+        internal static string FullscreenToggle {
+            get {
+                return ResourceManager.GetString("FullscreenToggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Graphics.
+        /// </summary>
+        internal static string Graphics {
+            get {
+                return ResourceManager.GetString("Graphics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         internal static string Options {

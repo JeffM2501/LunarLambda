@@ -78,6 +78,7 @@
     <Compile Include="GUI\Config\ColorConfig.cs" />
     <Compile Include="GUI\Config\HotKeys.cs" />
     <Compile Include="GUI\MenuManager.cs" />
+    <Compile Include="GUI\Menus\Controls\Header.cs" />
     <Compile Include="GUI\Menus\Controls\MenuButton.cs" />
     <Compile Include="GUI\Menus\MainMenu.cs" />
     <Compile Include="GUI\Menus\MenuRes.Designer.cs">
@@ -85,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Menus\OptionsMenu.cs" />
     <Compile Include="Preferences\ConfigReader.cs" />
     <Compile Include="Preferences\FileLocations.cs" />
     <Compile Include="Preferences\PreferencesManager.cs" />
