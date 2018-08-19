@@ -22,50 +22,8 @@ namespace LunarLambda.GUI
 		public virtual void Activate() { Active = true; MenuAPI.CallMenuChanged(Name); }
 		public virtual void Deactivate() { Active = false; }
 
-		public virtual LayoutContainer GetContainerForAPIButton(int row, int col)
-		{
-			return null;
-		}
-
-		public virtual UIButton GetAPIButton(RelativeRect rect, string label)
-		{
-			return new MenuButton(rect, label);
-		}
-
-		protected virtual void RegisterButton(MenuAPI.MenuAPIEventArgs buttonInfo)
-		{
-			LayoutContainer container = GetContainerForAPIButton(buttonInfo.Row, buttonInfo.Col);
-			if (container == null)
-				return;
-
-			int col = buttonInfo.Col;
-			if (col < 0)
-				col = 0;
-			if (col > 1)
-				col = 1;
-
-			RelativeRect rect = new RelativeRect();
-			rect.Width = container.Rect.Width.Clone();
-			buttonInfo.Button = GetAPIButton(rect, buttonInfo.MenuName);
-			container.AddChild(buttonInfo.Button);
-		}
-
-		public virtual void AddAPIButtons(string name)
-		{
-			foreach (var buttonInfo in MenuAPI.GetAPIButtons(name))
-				RegisterButton(buttonInfo);
-		}
-
-		protected virtual void SetupBackground(int layerIndex)
-		{
-			string bgRepeat = "ui/BackgroundCrosses.png";
-
-			TextureManager.GetTexture(bgRepeat).SetTextureFormat(TextureInfo.TextureFormats.TextureMap); // force this to repeat
-
-			var background = new UIPanel(RelativeRect.Full, ColorConfig.background.Color);
-			background.Children.Add(new UIPanel(RelativeRect.Full, Color.White, bgRepeat));
-			AddElement(background, layerIndex);
-		}
+		public virtual void Hide() { Active = false; }
+		public virtual void Show() { Active = true; }
 	}
 
 	public static class MenuManager
@@ -105,7 +63,7 @@ namespace LunarLambda.GUI
 
 			Menu newMenu = MenuCache[name.ToLowerInvariant()];
 
-			GUIManager.PeekCanvas<Menu>()?.Deactivate();
+			GUIManager.PeekCanvas<Menu>()?.Hide();
 			GUIManager.PushCanvas(newMenu);
 			newMenu.Activate();
 		}
@@ -114,7 +72,7 @@ namespace LunarLambda.GUI
 		{
 			GUIManager.PeekCanvas<Menu>()?.Deactivate();
 			GUIManager.PopCanvas();
-			GUIManager.PeekCanvas<Menu>()?.Activate();
+			GUIManager.PeekCanvas<Menu>()?.Show();
 		}
 	}
 }

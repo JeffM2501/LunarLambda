@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LunarLambda.GUI.Menus
 {
-	public class OptionsMenu : Menu
+	public class OptionsMenu : MenuCommon
 	{
 		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] { null, null };
 
@@ -28,25 +28,25 @@ namespace LunarLambda.GUI.Menus
 			RegisterButton(e);
 		}
 
-		public override void Activate()
+		protected override void SetupControls()
 		{
-			base.Activate();
 			SetupBackground(0);
+			SetupBackButton(1);
 
 			SetupOptions();
 			SetupMusicSamples();
 
-
-			AddAPIButtons(MenuAPI.MainMenuName);
+			AddAPIButtons(MenuAPI.OptionsMenuName);
+			base.SetupControls();
 		}
 
 		protected void SetupOptions()
 		{
-			RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpperBorder + RelativeLoc.BorderOffset, MainMenu.ButtonWidth, RelativeSize.ThreeQuarterHeight, OriginLocation.UpperLeft);
+			RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpperBorder + RelativeLoc.BorderOffset, ButtonWidth, RelativeSize.ThreeQuarterHeight, OriginLocation.UpperLeft);
 
 			Columns[0] = new VerticalLayoutGroup(rect);
-			Columns[0].ChildSpacing = 5;
-			Columns[0].MaxChildSize = 45;
+			Columns[0].ChildSpacing = ButtonSpacing.Paramater;
+			Columns[0].MaxChildSize = ButtonHeight.Paramater;
 			Columns[0].TopDown = true;
 			Columns[0].FitChildToWidth = true;
 
@@ -55,7 +55,7 @@ namespace LunarLambda.GUI.Menus
 			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
 			Columns[0].AddChild(fsToggle);
 
-			AddElement(Columns[0], 1);
+			AddElement(Columns[0], 2);
 		}
 
 		protected void SetupMusicSamples()

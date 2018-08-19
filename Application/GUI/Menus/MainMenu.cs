@@ -17,10 +17,8 @@ using LunarLambda.API;
 
 namespace LunarLambda.GUI.Menus
 {
-	public class MainMenu : Menu
+	public class MainMenu : MenuCommon
 	{
-		public static RelativeSize ButtonWidth = new RelativeSize(1.0f / 4.0f, true);
-
 		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] {null,null};
 
 
@@ -37,18 +35,17 @@ namespace LunarLambda.GUI.Menus
 			RegisterButton(e);
 		}
 
-		public override void Activate()
+		protected override void SetupControls()
 		{
-			base.Activate();
-
 			int layerIndex = 0;
 			SetupBackground(layerIndex++);
 			SetupLogo(layerIndex++);
 			SetupCredits(layerIndex++);
-            SetupButons(layerIndex++);
+			SetupButons(layerIndex++);
 
 			AddAPIButtons(MenuAPI.MainMenuName);
-        }
+			base.SetupControls();
+		}
 
 		public override LayoutContainer GetContainerForAPIButton(int row, int col)
 		{
@@ -112,8 +109,8 @@ namespace LunarLambda.GUI.Menus
 			rect = new RelativeRect(RelativeLoc.XLeftBorder + (RelativeLoc.BorderOffset * 2 + ButtonWidth.Paramater), RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, RelativeSize.HalfHeight, OriginLocation.LowerLeft);
 
 			Columns[1] = new VerticalLayoutGroup(rect);
-			Columns[1].ChildSpacing = 5;
-			Columns[1].MaxChildSize = 45;
+			Columns[1].ChildSpacing = ButtonSpacing.Paramater;
+			Columns[1].MaxChildSize = ButtonHeight.Paramater;
 			Columns[1].TopDown = false;
 			Columns[1].FitChildToWidth = true;
 
