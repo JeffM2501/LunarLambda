@@ -120,6 +120,9 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="FSAA" xml:space="preserve">
+    <value>FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x</value>
+  </data>
   <data name="FullscreenToggle" xml:space="preserve">
     <value>Fullscreen Toggle</value>
   </data>

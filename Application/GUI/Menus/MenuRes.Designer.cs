@@ -70,6 +70,15 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x.
+        /// </summary>
+        internal static string FSAA {
+            get {
+                return ResourceManager.GetString("FSAA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fullscreen Toggle.
         /// </summary>
         internal static string FullscreenToggle {

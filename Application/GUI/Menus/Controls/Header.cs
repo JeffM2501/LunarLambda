@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-
 using LudicrousElectron.Engine.Window;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;

@@ -52,6 +52,7 @@ namespace LunarLambda
 
 			Core.Run();
 
+			SavePrefs();
             CleanUpPlugins();
 		}
 
@@ -63,6 +64,12 @@ namespace LunarLambda
             Events.CallSetupScienceDB(null);
 
 			Events.CallFinalizeDatabases(null);
+		}
+
+		static void SavePrefs()
+		{
+			// save off the last good FSAA value
+			PreferencesManager.Set(PrefNames.FSAA, WindowManager.MainWindowAAFactor);
 		}
 
         static void CleanUpPlugins()
@@ -150,7 +157,6 @@ namespace LunarLambda
             TextureManager.GetTexture("Tokka_WalkingMan.png", new Vector2i(6, 1), TextureInfo.TextureFormats.Sprite); //Setup the sprite mapping.
 
             PluginLoader.LoadAllPlugins();
-
 		}
 
 		static void LoadPreferences(string[] args)
@@ -168,7 +174,6 @@ namespace LunarLambda
 		{
 			FileLocations.AddUserAndApplicationSubDirAssets("assets");
             FileLocations.AddUserAndApplicationSubDirAssets("music");
-
 
             foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packs"), "*.pack"))
 				AssetManager.AddProvider(new PackAssetProvider(file));

@@ -1,4 +1,5 @@
-﻿using LudicrousElectron.GUI;
+﻿using LudicrousElectron.Engine.Window;
+using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using LunarLambda.API;
@@ -55,7 +56,22 @@ namespace LunarLambda.GUI.Menus
 			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
 			Columns[0].AddChild(fsToggle);
 
+			SpinSelector fsaaSelector = new SpinSelector(new RelativeRect(), MenuRes.FSAA.Split(";".ToCharArray()), WindowManager.GetWindowInfo(WindowManager.MainWindowID).AntiAliasingFactor);
+			fsaaSelector.ValueChanged += FsaaSelector_ValueChanged;
+			Columns[0].AddChild(fsaaSelector);
+
 			AddElement(Columns[0], 2);
+		}
+
+		private void FsaaSelector_ValueChanged(object sender, EventArgs e)
+		{
+			SpinSelector selector = sender as SpinSelector;
+			if (selector == null)
+				return;
+
+			int newFSAA = selector.SelectedIndex * 2;
+
+			WindowManager.SetFSAALevel(newFSAA);
 		}
 
 		protected void SetupMusicSamples()
