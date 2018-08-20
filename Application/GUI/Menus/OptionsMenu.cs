@@ -65,13 +65,22 @@ namespace LunarLambda.GUI.Menus
 			SpinSelector windowSizeSelector = new SpinSelector(new RelativeRect(), MenuRes.FullscreenModes.Split(";".ToCharArray()), 0);
 			windowSizeSelector.ValueChanged += WindowSizeSelector_ValueChanged;
 			Columns[0].AddChild(windowSizeSelector);
-// 
-// 			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
-// 			fsToggle.Clicked += FsToggle_Clicked;
-// 			Columns[0].AddChild(fsToggle);
+			// 
+			// 			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
+			// 			fsToggle.Clicked += FsToggle_Clicked;
+			// 			Columns[0].AddChild(fsToggle);
 
 			// anti-alias selector
-			SpinSelector fsaaSelector = new SpinSelector(new RelativeRect(), MenuRes.FSAA.Split(";".ToCharArray()), WindowManager.GetWindowInfo(WindowManager.MainWindowID).AntiAliasingFactor);
+			int aa = WindowManager.GetWindowInfo(WindowManager.MainWindowID).AntiAliasingFactor;
+			if (aa < 0)
+				aa = 0;
+			if (aa > 8)
+				aa = 8;
+
+			if (aa != 0)
+				aa = (int)Math.Log(aa, 2);
+
+			SpinSelector fsaaSelector = new SpinSelector(new RelativeRect(), MenuRes.FSAA.Split(";".ToCharArray()), aa);
 			fsaaSelector.ValueChanged += FsaaSelector_ValueChanged;
 			Columns[0].AddChild(fsaaSelector);
 
@@ -81,12 +90,13 @@ namespace LunarLambda.GUI.Menus
 			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.SoundOptions));
 
 			// sound volume
-			var soundSlider = new HSlider(new RelativeRect(), MenuRes.EffectsVolume, PreferencesManager.GetValueD(PrefNames.SoundVolume, 50));
+			double volume = PreferencesManager.GetValueI(PrefNames.SoundVolume, 50);
+			var soundSlider = new HSlider(new RelativeRect(), MenuRes.EffectsVolume, volume);
 			soundSlider.ValueChanged += SoundSlider_ValueChanged;
 			Columns[0].AddChild(soundSlider);
 
 			// music volume
-			var musicSlider = new HSlider(new RelativeRect(), MenuRes.MusicVolume, PreferencesManager.GetValueD(PrefNames.MusicVolume, 50));
+			var musicSlider = new HSlider(new RelativeRect(), MenuRes.MusicVolume, PreferencesManager.GetValueI(PrefNames.MusicVolume, 50));
 			musicSlider.ValueChanged += MusicSlider_ValueChanged;
 			Columns[0].AddChild(musicSlider);
 
@@ -118,7 +128,7 @@ namespace LunarLambda.GUI.Menus
 				return;
 
 			SoundManager.SetMusicVolume((float)slider.CurrentValue);
-			PreferencesManager.Set(PrefNames.MusicVolume, slider.CurrentValue);
+			PreferencesManager.Set(PrefNames.MusicVolume, (int)slider.CurrentValue);
 		}
 
 		private void SoundSlider_ValueChanged(object sender, EventArgs e)
@@ -128,7 +138,7 @@ namespace LunarLambda.GUI.Menus
 				return;
 
 			SoundManager.SetMasterSoundVolume((float)slider.CurrentValue);
-			PreferencesManager.Set(PrefNames.SoundVolume, slider.CurrentValue);
+			PreferencesManager.Set(PrefNames.SoundVolume, (int)slider.CurrentValue);
 		}
 		private void WindowSizeSelector_ValueChanged(object sender, EventArgs e)
 		{
@@ -150,7 +160,6 @@ namespace LunarLambda.GUI.Menus
 				case 2:
 					WindowManager.SetFullscreen();
 					break;
-
 			}
 		}
 
@@ -165,7 +174,7 @@ namespace LunarLambda.GUI.Menus
 			if (selector == null)
 				return;
 
-			int newFSAA = selector.SelectedIndex * 2;
+			int newFSAA = (int)(Math.Pow(2, selector.SelectedIndex));
 
 			WindowManager.SetFSAALevel(newFSAA);
 		}
