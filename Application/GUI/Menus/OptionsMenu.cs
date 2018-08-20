@@ -1,14 +1,17 @@
-﻿using LudicrousElectron.Engine.Window;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+using LudicrousElectron.Assets;
+using LudicrousElectron.Engine.Audio;
+using LudicrousElectron.Engine.Window;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
+
 using LunarLambda.API;
 using LunarLambda.GUI.Menus.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LunarLambda.Preferences;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -16,21 +19,28 @@ namespace LunarLambda.GUI.Menus
 	{
 		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] { null, null };
 
-		internal OptionsMenu()
+		bool PlayingSong = false;
+		internal OptionsMenu() : base()
 		{
-			MenuAPI.ButtonAdded += MenuAPI_ButtonAdded;
 		}
 
-		private void MenuAPI_ButtonAdded(object sender, MenuAPI.MenuAPIEventArgs e)
+		public override void Deactivate()
 		{
-			if (e.MenuName != MenuAPI.OptionsMenuName || !Active)
-				return;
+			Hide();
+		}
 
-			RegisterButton(e);
+		public override void Hide()
+		{
+			base.Hide();
+			if (PlayingSong)
+				SoundManager.StopMusic();
+
+			PlayingSong = false;
 		}
 
 		protected override void SetupControls()
 		{
+			PlayingSong = false;
 			SetupBackground(0);
 			SetupBackButton(1);
 
@@ -61,6 +71,19 @@ namespace LunarLambda.GUI.Menus
 			fsaaSelector.ValueChanged += FsaaSelector_ValueChanged;
 			Columns[0].AddChild(fsaaSelector);
 
+			Columns[0].AddChild(new UIBlank(new RelativeRect()));
+
+			PreferencesManager.GetValueD(PrefNames.SoundVolume, 50);
+
+			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.SoundOptions));
+			Columns[0].AddChild(new HSlider(new RelativeRect(), MenuRes.EffectsVolume, PreferencesManager.GetValueD(PrefNames.SoundVolume, 50)));
+			Columns[0].AddChild(new HSlider(new RelativeRect(), MenuRes.MusicVolume, PreferencesManager.GetValueD(PrefNames.MusicVolume, 50)));
+
+			Columns[0].AddChild(new UIBlank(new RelativeRect()));
+			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.MusicPlayback));
+			SpinSelector musicSelector = new SpinSelector(new RelativeRect(), MenuRes.MusicPlaybackModes.Split(";".ToCharArray()), 1);
+			Columns[0].AddChild(musicSelector);
+
 			AddElement(Columns[0], 2);
 		}
 
@@ -82,7 +105,43 @@ namespace LunarLambda.GUI.Menus
 
 		protected void SetupMusicSamples()
 		{
+			RelativeRect rect = new RelativeRect(RelativeLoc.XFirstThird + RelativeLoc.BorderOffset, RelativeLoc.YUpperBorder + RelativeLoc.BorderOffset, RelativeSize.ThirdWidth * 1.75f, RelativeSize.BorderInsetHeight, OriginLocation.UpperLeft);
 
+			Columns[1] = new VerticalLayoutGroup(rect);
+			Columns[1].ChildSpacing = ButtonSpacing.Paramater;
+			Columns[1].MaxChildSize = ButtonHeight.Paramater;
+			Columns[1].TopDown = true;
+			Columns[1].FitChildToWidth = true;
+
+			Columns[1].AddChild(new Header(new RelativeRect(), MenuRes.PreviewSoundtrack));
+
+			foreach (var file in AssetManager.FindAssets(string.Empty))
+			{
+				string ext = Path.GetExtension(file).ToUpperInvariant();
+				if (ext == ".OGG" || ext == ".MP3")
+				{
+					MenuButton songButton = new MenuButton(new RelativeRect(), Path.GetFileNameWithoutExtension(file));
+					songButton.Tag = file;
+					songButton.Clicked += SongButton_Clicked;
+					Columns[1].AddChild(songButton);
+				}
+			}
+
+			AddElement(Columns[1], 2);
+		}
+
+		private void SongButton_Clicked(object sender, UIButton e)
+		{
+			if (PlayingSong)
+				SoundManager.StopMusic();
+
+			string song = e.Tag as string;
+			if (song == null)
+				return;
+
+			SoundManager.PlayMusic(song);
+
+			PlayingSong = true;
 		}
 	}
 }

@@ -22,17 +22,9 @@ namespace LunarLambda.GUI.Menus
 		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] {null,null};
 
 
-		internal MainMenu()
+		internal MainMenu() : base()
 		{
-			MenuAPI.ButtonAdded += MenuAPI_ButtonAdded;
-		}
-
-		private void MenuAPI_ButtonAdded(object sender, MenuAPI.MenuAPIEventArgs e)
-		{
-			if (e.MenuName != MenuAPI.MainMenuName || !Active)
-				return;
-
-			RegisterButton(e);
+			
 		}
 
 		protected override void SetupControls()

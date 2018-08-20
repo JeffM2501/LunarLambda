@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using LunarLambda.GUI.Menus.Controls;
@@ -29,46 +29,73 @@ namespace LunarLambda.API
 				RegisteredAPIButtons.Add(menuName, new List<MenuAPIEventArgs>());
 
 			string dn = displayName.ToLowerInvariant();
-			MenuAPIEventArgs info = RegisteredAPIButtons[menuName].Find((x) => x.Button.Name.ToLowerInvariant() == dn);
+			MenuAPIEventArgs info = RegisteredAPIButtons[menuName].Find((x) => x.Element.Name.ToLowerInvariant() == dn);
 
 			if (info != null)
-				return info.Button;
+				return info.Element as UIButton;
 
 			info = new MenuAPIEventArgs(new MenuButton(new RelativeRect()), menuName);
 
-			info.Button.Name = displayName;
-			info.Button.SetText(displayName);
+			info.Element.Name = displayName;
+			(info.Element as UIButton)?.SetText(displayName);
 
 			info.Row = row;
 			info.Col = column;
 
 			RegisteredAPIButtons[menuName].Add(info);
 
-			ButtonAdded?.Invoke(info.Button, info);
+			ControllAdded?.Invoke(info.Element, info);
 
-			return info.Button;
+			return (info.Element as UIButton);
+		}
+
+		public static GUIElement AddGUIItem(string menuName, GUIElement element, int column, int row = -1)
+		{
+			menuName = menuName.ToLowerInvariant();
+
+			if (!RegisteredAPIButtons.ContainsKey(menuName))
+				RegisteredAPIButtons.Add(menuName, new List<MenuAPIEventArgs>());
+
+			string dn = element.Name.ToLowerInvariant();
+			MenuAPIEventArgs info = RegisteredAPIButtons[menuName].Find((x) => x.Element.Name.ToLowerInvariant() == dn);
+
+			if (info != null)
+				return info.Element;
+
+			info = new MenuAPIEventArgs(new MenuButton(new RelativeRect()), menuName);
+
+			info.Element = element;
+
+			info.Row = row;
+			info.Col = column;
+
+			RegisteredAPIButtons[menuName].Add(info);
+
+			ControllAdded?.Invoke(info.Element, info);
+
+			return info.Element;
 		}
 
 		public class MenuAPIEventArgs
 		{
-			public UIButton Button = null;
+			public GUIElement Element = null;
 			public string MenuName = string.Empty;
 
 			public int Row = -1;
 			public int Col = -1;
 
-			internal MenuAPIEventArgs(UIButton button, string menuName)
+			internal MenuAPIEventArgs(GUIElement button, string menuName)
 			{
-				Button = button;
+				Element = button;
 				MenuName = menuName;
 			}
 		}
 
-		internal static event EventHandler<MenuAPIEventArgs> ButtonAdded = null;
+		internal static event EventHandler<MenuAPIEventArgs> ControllAdded = null;
 
 		internal static Dictionary<string, List<MenuAPIEventArgs>> RegisteredAPIButtons = new Dictionary<string, List<MenuAPIEventArgs>>();
 
-		internal static List<MenuAPIEventArgs> GetAPIButtons(string menuName)
+		internal static List<MenuAPIEventArgs> GetAPICtls(string menuName)
 		{
 			menuName = menuName.ToLowerInvariant();
 

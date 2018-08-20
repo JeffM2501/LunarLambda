@@ -120,8 +120,14 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="EffectsVolume" xml:space="preserve">
+    <value>Effects Volume</value>
+  </data>
   <data name="FSAA" xml:space="preserve">
     <value>FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x</value>
+  </data>
+  <data name="FullscreenModes" xml:space="preserve">
+    <value>Windowed;Maximized;Fullscreen</value>
   </data>
   <data name="FullscreenToggle" xml:space="preserve">
     <value>Fullscreen Toggle</value>
@@ -129,11 +135,26 @@
   <data name="Graphics" xml:space="preserve">
     <value>Graphics</value>
   </data>
+  <data name="MusicPlayback" xml:space="preserve">
+    <value>Music Playblack</value>
+  </data>
+  <data name="MusicPlaybackModes" xml:space="preserve">
+    <value>Disabled;Enabled;Main Screen Only</value>
+  </data>
+  <data name="MusicVolume" xml:space="preserve">
+    <value>Music Volume</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="PreviewSoundtrack" xml:space="preserve">
+    <value>Preview Soundtrack</value>
+  </data>
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
+  </data>
+  <data name="SoundOptions" xml:space="preserve">
+    <value>Sound Options</value>
   </data>
   <data name="StartClient" xml:space="preserve">
     <value>Start Client</value>

@@ -21,13 +21,18 @@ namespace LunarLambda.GUI.Menus
 		public static RelativeSize ButtonSpacing = new RelativeSize(5);
 
 		protected bool Setup = false;
+
+		public MenuCommon()
+		{
+			MenuAPI.ControllAdded += MenuAPI_ControlAdded;
+		}
+
 		public override void Activate()
 		{
 			base.Activate();
 
 			if (!Setup)
 				SetupControls();
-
 		}
 
 		protected virtual void SetupControls()
@@ -40,33 +45,41 @@ namespace LunarLambda.GUI.Menus
 			return null;
 		}
 
-		public virtual UIButton GetAPIButton(RelativeRect rect, string label)
+		public virtual GUIElement GetAPIButton(RelativeRect rect, string label)
 		{
 			return new MenuButton(rect, label);
 		}
 
-		protected virtual void RegisterButton(MenuAPI.MenuAPIEventArgs buttonInfo)
+
+		private void MenuAPI_ControlAdded(object sender, MenuAPI.MenuAPIEventArgs e)
 		{
-			LayoutContainer container = GetContainerForAPIButton(buttonInfo.Row, buttonInfo.Col);
+			if (e.MenuName != this.Name || !Active)
+				return;
+
+			RegisterControl(e);
+		}
+
+		protected virtual void RegisterControl(MenuAPI.MenuAPIEventArgs ctlInfo)
+		{
+			LayoutContainer container = GetContainerForAPIButton(ctlInfo.Row, ctlInfo.Col);
 			if (container == null)
 				return;
 
-			int col = buttonInfo.Col;
+			int col = ctlInfo.Col;
 			if (col < 0)
 				col = 0;
 			if (col > 1)
 				col = 1;
 
-			RelativeRect rect = new RelativeRect();
-			rect.Width = container.Rect.Width.Clone();
-			buttonInfo.Button = GetAPIButton(rect, buttonInfo.MenuName);
-			container.AddChild(buttonInfo.Button);
+			ctlInfo.Element.Rect = new RelativeRect();
+			ctlInfo.Element.Rect.Width = container.Rect.Width.Clone();
+			container.AddChild(ctlInfo.Element);
 		}
 
 		public virtual void AddAPIButtons(string name)
 		{
-			foreach (var buttonInfo in MenuAPI.GetAPIButtons(name))
-				RegisterButton(buttonInfo);
+			foreach (var ctlInfo in MenuAPI.GetAPICtls(name))
+				RegisterControl(ctlInfo);
 		}
 
 		protected virtual void SetupBackground(int layerIndex)

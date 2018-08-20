@@ -70,11 +70,29 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Effects Volume.
+        /// </summary>
+        internal static string EffectsVolume {
+            get {
+                return ResourceManager.GetString("EffectsVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x.
         /// </summary>
         internal static string FSAA {
             get {
                 return ResourceManager.GetString("FSAA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windowed;Maximized;Fullscreen.
+        /// </summary>
+        internal static string FullscreenModes {
+            get {
+                return ResourceManager.GetString("FullscreenModes", resourceCulture);
             }
         }
         
@@ -97,6 +115,33 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Music Playblack.
+        /// </summary>
+        internal static string MusicPlayback {
+            get {
+                return ResourceManager.GetString("MusicPlayback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled;Enabled;Main Screen Only.
+        /// </summary>
+        internal static string MusicPlaybackModes {
+            get {
+                return ResourceManager.GetString("MusicPlaybackModes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Music Volume.
+        /// </summary>
+        internal static string MusicVolume {
+            get {
+                return ResourceManager.GetString("MusicVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         internal static string Options {
@@ -106,11 +151,29 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview Soundtrack.
+        /// </summary>
+        internal static string PreviewSoundtrack {
+            get {
+                return ResourceManager.GetString("PreviewSoundtrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
         internal static string Quit {
             get {
                 return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound Options.
+        /// </summary>
+        internal static string SoundOptions {
+            get {
+                return ResourceManager.GetString("SoundOptions", resourceCulture);
             }
         }
         

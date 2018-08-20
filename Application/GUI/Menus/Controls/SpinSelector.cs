@@ -28,6 +28,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			IgnoreMouse = false;
 			FillMode = UIFillModes.Stretch4Quad;
 			Font = font;
+			SelectedIndex = defaultIndex;
 			SetLabels(labels);
 
 			SetupButtons();
