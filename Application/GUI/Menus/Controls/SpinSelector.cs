@@ -68,7 +68,6 @@ namespace LunarLambda.GUI.Menus.Controls
 			AddChild(LabelControl);
 		}
 
-
 		protected virtual void SetupButtons()
 		{
 			RelativeRect leftRect = new RelativeRect(RelativePoint.MiddleLeft, new RelativeSizeXY(RelativeSize.FullHeight, RelativeSize.FullHeight),OriginLocation.MiddleLeft);
@@ -164,7 +163,22 @@ namespace LunarLambda.GUI.Menus.Controls
 
         public override void ProcessMouseEvent(Vector2 location, InputManager.LogicalButtonState buttons)
         {
-            base.ProcessMouseEvent(location, buttons);
+            if (!buttons.PrimaryClick || ParentCanvas == null || ParentCanvas.PopupEnabled())
+                return;
+
+            float width = Rect.GetPixelSize().X;
+            float height = Rect.GetPixelSize().Y;
+
+            float availableDist = width - (height * 2);
+
+            if (location.X < height || location.X > availableDist + height)
+                return;
+
+            Vector2 thisOrigin = GetScreenOrigin();
+
+            RelativeRect rect = new RelativeRect(new RelativeLoc(thisOrigin.X, RelativeLoc.Edge.Raw), new RelativeLoc(thisOrigin.Y, RelativeLoc.Edge.Raw), RelativeSize.QuarterWidth, RelativeSize.QuarterHeight, OriginLocation.LowerLeft);
+
+      //      ParentCanvas.SetPopupElement(new UIPanel(rect, Color.Green));
         }
     }
 }
