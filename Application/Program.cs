@@ -70,6 +70,10 @@ namespace LunarLambda
 		{
 			// save off the last good FSAA value
 			PreferencesManager.Set(PrefNames.FSAA, WindowManager.MainWindowAAFactor);
+
+			// TODO, save window positions and resolutions
+
+			PreferencesManager.Save(FileLocations.GetOptionsFile());
 		}
 
         static void CleanUpPlugins()

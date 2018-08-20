@@ -80,6 +80,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			LeftButton.Hover = new GUIMaterial("ui/SelectorArrow.png", Color.LightSteelBlue);
 			LeftButton.Active = new GUIMaterial("ui/SelectorArrow.png", Color.Gray);
 			LeftButton.Disabled = new GUIMaterial("ui/SelectorArrow.png", Color.Transparent);
+			LeftButton.ClickSound = "button.wav";
 
 			LeftButton.Clicked += LeftButton_Clicked;
 
@@ -99,6 +100,7 @@ namespace LunarLambda.GUI.Menus.Controls
  			RightButton.Hover = new GUIMaterial("ui/SelectorArrow.png", Color.LightSteelBlue);
  			RightButton.Active = new GUIMaterial("ui/SelectorArrow.png", Color.Gray);
 			RightButton.Disabled = new GUIMaterial("ui/SelectorArrow.png", Color.Transparent);
+			RightButton.ClickSound = "button.wav";
 
 			RightButton.Clicked += RightButton_Clicked;
 

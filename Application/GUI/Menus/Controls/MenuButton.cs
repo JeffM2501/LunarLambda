@@ -28,6 +28,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
         protected override void Setup()
         {
+			ClickSound = "button.wav";
+			HoverSound = "effects/click.wav";
+
             DefaultMaterial = new GUIMaterial("ui/ButtonBackground.png", Color.White);
             Active = new GUIMaterial("ui/ButtonBackground.active.png", Color.White);
             Disabled = new GUIMaterial("ui/ButtonBackground.disabled.png", Color.White);
@@ -36,6 +39,5 @@ namespace LunarLambda.GUI.Menus.Controls
 			ActiveTextColor = Color.Black;
 			HoverTextColor = Color.LightSteelBlue;
         }
-
-    }
+	}
 }
