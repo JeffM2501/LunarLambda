@@ -90,6 +90,7 @@
       <DependentUpon>MenuRes.resx</DependentUpon>
     </Compile>
     <Compile Include="GUI\Menus\OptionsMenu.cs" />
+    <Compile Include="GUI\Menus\StartServerMenu.cs" />
     <Compile Include="Preferences\ConfigReader.cs" />
     <Compile Include="Preferences\FileLocations.cs" />
     <Compile Include="Preferences\PreferencesManager.cs" />

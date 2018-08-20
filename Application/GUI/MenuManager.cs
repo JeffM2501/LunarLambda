@@ -54,6 +54,7 @@ namespace LunarLambda.GUI
 		{
 			RegisterMenu(MenuAPI.MainMenuName, Main);
 			RegisterMenu(MenuAPI.OptionsMenuName, new OptionsMenu());
+			RegisterMenu(MenuAPI.StartServerMenuName, new StartServerMenu());
 		}
 
 		public static void PushMenu(string name)
