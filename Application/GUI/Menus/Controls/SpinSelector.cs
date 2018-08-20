@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-
+using LudicrousElectron.Engine.Input;
 using LudicrousElectron.Engine.Window;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using LudicrousElectron.GUI.Text;
+using OpenTK;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
@@ -159,5 +160,11 @@ namespace LunarLambda.GUI.Menus.Controls
 
 			base.Resize(x, y);
 		}
-	}
+
+
+        public override void ProcessMouseEvent(Vector2 location, InputManager.LogicalButtonState buttons)
+        {
+            base.ProcessMouseEvent(location, buttons);
+        }
+    }
 }
