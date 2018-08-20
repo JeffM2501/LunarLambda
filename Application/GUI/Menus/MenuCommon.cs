@@ -82,6 +82,17 @@ namespace LunarLambda.GUI.Menus
 				RegisterControl(ctlInfo);
 		}
 
+		protected VerticalLayoutGroup SetupCommonColumn(RelativeRect rect)
+		{
+			VerticalLayoutGroup column = new VerticalLayoutGroup(rect);
+			column.ChildSpacing = ButtonSpacing.Paramater;
+			column.MaxChildSize = ButtonHeight.Paramater;
+			column.TopDown = true;
+			column.FitChildToWidth = true;
+
+			return column;
+		}
+
 		protected virtual void SetupBackground(int layerIndex)
 		{
 			string bgRepeat = "ui/BackgroundCrosses.png";

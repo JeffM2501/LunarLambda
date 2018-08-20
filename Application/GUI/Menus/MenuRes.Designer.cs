@@ -124,7 +124,7 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disabled;Enabled;Main Screen Only.
+        ///   Looks up a localized string similar to Disabled;All Stations;Main Screen Only.
         /// </summary>
         internal static string MusicPlaybackModes {
             get {

@@ -101,17 +101,18 @@ namespace LunarLambda
                 return;
 
             WindowManager.WindowInfo info = new WindowManager.WindowInfo();
-            info.Size.x = 1200;
-            info.Size.y = 900;
-            info.AntiAliasingFactor = PreferencesManager.GetValueI(PrefNames.FSAA, 0);
-            info.Fullscreen = PreferencesManager.GetValueB(PrefNames.Fullscreen);
+            info.Size.x = PreferencesManager.GetValueI(PrefNames.MainWindowWidth, 1280);
+            info.Size.y = PreferencesManager.GetValueI(PrefNames.MainWindowHeight, 900);
+
+			info.AntiAliasingFactor = PreferencesManager.GetValueI(PrefNames.FSAA, 0);
+            info.SizeType = (WindowManager.WindowInfo.WindowSizeTypes)PreferencesManager.GetValueI(PrefNames.Fullscreen, 0);
 
             if (info.AntiAliasingFactor > 0)
             {
                 if (info.AntiAliasingFactor < 2)
                     info.AntiAliasingFactor = 2;
             }
-            if (info.Fullscreen)
+            if (info.SizeType == WindowManager.WindowInfo.WindowSizeTypes.Fullscreen)
             {
                 info.Size.x = OpenTK.DisplayDevice.Default.Width;
                 info.Size.y = OpenTK.DisplayDevice.Default.Height;

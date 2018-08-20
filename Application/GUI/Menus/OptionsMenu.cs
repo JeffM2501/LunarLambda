@@ -53,38 +53,105 @@ namespace LunarLambda.GUI.Menus
 
 		protected void SetupOptions()
 		{
+			// lsefside setup
 			RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpperBorder + RelativeLoc.BorderOffset, ButtonWidth, RelativeSize.ThreeQuarterHeight, OriginLocation.UpperLeft);
 
-			Columns[0] = new VerticalLayoutGroup(rect);
-			Columns[0].ChildSpacing = ButtonSpacing.Paramater;
-			Columns[0].MaxChildSize = ButtonHeight.Paramater;
-			Columns[0].TopDown = true;
-			Columns[0].FitChildToWidth = true;
+			Columns[0] = SetupCommonColumn(rect);
 
+			// graphics header
 			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.Graphics));
 
-			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
-			fsToggle.Clicked += FsToggle_Clicked;
-			Columns[0].AddChild(fsToggle);
+			// fullscreen toggle
+			SpinSelector windowSizeSelector = new SpinSelector(new RelativeRect(), MenuRes.FullscreenModes.Split(";".ToCharArray()), 0);
+			windowSizeSelector.ValueChanged += WindowSizeSelector_ValueChanged;
+			Columns[0].AddChild(windowSizeSelector);
+// 
+// 			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
+// 			fsToggle.Clicked += FsToggle_Clicked;
+// 			Columns[0].AddChild(fsToggle);
 
+			// anti-alias selector
 			SpinSelector fsaaSelector = new SpinSelector(new RelativeRect(), MenuRes.FSAA.Split(";".ToCharArray()), WindowManager.GetWindowInfo(WindowManager.MainWindowID).AntiAliasingFactor);
 			fsaaSelector.ValueChanged += FsaaSelector_ValueChanged;
 			Columns[0].AddChild(fsaaSelector);
 
+
+			// sound options header
 			Columns[0].AddChild(new UIBlank(new RelativeRect()));
-
-			PreferencesManager.GetValueD(PrefNames.SoundVolume, 50);
-
 			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.SoundOptions));
-			Columns[0].AddChild(new HSlider(new RelativeRect(), MenuRes.EffectsVolume, PreferencesManager.GetValueD(PrefNames.SoundVolume, 50)));
-			Columns[0].AddChild(new HSlider(new RelativeRect(), MenuRes.MusicVolume, PreferencesManager.GetValueD(PrefNames.MusicVolume, 50)));
 
+			// sound volume
+			var soundSlider = new HSlider(new RelativeRect(), MenuRes.EffectsVolume, PreferencesManager.GetValueD(PrefNames.SoundVolume, 50));
+			soundSlider.ValueChanged += SoundSlider_ValueChanged;
+			Columns[0].AddChild(soundSlider);
+
+			// music volume
+			var musicSlider = new HSlider(new RelativeRect(), MenuRes.MusicVolume, PreferencesManager.GetValueD(PrefNames.MusicVolume, 50));
+			musicSlider.ValueChanged += MusicSlider_ValueChanged;
+			Columns[0].AddChild(musicSlider);
+
+			// Music playback header
 			Columns[0].AddChild(new UIBlank(new RelativeRect()));
 			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.MusicPlayback));
-			SpinSelector musicSelector = new SpinSelector(new RelativeRect(), MenuRes.MusicPlaybackModes.Split(";".ToCharArray()), 1);
+
+			// music mode selector
+			SpinSelector musicSelector = new SpinSelector(new RelativeRect(), MenuRes.MusicPlaybackModes.Split(";".ToCharArray()), PreferencesManager.GetValueI(PrefNames.MusicEnabled, 2));
+			musicSelector.ValueChanged += MusicSelector_ValueChanged;
 			Columns[0].AddChild(musicSelector);
 
 			AddElement(Columns[0], 2);
+		}
+
+		private void MusicSelector_ValueChanged(object sender, EventArgs e)
+		{
+			SpinSelector selector = sender as SpinSelector;
+			if (selector == null)
+				return;
+
+			PreferencesManager.Set(PrefNames.MusicEnabled, selector.SelectedIndex);
+		}
+
+		private void MusicSlider_ValueChanged(object sender, EventArgs e)
+		{
+			HSlider slider = sender as HSlider;
+			if (slider == null)
+				return;
+
+			SoundManager.SetMusicVolume((float)slider.CurrentValue);
+			PreferencesManager.Set(PrefNames.MusicVolume, slider.CurrentValue);
+		}
+
+		private void SoundSlider_ValueChanged(object sender, EventArgs e)
+		{
+			HSlider slider = sender as HSlider;
+			if (slider == null)
+				return;
+
+			SoundManager.SetMasterSoundVolume((float)slider.CurrentValue);
+			PreferencesManager.Set(PrefNames.SoundVolume, slider.CurrentValue);
+		}
+		private void WindowSizeSelector_ValueChanged(object sender, EventArgs e)
+		{
+			SpinSelector selector = sender as SpinSelector;
+			if (selector == null)
+				return;
+
+			switch(selector.SelectedIndex)
+			{
+				case 0:
+				default:
+					WindowManager.SetNormal();
+					break;
+
+				case 1:
+					WindowManager.SetMaximized();
+					break;
+
+				case 2:
+					WindowManager.SetFullscreen();
+					break;
+
+			}
 		}
 
 		private void FsToggle_Clicked(object sender, UIButton e)

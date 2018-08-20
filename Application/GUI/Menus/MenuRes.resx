@@ -139,7 +139,7 @@
     <value>Music Playblack</value>
   </data>
   <data name="MusicPlaybackModes" xml:space="preserve">
-    <value>Disabled;Enabled;Main Screen Only</value>
+    <value>Disabled;All Stations;Main Screen Only</value>
   </data>
   <data name="MusicVolume" xml:space="preserve">
     <value>Music Volume</value>
