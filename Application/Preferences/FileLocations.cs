@@ -49,8 +49,9 @@ namespace LunarLambda.Preferences
 			return GetAllSubFiles(new DirectoryInfo(path), filter);
 		}
 
-		public static List<string> GetAllSubFiles(DirectoryInfo dir, string filter)
+		public static List<string> GetAllSubFiles(DirectoryInfo dir, string _filter)
 		{
+            string filter = _filter;
 			if (string.IsNullOrEmpty(filter))
 				filter = "*.*";
 

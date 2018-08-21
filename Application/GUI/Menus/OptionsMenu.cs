@@ -144,7 +144,6 @@ namespace LunarLambda.GUI.Menus
 
 			switch(selector.SelectedIndex)
 			{
-				case 0:
 				default:
 					WindowManager.SetNormal();
 					break;

@@ -103,6 +103,7 @@ namespace LunarLambda.API
                 }
                 catch (Exception)
                 {
+                    // it can't load, skip it
                 }
             }
         }

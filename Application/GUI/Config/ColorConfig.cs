@@ -18,8 +18,9 @@ namespace LunarLambda.GUI.Config
         public string Text = string.Empty;
         public Color Color = Color.Empty;
 
-        public void Set(string text)
+        public void Set(string _text)
         {
+            string text = _text;
             if (text.StartsWith("#"))
                 text = text.Substring(1);
 

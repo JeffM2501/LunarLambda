@@ -49,14 +49,18 @@ namespace LunarLambda.GUI.Menus
 
 		private void Tutorials_Clicked(object sender, UIButton e)
         {
+            // start tutorials
         }
 
         private void StartServer_Clicked(object sender, UIButton e)
         {
+            // start server
         }
+
 
         private void StartClient_Clicked(object sender, UIButton e)
         {
+            // start client
         }
 
         private void Options_Clicked(object sender, UIButton e)

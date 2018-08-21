@@ -20,13 +20,13 @@ namespace LunarLambda.API.Databases
     [Flags]
     public enum MissileWeaponTypes
     {
-        None,
-        Homing,
-        Nuke,
-        Mine,
-        EMP,
-        HVLI,
-        Probe,
+        None = 0,
+        Homing = 2,
+        Nuke = 4,
+        Mine = 8,
+        EMP = 16,
+        HVLI = 32,
+        Probe = 64,
         All = Homing | Nuke | Mine | EMP | HVLI | Probe,
     }
 
