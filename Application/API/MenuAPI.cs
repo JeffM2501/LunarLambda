@@ -49,9 +49,9 @@ namespace LunarLambda.API
 			return (info.Element as UIButton);
 		}
 
-		public static GUIElement AddGUIItem(string menuName, GUIElement element, int column, int row = -1)
+		public static GUIElement AddGUIItem(string _menuName, GUIElement element, int column, int row = -1)
 		{
-			menuName = menuName.ToLowerInvariant();
+			var menuName = _menuName.ToLowerInvariant();
 
 			if (!RegisteredAPIButtons.ContainsKey(menuName))
 				RegisteredAPIButtons.Add(menuName, new List<MenuAPIEventArgs>());
