@@ -1,5 +1,7 @@
 ![LunarLambda logo](https://raw.githubusercontent.com/JeffM2501/LunarLambda/master/data/assets/ui/LL_logo_768.png)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a2162c111dd4068af93be4c6980de34)](https://www.codacy.com/app/JeffM2501/LunarLambda?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JeffM2501/LunarLambda&amp;utm_campaign=Badge_Grade)
+
 # LunarLambda
 Started as a refactored C# version of [Empty Epsilon](http://daid.github.io/EmptyEpsilon/).
 
