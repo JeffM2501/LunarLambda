@@ -62,7 +62,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetScale(3);
             model.SetRadius(40);
 
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(23, 0, -1.8);
             model.AddEngineEmitter(-8, 0, 0.5, 1.0, 0.2, 0.2, 1.5);
 
@@ -84,7 +84,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("space_frigate_6_illumination.png");
             model.SetScale(6);
             model.SetRadius(100);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(-1.6, -8, -2);
             model.AddBeamPosition(-1.6, 8, -2);
             model.AddTubePosition(18, 0, -3.5);
@@ -98,7 +98,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("space_cruiser_4_illumination.jpg");
             model.SetScale(8);
             model.SetRadius(100);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddTubePosition(2, -10, -2.3);
             model.AddTubePosition(2, 10, -2.3);
             model.AddEngineEmitter(-13, -2.1500, 0.3, 0.2, 0.2, 1.0, 3.0);
@@ -111,7 +111,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("dark_fighter_6_illumination.png");
             model.SetScale(5);
             model.SetRadius(140);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(21, -28.2, -2);
             model.AddBeamPosition(21, 28.2, -2);
             model.AddEngineEmitter(-28, -1.5, -5, 1.0, 0.2, 0.2, 3.0);
@@ -124,7 +124,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("battleship_destroyer_1_upgraded/battleship_destroyer_1_upgraded_illumination.jpg");
             model.SetScale(4);
             model.SetRadius(200);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(34, -17, -7);
             model.AddBeamPosition(34, 17, -7);
             model.AddBeamPosition(-5, -33, -1);
@@ -145,7 +145,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("battleship_destroyer_2_upgraded/battleship_destroyer_2_upgraded_illumination.jpg");
             model.SetScale(4);
             model.SetRadius(200);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(37, -14.5, -3.5);
             model.AddBeamPosition(37, 14.5, -3.5);
             model.AddBeamPosition(10, -12, -15);
@@ -164,7 +164,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("battleship_destroyer_3_upgraded/battleship_destroyer_3_upgraded_illumination.jpg");
             model.SetScale(4);
             model.SetRadius(200);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(22, 22, -4.5);
             model.AddBeamPosition(22, -22, -4.5);
             model.AddBeamPosition(12, 22, -4.5);
@@ -182,7 +182,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetIllumination("battleship_destroyer_4_upgraded/battleship_destroyer_4_upgraded_illumination.jpg");
             model.SetScale(4);
             model.SetRadius(200);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(4, -27, -0.5);
             model.AddBeamPosition(4, 27, -0.5);
             model.AddTubePosition(30, -11, -0.5);
@@ -202,7 +202,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetScale(4);
             model.SetRadius(200);
 
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(4, -27, -0.5);
             model.AddBeamPosition(4, 27, -0.5);
             model.AddTubePosition(27, 0, -0.5);
@@ -223,7 +223,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
             model.SetScale(5);
             model.SetRadius(1000);
             model.SetCollisionBox(2000, 600);
-            //Visual positions of the beams / missiletubes in blender: -X, Y, Z;
+            //Visual positions of the beams / missiletubes in blender: -X, Y, Z
             model.AddBeamPosition(66, -71, 12);
             model.AddBeamPosition(66, -71, -12);
             model.AddBeamPosition(66, 71, 12);

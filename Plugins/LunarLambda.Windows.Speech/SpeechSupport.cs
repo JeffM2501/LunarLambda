@@ -54,7 +54,7 @@ namespace LunarLambda.Windows.Speech
 			bool male = prams.Contains("male");
 
 			List<string> names = new List<string>();
-			if (Synth == null || Synth == null)
+			if (Synth == null)
 			{
 				foreach (var voice in Synth.GetInstalledVoices())
 				{
