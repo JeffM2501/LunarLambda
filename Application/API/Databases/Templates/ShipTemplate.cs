@@ -191,7 +191,7 @@ namespace LunarLambda.API.Databases
 
             public bool Equals(HardpointID other)
             {
-                throw new NotImplementedException();
+                return other.Data == Data;
             }
         }
 
@@ -333,6 +333,24 @@ namespace LunarLambda.API.Databases
             WarpSpeed = warp;
         }
 
+        protected WeaponTemplate.WeaponTypes GetStandardWeaponTypeForMount(HardpointTypes type)
+        {
+            if (type == HardpointTypes.Beam)
+                return WeaponTemplate.WeaponTypes.Beam;
+            else if (type == HardpointTypes.Tube)
+                return WeaponTemplate.WeaponTypes.Missile;
+
+            return WeaponTemplate.WeaponTypes.Unknown;
+        }
+
+        protected T GetWeaponMount<T>(int index, HardpointTypes type) where T : WeaponTemplate, new()
+        {
+            WeaponMount mount = FindWeaponMount(type, index);
+            if (mount.MountedWeapon == null || mount.MountedWeapon.WeaponType != GetStandardWeaponTypeForMount(type))
+                mount.MountedWeapon = new T();
+
+            return mount.MountedWeapon as T;
+        }
         public WeaponMount FindWeaponMount(HardpointTypes type, int index)
         {
             HardpointID id = new HardpointID(type, index);
@@ -348,10 +366,7 @@ namespace LunarLambda.API.Databases
         public void SetupBeamWeapon( int hardpointIndex, float arc, float nomialDir, float range, float cycleTime, float damage)
         {
             WeaponMount mount = FindWeaponMount(HardpointTypes.Beam, hardpointIndex);
-            if (mount.MountedWeapon == null || mount.MountedWeapon.WeaponType != WeaponTemplate.WeaponTypes.Beam)
-                mount.MountedWeapon = new BeamWeaponBankTemplate();
-
-            BeamWeaponBankTemplate beam = mount.MountedWeapon as BeamWeaponBankTemplate;
+            var beam = GetWeaponMount<BeamWeaponBankTemplate>(hardpointIndex, HardpointTypes.Beam);
 
             beam.BeamArc = arc;
             mount.DefaultFacing = nomialDir;
@@ -368,11 +383,7 @@ namespace LunarLambda.API.Databases
 
         public void SetupMissileWeapon(int hardpointIndex, float loadTime, MissileWeaponTypes loadTypes)
         {
-            WeaponMount mount = FindWeaponMount(HardpointTypes.Tube, hardpointIndex);
-            if (mount.MountedWeapon == null || mount.MountedWeapon.WeaponType != WeaponTemplate.WeaponTypes.Missile)
-                mount.MountedWeapon = new TubeTemplate();
-
-            TubeTemplate tube = mount.MountedWeapon as TubeTemplate;
+            var tube = GetWeaponMount<TubeTemplate>(hardpointIndex, HardpointTypes.Tube);
 
             tube.AllowedLoadings = loadTypes;
             tube.LoadTime = loadTime;
@@ -387,11 +398,6 @@ namespace LunarLambda.API.Databases
         public void SetMissleWeaponDirection(int hardpointIndex, float direction)
         {
             WeaponMount mount = FindWeaponMount(HardpointTypes.Tube, hardpointIndex);
-            if (mount.MountedWeapon == null || mount.MountedWeapon.WeaponType != WeaponTemplate.WeaponTypes.Missile)
-                mount.MountedWeapon = new TubeTemplate();
-
-            TubeTemplate tube = mount.MountedWeapon as TubeTemplate;
-
             mount.DefaultFacing = direction;
         }
 
