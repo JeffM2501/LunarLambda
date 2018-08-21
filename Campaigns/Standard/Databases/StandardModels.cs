@@ -407,7 +407,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
                 model.SetIllumination("AdlerLongRangeScout/AdlerLongRangeScoutIllumination.png");
                 model.SetScale(20);
                 model.SetRadius(30);
-                // Visual positions of the beams / missiletubes(blender: -X, Y, Z);
+                // Visual positions of the beams / missiletubes blender: -X, Y, Z
                 model.AddBeamPosition(1.8, 0, 0.03);
                 model.AddBeamPosition(1.8, 0.13, 0.03);
                 model.AddBeamPosition(1.8, -0.13, 0.03);
@@ -426,7 +426,7 @@ namespace LunarLambda.Campaigns.Standard.Databases
                 model.SetScale(50);
                 model.SetRadius(80);
 
-                // Visual positions of the beams / missiletubes(blender: -X, Y, Z);
+                // Visual positions of the beams / missiletubes blender: -X, Y, Z
                 model.AddBeamPosition(2.4, 0.1, -0.25);
                 model.AddBeamPosition(2.4, -0.1, -0.25);
                 model.AddTubePosition(1, 0.4, 0);
