@@ -95,9 +95,9 @@ namespace LunarLambda.API
 
 		internal static Dictionary<string, List<MenuAPIEventArgs>> RegisteredAPIButtons = new Dictionary<string, List<MenuAPIEventArgs>>();
 
-		internal static List<MenuAPIEventArgs> GetAPICtls(string menuName)
+		internal static List<MenuAPIEventArgs> GetAPICtls(string _menuName)
 		{
-			menuName = menuName.ToLowerInvariant();
+			var menuName = _menuName.ToLowerInvariant();
 
 			if (!RegisteredAPIButtons.ContainsKey(menuName))
 				return new List<MenuAPIEventArgs>();
