@@ -81,7 +81,7 @@ namespace LunarLambda.GUI.Config
     public class HotkeyConfig
     {
         protected internal HotkeyConfigCategory CurrentCategory = null;
-        private List<HotkeyConfigCategory> Categories = new List<HotkeyConfigCategory>();
+        private readonly List<HotkeyConfigCategory> Categories = new List<HotkeyConfigCategory>();
 
         public HotkeyConfig()
         {

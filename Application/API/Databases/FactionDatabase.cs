@@ -49,7 +49,7 @@ namespace LunarLambda.API.Databases
                 Relationships[other.ID] = relation;
 
             if (mutual)
-                other.SetRelationShip(this, relation, false);
+                other.SetRelationShip(this, relation);
         }
 
         public void SetName(string name)

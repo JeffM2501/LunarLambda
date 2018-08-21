@@ -38,7 +38,7 @@ namespace LunarLambda.API.Databases
         Jump,
     }
 
-    public class ShipSystemTypes
+    public static class ShipSystemTypes
     {
         public static readonly string Reactor = "Reactor";
         public static readonly string Beams =   "Beams";
@@ -154,7 +154,7 @@ namespace LunarLambda.API.Databases
             Other,
         }
 
-        public class HardpointID
+        public class HardpointID : IEquatable<HardpointID>
         {
             public static readonly HardpointID Empty = new HardpointID();
 
@@ -187,6 +187,11 @@ namespace LunarLambda.API.Databases
             public override string ToString()
             {
                 return Data.ToString();
+            }
+
+            public bool Equals(HardpointID other)
+            {
+                throw new NotImplementedException();
             }
         }
 

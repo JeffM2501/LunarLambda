@@ -233,10 +233,6 @@ namespace LunarLambda.API.Databases
 				}
 			}
 
-			public override void AddDataItem(string key, string value)
-			{
-			}
-
 			public ShipScienceInfo(ShipTemplate ship)
 			{
 				Ship = ship;

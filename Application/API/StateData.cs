@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace LunarLambda.API
 
         public static void Set(string name, double data)
         {
-            StateItems[name] = data.ToString();
+            StateItems[name] = data.ToString(CultureInfo.InvariantCulture);
         }
 
         public static bool Exists(string name)
