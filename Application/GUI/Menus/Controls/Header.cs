@@ -60,7 +60,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			base.FlushMaterial();
 			if (LabelControl != null)
 			{
-				LabelControl.DefaultMaterial.Color = Color.White; ;
+				LabelControl.DefaultMaterial.Color = Color.White;
 				LabelControl.FlushMaterial();
 			}
 		}

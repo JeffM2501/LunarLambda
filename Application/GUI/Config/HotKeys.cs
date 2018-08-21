@@ -192,9 +192,9 @@ namespace LunarLambda.GUI.Config
             NewKey("INC_JUMP", new Tuple<string, string>("Increase jump distance", ""));
             NewKey("DEC_JUMP", new Tuple<string, string>("Decrease jump distance", ""));
             NewKey("JUMP", new Tuple<string, string>("Initiate jump", ""));
-            //newKey("COMBAT_LEFT", "Combat maneuver left");
-            //newKey("COMBAT_RIGHT", "Combat maneuver right");
-            //newKey("COMBAT_BOOST", "Combat maneuver boost");
+            NewKey("COMBAT_LEFT", new Tuple<string, string>("Combat maneuver left",string.Empty));
+            NewKey("COMBAT_RIGHT", new Tuple<string, string>("Combat maneuver right", string.Empty));
+            NewKey("COMBAT_BOOST", new Tuple<string, string>("Combat maneuver boost", string.Empty));
 
             NewCategory("WEAPONS", "Weapons");
             NewKey("SELECT_MISSILE_TYPE_HOMING", new Tuple<string, string>("Select homing", "Num1"));

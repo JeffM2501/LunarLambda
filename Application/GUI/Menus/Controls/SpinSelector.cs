@@ -147,7 +147,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			base.FlushMaterial();
 			if (LabelControl != null)
 			{
-				LabelControl.DefaultMaterial.Color = Color.White; ;
+				LabelControl.DefaultMaterial.Color = Color.White;
 				LabelControl.FlushMaterial();
 			}
 		}
@@ -178,7 +178,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
             RelativeRect rect = new RelativeRect(new RelativeLoc(thisOrigin.X, RelativeLoc.Edge.Raw), new RelativeLoc(thisOrigin.Y, RelativeLoc.Edge.Raw), RelativeSize.QuarterWidth, RelativeSize.QuarterHeight, OriginLocation.LowerLeft);
 
-      //      ParentCanvas.SetPopupElement(new UIPanel(rect, Color.Green));
+            ParentCanvas.SetPopupElement(new UIPanel(rect, Color.Black));
         }
     }
 }

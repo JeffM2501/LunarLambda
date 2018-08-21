@@ -31,7 +31,7 @@ namespace LunarLambda.Windows.Speech
 
 			string secondBestVoiceName = string.Empty;
 			string bestVoiceName = string.Empty;
-			foreach (var voice in (Synth as SpeechSynthesizer).GetInstalledVoices())
+			foreach (var voice in Synth.GetInstalledVoices())
 			{
 				if (voice.VoiceInfo.Gender == VoiceGender.Female)
 				{
@@ -54,7 +54,7 @@ namespace LunarLambda.Windows.Speech
 			bool male = prams.Contains("male");
 
 			List<string> names = new List<string>();
-			if (Synth == null || Synth as SpeechSynthesizer == null)
+			if (Synth == null || Synth == null)
 			{
 				foreach (var voice in Synth.GetInstalledVoices())
 				{
@@ -93,11 +93,11 @@ namespace LunarLambda.Windows.Speech
 
 		private void SoundManager_SetTextVoice(object sender, SoundManager.SpeachEventArgs e)
 		{
-			foreach (var voice in (Synth as SpeechSynthesizer).GetInstalledVoices())
+			foreach (var voice in Synth.GetInstalledVoices())
 			{
 				if (voice.VoiceInfo.Name == e.Text)
 				{
-					(Synth as SpeechSynthesizer).SelectVoice(e.Text);
+					Synth.SelectVoice(e.Text);
 					return;
 				}
 			}

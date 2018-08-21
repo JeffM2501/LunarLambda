@@ -191,7 +191,7 @@ namespace LunarLambda.API.Databases
 
             public bool Equals(HardpointID other)
             {
-                return other.Data == Data;
+                return other.Data.Equals(Data);
             }
         }
 

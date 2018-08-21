@@ -65,10 +65,6 @@ namespace LunarLambda.GUI.Menus
 			SpinSelector windowSizeSelector = new SpinSelector(new RelativeRect(), MenuRes.FullscreenModes.Split(";".ToCharArray()), 0);
 			windowSizeSelector.ValueChanged += WindowSizeSelector_ValueChanged;
 			Columns[0].AddChild(windowSizeSelector);
-			// 
-			// 			MenuButton fsToggle = new MenuButton(new RelativeRect(), MenuRes.FullscreenToggle);
-			// 			fsToggle.Clicked += FsToggle_Clicked;
-			// 			Columns[0].AddChild(fsToggle);
 
 			// anti-alias selector
 			int aa = WindowManager.GetWindowInfo(WindowManager.MainWindowID).AntiAliasingFactor;
@@ -161,11 +157,6 @@ namespace LunarLambda.GUI.Menus
 					WindowManager.SetFullscreen();
 					break;
 			}
-		}
-
-		private void FsToggle_Clicked(object sender, UIButton e)
-		{
-			WindowManager.ToggleFullscreen();
 		}
 
 		private void FsaaSelector_ValueChanged(object sender, EventArgs e)

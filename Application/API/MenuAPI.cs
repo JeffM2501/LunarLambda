@@ -104,6 +104,5 @@ namespace LunarLambda.API
 
 			return RegisteredAPIButtons[menuName];
 		}
-
-	}
+    }
 }
