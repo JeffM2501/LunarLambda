@@ -21,9 +21,9 @@ namespace LunarLambda.API
 		public static event EventHandler<StringDataEventArgs> MenuChanged = null;
 		internal static void CallMenuChanged(string newName) { MenuChanged?.Invoke(null, new StringDataEventArgs(newName)); }
 
-		public static UIButton AddButton(string menuName, string displayName, int column, int row = -1)
+		public static UIButton AddButton(string _menuName, string displayName, int column, int row = -1)
 		{
-			menuName = menuName.ToLowerInvariant();
+			var menuName = _menuName.ToLowerInvariant();
 
 			if (!RegisteredAPIButtons.ContainsKey(menuName))
 				RegisteredAPIButtons.Add(menuName, new List<MenuAPIEventArgs>());
