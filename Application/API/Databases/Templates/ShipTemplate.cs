@@ -351,6 +351,7 @@ namespace LunarLambda.API.Databases
 
             return mount.MountedWeapon as T;
         }
+
         public WeaponMount FindWeaponMount(HardpointTypes type, int index)
         {
             HardpointID id = new HardpointID(type, index);
@@ -361,6 +362,15 @@ namespace LunarLambda.API.Databases
             mount.Hardpoint = id;
             Weapons.Add(id,mount);
             return mount;
+        }
+
+        protected HardpointID GetHardpointID(HardpointTypes type, int index, bool checkType)
+        {
+            HardpointID id = new HardpointID(type, index);
+            if (!Weapons.ContainsKey(id) || (checkType && Weapons[id].MountedWeapon.WeaponType != GetStandardWeaponTypeForMount(type)))
+                return null;
+
+            return id;
         }
 
         public void SetupBeamWeapon( int hardpointIndex, float arc, float nomialDir, float range, float cycleTime, float damage)
@@ -403,17 +413,18 @@ namespace LunarLambda.API.Databases
 
         public MissileWeaponTypes GetTubeLoadTypes(int hardpointIndex)
         {
-            HardpointID id = new HardpointID(HardpointTypes.Tube, hardpointIndex);
-            if (!Weapons.ContainsKey(id) || Weapons[id].MountedWeapon as TubeTemplate == null)
+            HardpointID id = GetHardpointID(HardpointTypes.Tube,hardpointIndex, true);
+            if (id == null)
                 return MissileWeaponTypes.None;
 
             return (Weapons[id].MountedWeapon as TubeTemplate).AllowedLoadings;
         }
 
+
         public void AddTubeLoadTypes(int hardpointIndex, MissileWeaponTypes types)
         {
-            HardpointID id = new HardpointID(HardpointTypes.Tube, hardpointIndex);
-            if (!Weapons.ContainsKey(id) || Weapons[id].MountedWeapon as TubeTemplate == null)
+            HardpointID id = GetHardpointID(HardpointTypes.Tube, hardpointIndex, true);
+            if (id == null)
                 return;
 
             (Weapons[id].MountedWeapon as TubeTemplate).AllowedLoadings |= types;
@@ -421,8 +432,8 @@ namespace LunarLambda.API.Databases
 
         public void RemoveTubeLoadTypes(int hardpointIndex, MissileWeaponTypes types)
         {
-            HardpointID id = new HardpointID(HardpointTypes.Tube, hardpointIndex);
-            if (!Weapons.ContainsKey(id) || Weapons[id].MountedWeapon as TubeTemplate == null)
+            HardpointID id = GetHardpointID(HardpointTypes.Tube, hardpointIndex, true);
+            if (id == null)
                 return;
 
             (Weapons[id].MountedWeapon as TubeTemplate).AllowedLoadings &= ~types;
@@ -430,24 +441,13 @@ namespace LunarLambda.API.Databases
 
         public void SetMissleWeapoLoadTime(int hardpointIndex, float time)
         {
-            WeaponMount mount = FindWeaponMount(HardpointTypes.Tube, hardpointIndex);
-            if (mount.MountedWeapon == null || mount.MountedWeapon.WeaponType != WeaponTemplate.WeaponTypes.Missile)
-                mount.MountedWeapon = new TubeTemplate();
-
-            TubeTemplate tube = mount.MountedWeapon as TubeTemplate;
-
+            TubeTemplate tube = GetWeaponMount<TubeTemplate>(hardpointIndex, HardpointTypes.Tube);
             tube.LoadTime = time;
-
         }
 
         public void SetMissileWeaponLoadingTypes(int hardpointIndex, MissileWeaponTypes loadTypes)
         {
-            WeaponMount mount = FindWeaponMount(HardpointTypes.Tube, hardpointIndex);
-            if (mount.MountedWeapon == null || mount.MountedWeapon.WeaponType != WeaponTemplate.WeaponTypes.Missile)
-                mount.MountedWeapon = new TubeTemplate();
-
-            TubeTemplate tube = mount.MountedWeapon as TubeTemplate;
-
+            TubeTemplate tube = GetWeaponMount<TubeTemplate>(hardpointIndex, HardpointTypes.Tube);
             tube.AllowedLoadings = loadTypes;
         }
 
