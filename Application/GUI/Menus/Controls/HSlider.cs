@@ -235,7 +235,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public override void Resize(int x, int y)
 		{
-			if ((TextLabelPrefix == string.Empty || ShowPercentage) && LabelControl == null)
+			if ((string.IsNullOrEmpty(TextLabelPrefix) || ShowPercentage) && LabelControl == null)
 				SetupLabel();
 
 			// see how big this is in pixel space so we can position the thumb

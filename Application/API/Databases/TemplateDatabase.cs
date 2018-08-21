@@ -16,7 +16,7 @@ namespace LunarLambda.API.Databases
 
         public static BaseTemplate AddTemplate(BaseTemplate template)
         {
-            if (template == null || template.Name == string.Empty)
+            if (template == null || string.IsNullOrEmpty(template.Name))
                 return null;
 
             Templates.Add(template);

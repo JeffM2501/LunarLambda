@@ -56,7 +56,7 @@ namespace LunarLambda.Windows.Speech
 			List<string> names = new List<string>();
 			if (Synth == null || Synth as SpeechSynthesizer == null)
 			{
-				foreach (var voice in (Synth as SpeechSynthesizer).GetInstalledVoices())
+				foreach (var voice in Synth.GetInstalledVoices())
 				{
 					switch (voice.VoiceInfo.Gender)
 					{
@@ -83,12 +83,12 @@ namespace LunarLambda.Windows.Speech
 
 		private void SoundManager_StopAllSpeach(object sender, SoundManager.SpeachEventArgs e)
 		{
-			(Synth as SpeechSynthesizer).SpeakAsyncCancelAll();
+			Synth.SpeakAsyncCancelAll();
 		}
 
 		private void SoundManager_SpeakText(object sender, SoundManager.SpeachEventArgs e)
 		{
-			(Synth as SpeechSynthesizer).SpeakAsync(e.Text);
+			Synth.SpeakAsync(e.Text);
 		}
 
 		private void SoundManager_SetTextVoice(object sender, SoundManager.SpeachEventArgs e)
@@ -105,7 +105,7 @@ namespace LunarLambda.Windows.Speech
 
 		private void SoundManager_GetTextVoice(object sender, LudicrousElectron.Engine.Audio.SoundManager.SpeachEventArgs e)
 		{
-			e.Text = (Synth as SpeechSynthesizer).Voice.Name;
+			e.Text = Synth.Voice.Name;
 		}
 	}
 }

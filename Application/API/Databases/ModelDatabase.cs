@@ -100,7 +100,7 @@ namespace LunarLambda.API.Databases
 
         public static ModelData AddModel(ModelData model)
         {
-            if (model == null || model.Name == string.Empty)
+            if (model == null || string.IsNullOrEmpty(model.Name))
                 return null;
 
             Models.Add(model);

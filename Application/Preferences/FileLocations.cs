@@ -51,7 +51,7 @@ namespace LunarLambda.Preferences
 
 		public static List<string> GetAllSubFiles(DirectoryInfo dir, string filter)
 		{
-			if (filter == string.Empty)
+			if (string.IsNullOrEmpty(filter))
 				filter = "*.*";
 
 			List<string> files = new List<string>();

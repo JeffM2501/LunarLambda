@@ -74,7 +74,7 @@ namespace LunarLambda.API
 			public ILLScenario Scenario = null;
 		}
 
-		public static List<ScenarioInfo> ScenarioList = new List<ScenarioInfo>();
+		private static List<ScenarioInfo> ScenarioList = new List<ScenarioInfo>();
 
 		public static void RegisterScenario(ScenarioInfo info)
 		{
@@ -86,5 +86,10 @@ namespace LunarLambda.API
 		{
 			return ScenarioList.Find((x) => x.Name == name);
 		}
-	}
+
+        internal static ScenarioInfo[] GetScenarioList()
+        {
+            return ScenarioList.ToArray();
+        }
+    }
 }

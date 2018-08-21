@@ -170,7 +170,7 @@ namespace LunarLambda
 			foreach(var arg in args)
 			{
 				string[] parts = arg.Split(new string[] { "=" }, 2, StringSplitOptions.RemoveEmptyEntries);
-				if (parts.Length == 2 && parts[0] != string.Empty)
+				if (parts.Length == 2 && !string.IsNullOrEmpty(parts[0]))
 					PreferencesManager.Set(parts[0], parts[1]);
 			}
 		}

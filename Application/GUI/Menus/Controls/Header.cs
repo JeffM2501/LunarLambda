@@ -67,7 +67,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public override void Resize(int x, int y)
 		{
-			if (LabelText != string.Empty && LabelControl == null)
+			if (!string.IsNullOrEmpty(LabelText) && LabelControl == null)
 				SetupLabel();
 
 			base.Resize(x, y);

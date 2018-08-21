@@ -102,12 +102,8 @@ namespace LunarLambda.API.Databases
 				Name = Faction.Name;
 				Description = faction.Description;
 				
-				if (faction.Logo != string.Empty)
+				if (!string.IsNullOrEmpty(faction.Logo))
 					Images.Add(faction.Logo);
-			}
-
-			public override void AddDataItem(string key, string value)
-			{
 			}
 		}
 

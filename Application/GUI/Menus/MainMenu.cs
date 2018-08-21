@@ -149,7 +149,7 @@ namespace LunarLambda.GUI.Menus
 				if (bold)
 					height *= 1.25f;
 
-				if (line != string.Empty)
+				if (!string.IsNullOrEmpty(line))
 				{
 					RelativePoint p = new RelativePoint(RelativeLoc.XRightBorder, new RelativeLoc(startParam, RelativeLoc.Edge.Minimal));
 

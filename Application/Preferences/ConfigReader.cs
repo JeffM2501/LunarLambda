@@ -47,7 +47,7 @@ namespace LunarLambda.Preferences
         {
             foreach(string line in lines)
             {
-                if (line == string.Empty || line.StartsWith("#"))
+                if (string.IsNullOrEmpty(line) || line.StartsWith("#"))
                     continue;
 
                 string[] parts = line.Split(new string[] { " = " }, 2, StringSplitOptions.RemoveEmptyEntries);

@@ -461,7 +461,7 @@ namespace LunarLambda.API.Databases
         {
             Room r = new Room();
             r.Rectangle = new Rect2Di(posX, posY, width, height);
-            if (initalSystem == null || initalSystem != string.Empty)
+            if (!string.IsNullOrEmpty(initalSystem))
                 r.Systems.Add(initalSystem);
 
             Rooms.Add(r);

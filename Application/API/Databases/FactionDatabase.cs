@@ -84,7 +84,7 @@ namespace LunarLambda.API.Databases
 
         public static FactionInfo AddFaction(string name)
         {
-            if (name == null || name == string.Empty || Factions.Find((x) => x.Name == name) != null) 
+            if (name == null || string.IsNullOrEmpty(name) || Factions.Find((x) => x.Name == name) != null) 
                 return null;
 
             FactionInfo info = new FactionInfo();
@@ -121,8 +121,10 @@ namespace LunarLambda.API.Databases
 					return DefaultDatabaseStrings.NeutralRelation;
 				case FactionInfo.Relations.Unaware:
 					return DefaultDatabaseStrings.UnawareRelation;
+
+                default:
+                    return string.Empty;
 			}
-			return string.Empty;
 		}
     }
 }

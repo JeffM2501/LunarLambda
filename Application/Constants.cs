@@ -8,8 +8,8 @@ namespace LunarLambda
 {
     public static class ShipConstants
     {
-        public const int MaxBeamWeapons = 16;
-        public const int MaxWeaponTubes = 16;
-        public const int MaxShieldCount = 8;
+        public static readonly int MaxBeamWeapons = 16;
+        public static readonly int MaxWeaponTubes = 16;
+        public static readonly int MaxShieldCount = 8;
     }
 }
