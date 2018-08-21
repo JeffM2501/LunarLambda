@@ -1,6 +1,9 @@
 ![LunarLambda logo](https://raw.githubusercontent.com/JeffM2501/LunarLambda/master/data/assets/ui/LL_logo_768.png)
 
 # LunarLambda
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/14b8e5e14c6346bcba6a1ed707e9c077)](https://app.codacy.com/app/JeffM2501/LunarLambda?utm_source=github.com&utm_medium=referral&utm_content=JeffM2501/LunarLambda&utm_campaign=badger)
+
 Started as a refactored C# version of [Empty Epsilon](http://daid.github.io/EmptyEpsilon/).
 
 The game is written using [LudicrousElectron](https://github.com/JeffM2501/LudicrousElectron) engine and uses [OpenTK](https://github.com/opentk/opentk) for the underlying platform support.
