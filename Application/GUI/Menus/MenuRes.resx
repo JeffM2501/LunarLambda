@@ -153,6 +153,9 @@
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
   </data>
+  <data name="ServerConfiguration" xml:space="preserve">
+    <value>Server Configuration</value>
+  </data>
   <data name="SoundOptions" xml:space="preserve">
     <value>Sound Options</value>
   </data>

@@ -54,13 +54,13 @@ namespace LunarLambda.GUI.Menus
 
         private void StartServer_Clicked(object sender, UIButton e)
         {
-            // start server
+            MenuManager.PushMenu(MenuAPI.StartServerMenuName);
         }
 
 
         private void StartClient_Clicked(object sender, UIButton e)
         {
-            // start client
+            MenuManager.PushMenu(MenuAPI.StartClientMenuName);
         }
 
         private void Options_Clicked(object sender, UIButton e)
