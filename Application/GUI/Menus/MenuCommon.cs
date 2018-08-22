@@ -82,7 +82,7 @@ namespace LunarLambda.GUI.Menus
 				RegisterControl(ctlInfo);
 		}
 
-		protected VerticalLayoutGroup SetupCommonColumn(RelativeRect rect)
+		public static VerticalLayoutGroup SetupCommonColumn(RelativeRect rect)
 		{
 			VerticalLayoutGroup column = new VerticalLayoutGroup(rect);
 			column.ChildSpacing = ButtonSpacing.Paramater;

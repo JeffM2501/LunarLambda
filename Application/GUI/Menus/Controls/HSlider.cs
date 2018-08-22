@@ -81,9 +81,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
 			LeftButton.DefaultMaterial.Texture = "ui/SliderMinusButton.png";
 			LeftButton.DefaultMaterial.Color = Color.White;
-			LeftButton.Hover = new GUIMaterial("ui/SliderMinusButton.png", Color.LightSteelBlue);
-			LeftButton.Active = new GUIMaterial("ui/SliderMinusButton.png", Color.Gray);
-			LeftButton.Disabled = new GUIMaterial("ui/SliderMinusButton.png", Color.Transparent);
+			LeftButton.HoverMaterial = new GUIMaterial("ui/SliderMinusButton.png", Color.LightSteelBlue);
+			LeftButton.ActiveMaterial = new GUIMaterial("ui/SliderMinusButton.png", Color.Gray);
+			LeftButton.DisabledMaterial = new GUIMaterial("ui/SliderMinusButton.png", Color.Transparent);
 			LeftButton.ClickSound = "button.wav";
 
 			LeftButton.Clicked += LeftButton_Clicked;
@@ -100,9 +100,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
 			RightButton.DefaultMaterial.Texture = "ui/SliderPlusButtons.png";
 			RightButton.DefaultMaterial.Color = Color.White;
-			RightButton.Hover = new GUIMaterial("ui/SliderPlusButtons.png", Color.LightSteelBlue);
-			RightButton.Active = new GUIMaterial("ui/SliderPlusButtons.png", Color.Gray);
-			RightButton.Disabled = new GUIMaterial("ui/SliderPlusButtons.png", Color.Transparent);
+			RightButton.HoverMaterial = new GUIMaterial("ui/SliderPlusButtons.png", Color.LightSteelBlue);
+			RightButton.ActiveMaterial = new GUIMaterial("ui/SliderPlusButtons.png", Color.Gray);
+			RightButton.DisabledMaterial = new GUIMaterial("ui/SliderPlusButtons.png", Color.Transparent);
 
 			RightButton.ClickSound = "button.wav";
 
@@ -120,9 +120,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
 			ThumbButton.DefaultMaterial.Texture = "ui/SliderKnob.png";
 			ThumbButton.DefaultMaterial.Color = Color.FromArgb(128,Color.WhiteSmoke);
-			ThumbButton.Hover = new GUIMaterial("ui/SliderKnob.png", Color.White);
-			ThumbButton.Active = new GUIMaterial("ui/SliderKnob.png", Color.FromArgb(128, Color.LightGray));
-			ThumbButton.Disabled = new GUIMaterial("ui/SliderKnob.png", Color.Transparent);
+			ThumbButton.HoverMaterial = new GUIMaterial("ui/SliderKnob.png", Color.White);
+			ThumbButton.ActiveMaterial = new GUIMaterial("ui/SliderKnob.png", Color.FromArgb(128, Color.LightGray));
+			ThumbButton.DisabledMaterial = new GUIMaterial("ui/SliderKnob.png", Color.Transparent);
 
 			AddChild(ThumbButton);
 		}
