@@ -153,6 +153,9 @@
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
   </data>
+  <data name="Scenario" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
   <data name="ServerConfiguration" xml:space="preserve">
     <value>Server Configuration</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="StartClient" xml:space="preserve">
     <value>Start Client</value>
+  </data>
+  <data name="StartScenario" xml:space="preserve">
+    <value>Start Scenario</value>
   </data>
   <data name="StartServer" xml:space="preserve">
     <value>Start Server</value>

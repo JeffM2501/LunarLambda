@@ -21,13 +21,15 @@ namespace LunarLambda.GUI.Menus
             int layerIndex = 2;
             layerIndex = SetupServerConfig(layerIndex);
 
+            SetupStartServerButton(layerIndex++);
+
             AddAPIButtons(Name);
 			base.SetupControls();
 		}
 
         protected int SetupServerConfig(int layerIndex)
         {
-            RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, RelativeSize.HalfBorderInsetWidth, RelativeSize.SevenEightsHeight, OriginLocation.LowerLeft);
+            RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.LowerLeft);
 
             Columns[0] = SetupCommonColumn(rect);
 
@@ -38,7 +40,32 @@ namespace LunarLambda.GUI.Menus
             AddElement(Columns[0], layerIndex);
 
 
-            return layerIndex + 1;
+            rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.LowerRight);
+
+            Columns[1] = SetupCommonColumn(rect);
+
+            // 15 total slots
+            // config header
+            Columns[1].AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
+
+            AddElement(Columns[1], layerIndex+1);
+
+
+            return layerIndex + 2;
         }
-	}
+
+        protected virtual void SetupStartServerButton(int layerIndex)
+        {
+            RelativeRect rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, ButtonWidth, ButtonHeight, OriginLocation.LowerRight);
+
+            MenuButton start = new MenuButton(rect, MenuRes.StartScenario);
+            start.Clicked += Start_Clicked;
+            AddElement(start, layerIndex);
+        }
+
+        protected void Start_Clicked (object server, EventArgs e)
+        {
+            // call start server
+        }
+    }
 }

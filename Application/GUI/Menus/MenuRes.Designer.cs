@@ -169,6 +169,15 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scenario.
+        /// </summary>
+        internal static string Scenario {
+            get {
+                return ResourceManager.GetString("Scenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server Configuration.
         /// </summary>
         internal static string ServerConfiguration {
@@ -192,6 +201,15 @@ namespace LunarLambda.GUI.Menus {
         internal static string StartClient {
             get {
                 return ResourceManager.GetString("StartClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Scenario.
+        /// </summary>
+        internal static string StartScenario {
+            get {
+                return ResourceManager.GetString("StartScenario", resourceCulture);
             }
         }
         
