@@ -24,7 +24,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public event EventHandler ValueChanged = null;
 
-		public SpinSelector(RelativeRect rect, IEnumerable<string> labels, int defaultIndex, int font = -1) : base(rect, "ui/SelectorBackground.png")
+		public SpinSelector(RelativeRect rect, IEnumerable<string> labels, int defaultIndex, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SelectorBackground.png"))
 		{
 			IgnoreMouse = false;
 			FillMode = UIFillModes.Stretch4Quad;
@@ -80,11 +80,11 @@ namespace LunarLambda.GUI.Menus.Controls
 			LeftButton = new UIButton(leftRect, string.Empty);
 			LeftButton.FillMode = UIFillModes.Stretch;
 
-			LeftButton.DefaultMaterial.Texture = "ui/SelectorArrow.png";
+			LeftButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SelectorArrow.png");
 			LeftButton.DefaultMaterial.Color = Color.White;
-			LeftButton.HoverMaterial = new GUIMaterial("ui/SelectorArrow.png", Color.LightSteelBlue);
-			LeftButton.ActiveMaterial = new GUIMaterial("ui/SelectorArrow.png", Color.Gray);
-			LeftButton.DisabledMaterial = new GUIMaterial("ui/SelectorArrow.png", Color.Transparent);
+			LeftButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SelectorArrow.png"), Color.LightSteelBlue);
+			LeftButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SelectorArrow.png"), Color.Gray);
+			LeftButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SelectorArrow.png"), Color.Transparent);
 			LeftButton.ClickSound = "button.wav";
 
 			LeftButton.Clicked += LeftButton_Clicked;
@@ -100,11 +100,11 @@ namespace LunarLambda.GUI.Menus.Controls
  			RightButton.FillMode = UIFillModes.Stretch;
  			RightButton.FlipTextureAxes(-1,1);
  
- 			RightButton.DefaultMaterial.Texture = "ui/SelectorArrow.png";
+ 			RightButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SelectorArrow.png");
  			RightButton.DefaultMaterial.Color = Color.White;
- 			RightButton.HoverMaterial = new GUIMaterial("ui/SelectorArrow.png", Color.LightSteelBlue);
- 			RightButton.ActiveMaterial = new GUIMaterial("ui/SelectorArrow.png", Color.Gray);
-			RightButton.DisabledMaterial = new GUIMaterial("ui/SelectorArrow.png", Color.Transparent);
+ 			RightButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SelectorArrow.png"), Color.LightSteelBlue);
+ 			RightButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SelectorArrow.png"), Color.Gray);
+			RightButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SelectorArrow.png"), Color.Transparent);
 			RightButton.ClickSound = "button.wav";
 
 			RightButton.Clicked += RightButton_Clicked;
@@ -218,7 +218,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
             RelativeRect rect = new RelativeRect(new RelativeLoc(thisOrigin.X, RelativeLoc.Edge.Raw), new RelativeLoc(thisOrigin.Y, RelativeLoc.Edge.Raw), RelativeSize.FixedPixelSize(width), RelativeSize.FixedPixelSize(totalheight), originAllignment);
 
-            var popup = new UIPanel(rect, "ui/SelectorPopupBackground.png");
+            var popup = new UIPanel(rect, ThemeManager.GetThemeAsset(ThemeManager.GetThemeAsset("ui/SelectorPopupBackground.png")));
             popup.FillMode = UIFillModes.Stretch4Quad;
             popup.IgnoreMouse = false;
 

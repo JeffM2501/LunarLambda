@@ -142,8 +142,8 @@ namespace LunarLambda
 			if (PreferencesManager.GetValueB(PrefNames.DisableShader))
                 PostProcessor.EnableEffects(false);
 
-            MenuManager.MainFont = FontManager.LoadFont("ui/fonts/BebasNeue Regular.otf");
-            MenuManager.BoldFont = FontManager.LoadFont("ui/fonts/BebasNeue Bold.otf");
+            MenuManager.MainFont = FontManager.LoadFont(ThemeManager.GetThemeAsset("ui/fonts/BebasNeue Regular.otf"));
+            MenuManager.BoldFont = FontManager.LoadFont(ThemeManager.GetThemeAsset("ui/fonts/BebasNeue Bold.otf"));
             FontManager.DefaultFont = MenuManager.MainFont;
         }
 
@@ -180,12 +180,18 @@ namespace LunarLambda
 			FileLocations.AddUserAndApplicationSubDirAssets("assets");
             FileLocations.AddUserAndApplicationSubDirAssets("music");
 
-            foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packs"), "*.pack"))
+            foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packages"), "*.pack"))
 				AssetManager.AddProvider(new PackAssetProvider(file));
 
-			foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packs"), "*.pack"))
+			foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packages"), "*.pack"))
 				AssetManager.AddProvider(new PackAssetProvider(file));
-		}
+
+            foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packages"), "*.zip"))
+                AssetManager.AddProvider(new ZipPackageAssetProvider(file));
+
+            foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packages"), "*.zip"))
+                AssetManager.AddProvider(new ZipPackageAssetProvider(file));
+        }
 
 		static void LoadMods()
 		{

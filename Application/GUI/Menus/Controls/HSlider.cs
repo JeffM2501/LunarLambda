@@ -30,7 +30,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public event EventHandler ValueChanged = null;
 
-		public HSlider(RelativeRect rect, string labelPrefix, double value, int font = -1) : base(rect, "ui/SliderBackground.png")
+		public HSlider(RelativeRect rect, string labelPrefix, double value, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SliderBackground.png"))
 		{
 			IgnoreMouse = false;
 			FillMode = UIFillModes.Stretch4Quad;
@@ -79,11 +79,11 @@ namespace LunarLambda.GUI.Menus.Controls
 			LeftButton = new UIButton(leftRect, string.Empty);
 			LeftButton.FillMode = UIFillModes.Stretch;
 
-			LeftButton.DefaultMaterial.Texture = "ui/SliderMinusButton.png";
+			LeftButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderMinusButton.png");
 			LeftButton.DefaultMaterial.Color = Color.White;
-			LeftButton.HoverMaterial = new GUIMaterial("ui/SliderMinusButton.png", Color.LightSteelBlue);
-			LeftButton.ActiveMaterial = new GUIMaterial("ui/SliderMinusButton.png", Color.Gray);
-			LeftButton.DisabledMaterial = new GUIMaterial("ui/SliderMinusButton.png", Color.Transparent);
+			LeftButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.LightSteelBlue);
+			LeftButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.Gray);
+			LeftButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.Transparent);
 			LeftButton.ClickSound = "button.wav";
 
 			LeftButton.Clicked += LeftButton_Clicked;
@@ -98,11 +98,11 @@ namespace LunarLambda.GUI.Menus.Controls
 			RightButton = new UIButton(rightRect, string.Empty);
 			RightButton.FillMode = UIFillModes.Stretch;
 
-			RightButton.DefaultMaterial.Texture = "ui/SliderPlusButtons.png";
+			RightButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png");
 			RightButton.DefaultMaterial.Color = Color.White;
-			RightButton.HoverMaterial = new GUIMaterial("ui/SliderPlusButtons.png", Color.LightSteelBlue);
-			RightButton.ActiveMaterial = new GUIMaterial("ui/SliderPlusButtons.png", Color.Gray);
-			RightButton.DisabledMaterial = new GUIMaterial("ui/SliderPlusButtons.png", Color.Transparent);
+			RightButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.LightSteelBlue);
+			RightButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.Gray);
+			RightButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.Transparent);
 
 			RightButton.ClickSound = "button.wav";
 
@@ -118,11 +118,11 @@ namespace LunarLambda.GUI.Menus.Controls
 			ThumbButton = new UIButton(thumbRect, string.Empty);
 			ThumbButton.FillMode = UIFillModes.Stretch;
 
-			ThumbButton.DefaultMaterial.Texture = "ui/SliderKnob.png";
+			ThumbButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderKnob.png");
 			ThumbButton.DefaultMaterial.Color = Color.FromArgb(128,Color.WhiteSmoke);
-			ThumbButton.HoverMaterial = new GUIMaterial("ui/SliderKnob.png", Color.White);
-			ThumbButton.ActiveMaterial = new GUIMaterial("ui/SliderKnob.png", Color.FromArgb(128, Color.LightGray));
-			ThumbButton.DisabledMaterial = new GUIMaterial("ui/SliderKnob.png", Color.Transparent);
+			ThumbButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.White);
+			ThumbButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.FromArgb(128, Color.LightGray));
+			ThumbButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.Transparent);
 
 			AddChild(ThumbButton);
 		}

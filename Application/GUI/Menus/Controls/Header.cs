@@ -17,7 +17,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		protected UILabel LabelControl = null;
 
-		public Header(RelativeRect rect, string label, int font = -1) : base(rect, "ui/KeyValueBackground.png")
+		public Header(RelativeRect rect, string label, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/KeyValueBackground.png"))
 		{
 			FillMode = UIFillModes.Stretch4Quad;
 			IgnoreMouse = true;

@@ -119,7 +119,7 @@ namespace LunarLambda.GUI.Menus
 
         protected void SetupLogo(int layerIndex)
 		{
-			var logo = new UIImage("ui/LL_logo_full.png", RelativePoint.UpperThirdCenter, OriginLocation.Center, RelativeSize.FullWidth);
+			var logo = new UIImage(ThemeManager.GetThemeAsset("ui/LL_logo_full.png"), RelativePoint.UpperThirdCenter, OriginLocation.Center, RelativeSize.FullWidth);
 
 			AddElement(logo, layerIndex);
 

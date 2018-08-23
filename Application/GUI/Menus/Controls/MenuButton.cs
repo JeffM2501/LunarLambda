@@ -31,10 +31,10 @@ namespace LunarLambda.GUI.Menus.Controls
 			ClickSound = "button.wav";
 			HoverSound = "effects/click.wav";
 
-            DefaultMaterial = new GUIMaterial("ui/ButtonBackground.png", Color.White);
-            ActiveMaterial = new GUIMaterial("ui/ButtonBackground.active.png", Color.White);
-            DisabledMaterial = new GUIMaterial("ui/ButtonBackground.disabled.png", Color.White);
-            HoverMaterial = new GUIMaterial("ui/ButtonBackground.hover.png", Color.White);
+            DefaultMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/ButtonBackground.png"), Color.White);
+            ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/ButtonBackground.active.png"), Color.White);
+            DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/ButtonBackground.disabled.png"), Color.White);
+            HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/ButtonBackground.hover.png"), Color.White);
 
 			ActiveTextColor = Color.Black;
 			HoverTextColor = Color.LightSteelBlue;
