@@ -1,4 +1,5 @@
 ﻿using LudicrousElectron.Assets;
+using LudicrousElectron.GUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,14 @@ namespace LunarLambda.GUI
 
         public static void SetTheme(string theme)
         {
-            CurrentTheme = theme;
+            string newTheme = theme;
+            if (string.IsNullOrEmpty(newTheme))
+                newTheme = DefaultTheme;
+            if (CurrentTheme == newTheme)
+                return;
 
-            // TODO flush the GUI
+            CurrentTheme = newTheme;
+            GUIManager.Reset();
         }
 
         public static string GetThemeAsset(string path)

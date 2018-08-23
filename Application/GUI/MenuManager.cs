@@ -12,6 +12,7 @@ using LunarLambda.API;
 using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus;
 using LunarLambda.GUI.Menus.Controls;
+using LunarLambda.Preferences;
 
 namespace LunarLambda.GUI
 {
@@ -37,6 +38,8 @@ namespace LunarLambda.GUI
 
 		public static void Setup()
 		{
+            ThemeManager.SetTheme(PreferencesManager.Get(PrefNames.ThemeName));
+
 			LoadStandardMenus();
 			MenuAPI.CallSetupMenus();
 

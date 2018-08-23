@@ -22,5 +22,7 @@ namespace LunarLambda.Preferences
 		public static readonly string MainWindowWidth = "main_window_width";
 		public static readonly string MainWindowHeight = "main_window_height";
 
+        public static readonly string ThemeName = "ui_theme";
+
 	}
 }

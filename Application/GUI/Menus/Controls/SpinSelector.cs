@@ -149,13 +149,13 @@ namespace LunarLambda.GUI.Menus.Controls
                 RightButton.Enable();
         }
 
-		public override void FlushMaterial()
+		public override void FlushMaterials( bool children = false)
 		{
-			base.FlushMaterial();
+			base.FlushMaterials(children);
 			if (LabelControl != null)
 			{
 				LabelControl.DefaultMaterial.Color = Color.White;
-				LabelControl.FlushMaterial();
+				LabelControl.FlushMaterials(children);
 			}
 		}
 
