@@ -19,7 +19,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public Header(RelativeRect rect, string label, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/KeyValueBackground.png"))
 		{
-			FillMode = UIFillModes.Stretch4Quad;
+			FillMode = UIFillModes.SmartStprite;
 			IgnoreMouse = true;
 			Font = font;
 			SetText(label);

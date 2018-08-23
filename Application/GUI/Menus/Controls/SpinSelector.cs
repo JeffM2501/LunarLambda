@@ -27,7 +27,7 @@ namespace LunarLambda.GUI.Menus.Controls
 		public SpinSelector(RelativeRect rect, IEnumerable<string> labels, int defaultIndex, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SelectorBackground.png"))
 		{
 			IgnoreMouse = false;
-			FillMode = UIFillModes.Stretch4Quad;
+			FillMode = UIFillModes.SmartStprite;
 			Font = font;
 			SelectedIndex = defaultIndex;
 			SetLabels(labels);
@@ -219,7 +219,7 @@ namespace LunarLambda.GUI.Menus.Controls
             RelativeRect rect = new RelativeRect(new RelativeLoc(thisOrigin.X, RelativeLoc.Edge.Raw), new RelativeLoc(thisOrigin.Y, RelativeLoc.Edge.Raw), RelativeSize.FixedPixelSize(width), RelativeSize.FixedPixelSize(totalheight), originAllignment);
 
             var popup = new UIPanel(rect, ThemeManager.GetThemeAsset(ThemeManager.GetThemeAsset("ui/SelectorPopupBackground.png")));
-            popup.FillMode = UIFillModes.Stretch4Quad;
+            popup.FillMode = UIFillModes.SmartStprite;
             popup.IgnoreMouse = false;
 
             VerticalLayoutGroup vertgroup = MenuCommon.SetupCommonColumn(new RelativeRect(RelativeLoc.XCenter,RelativeLoc.YCenter,RelativeSize.ThreeQuarterWidth, rect.Height, OriginLocation.Center));

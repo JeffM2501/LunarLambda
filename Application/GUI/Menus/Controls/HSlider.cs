@@ -33,7 +33,7 @@ namespace LunarLambda.GUI.Menus.Controls
 		public HSlider(RelativeRect rect, string labelPrefix, double value, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SliderBackground.png"))
 		{
 			IgnoreMouse = false;
-			FillMode = UIFillModes.Stretch4Quad;
+			FillMode = UIFillModes.SmartStprite;
 			Font = font;
 			CurrentValue = value;
 			SetLabels(labelPrefix);
