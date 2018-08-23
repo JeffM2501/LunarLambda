@@ -95,7 +95,7 @@ namespace LunarLambda.GUI.Menus
 
 		protected virtual void SetupBackground(int layerIndex)
 		{
-			string bgRepeat = ThemeManager.GetThemeAsset("ui/BackgroundCrosses.png");
+			string bgRepeat = ThemeManager.GetThemeAsset("ui/BackgroundOverlay.png");
 
 			TextureManager.GetTexture(bgRepeat).SetTextureFormat(TextureInfo.TextureFormats.TextureMap); // force this to repeat
 

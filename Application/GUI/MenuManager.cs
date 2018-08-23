@@ -4,10 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LudicrousElectron.Assets;
 using LudicrousElectron.Engine.Graphics.Textures;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
+using LudicrousElectron.GUI.Text;
 using LunarLambda.API;
 using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus;
@@ -39,8 +41,27 @@ namespace LunarLambda.GUI
 		public static void Setup()
 		{
             ThemeManager.SetTheme(PreferencesManager.Get(PrefNames.ThemeName));
+            // load fonts
 
-			LoadStandardMenus();
+            string mainFont = string.Empty;
+            if (AssetManager.AssetExists(ThemeManager.GetThemeAsset("ui/fonts/Regular.otf")))
+                mainFont = ThemeManager.GetThemeAsset("ui/fonts/Regular.otf");
+            else
+                mainFont = ThemeManager.GetThemeAsset("ui/fonts/Regular.ttf");
+
+            MainFont = FontManager.LoadFont(mainFont);
+
+            string boldFont = string.Empty;
+            if (AssetManager.AssetExists(ThemeManager.GetThemeAsset("ui/fonts/Bold.otf")))
+                boldFont = ThemeManager.GetThemeAsset("ui/fonts/Bold.otf");
+            else
+                boldFont = ThemeManager.GetThemeAsset("ui/fonts/Bold.ttf");
+
+            BoldFont = FontManager.LoadFont(ThemeManager.GetThemeAsset(boldFont));
+
+            FontManager.DefaultFont = MainFont;
+
+            LoadStandardMenus();
 			MenuAPI.CallSetupMenus();
 
 			GUIManager.PushCanvas(Main);
