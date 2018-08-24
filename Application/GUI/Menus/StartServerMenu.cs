@@ -1,4 +1,5 @@
 ﻿using LudicrousElectron.GUI;
+using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using LunarLambda.GUI.Menus.Controls;
 using System;
@@ -11,7 +12,7 @@ namespace LunarLambda.GUI.Menus
 {
 	public class StartServerMenu : MenuCommon
 	{
-        protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] { null, null };
+        protected LayoutContainer[] Columns = new LayoutContainer[] { null, null };
 
         protected override void SetupControls()
 		{
@@ -29,24 +30,42 @@ namespace LunarLambda.GUI.Menus
 
         protected int SetupServerConfig(int layerIndex)
         {
-            RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.LowerLeft);
+            RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperLeft);
 
-            Columns[0] = SetupCommonColumn(rect);
+            GridLayoutGroup serverSetupGrid = new GridLayoutGroup(rect, 15, 2);
 
-            // 15 total slots
+            Columns[0] = serverSetupGrid;
+
+            serverSetupGrid.MaxChildSize = MenuCommon.ButtonHeight.Paramater;
+
+            serverSetupGrid.SetColSpan(0);
+            serverSetupGrid.SetColSpan(5);
+            serverSetupGrid.SetColSpan(8);
+            serverSetupGrid.SetColSpan(10);
+
+            serverSetupGrid.AddChild(new Header(new RelativeRect(), MenuRes.ServerConfiguration));
+            var label = new UILabel(MenuManager.MainFont, "Server Name:", RelativeRect.FullRight, UILabel.TextFittingModes.ByHeightTrim);
+            label.MaxTextSize = (int)(MenuCommon.ButtonHeight.Paramater * 0.5f);
+
+            serverSetupGrid.AddChild(label);
+            serverSetupGrid.AddChild(new MenuButton(RelativeRect.FullLeft,"Test button"));
+
             // config header
-            Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.ServerConfiguration));
-
             AddElement(Columns[0], layerIndex);
 
+            rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperRight);
 
-            rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YLowerBorder + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.LowerRight);
+            GridLayoutGroup scenarioGrid = new GridLayoutGroup(rect, 15, 2);
 
-            Columns[1] = SetupCommonColumn(rect);
+            Columns[1] = scenarioGrid;
+
+            scenarioGrid.MaxChildSize = MenuCommon.ButtonHeight.Paramater;
+
+            scenarioGrid.SetColSpan(0);
 
             // 15 total slots
             // config header
-            Columns[1].AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
+            scenarioGrid.AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
 
             AddElement(Columns[1], layerIndex+1);
 
