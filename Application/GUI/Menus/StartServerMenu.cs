@@ -4,6 +4,7 @@ using LudicrousElectron.GUI.Geometry;
 using LunarLambda.GUI.Menus.Controls;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +49,12 @@ namespace LunarLambda.GUI.Menus
             label.MaxTextSize = (int)(MenuCommon.ButtonHeight.Paramater * 0.5f);
 
             serverSetupGrid.AddChild(label);
-            serverSetupGrid.AddChild(new MenuButton(RelativeRect.FullLeft,"Test button"));
+
+            var te = new UITextEntry(RelativeRect.FullLeft, "localhost");
+            te.DefaultMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"), Color.White);
+            te.FocusedMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/TextEntryBackground.focused.png"), Color.White);
+
+            serverSetupGrid.AddChild(te);
 
             // config header
             AddElement(Columns[0], layerIndex);
