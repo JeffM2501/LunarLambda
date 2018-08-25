@@ -175,18 +175,19 @@ namespace LunarLambda.GUI.Menus.Controls
 			if (!buttons.PrimaryDown)
 				return;
 
+			Vector2 origin = Rect.GetPixelOrigin();
 			float width = Rect.GetPixelSize().X;
 			float height = Rect.GetPixelSize().Y;
 
 			float availableDist = width - (height * 2);
 
-			if (location.X < height || location.X > availableDist + height)
+			if (location.X < origin.X + height || location.X > (origin.X + availableDist + height))
 				return;
 
 			if (availableDist <= 0)
 				return;
 
-			float param = (location.X - height) / availableDist;
+			float param = (location.X - (origin.X + height)) / availableDist;
 			CurrentValue = Math.Abs(param) * 100;
 
 			LabelControl.Text = GetText();
