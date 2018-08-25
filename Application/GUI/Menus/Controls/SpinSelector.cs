@@ -22,7 +22,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public int SelectedIndex { get; protected set; } = 0;
 
-		public event EventHandler ValueChanged = null;
+		public event EventHandler<SpinSelector> ValueChanged = null;
 
 		public SpinSelector(RelativeRect rect, IEnumerable<string> labels, int defaultIndex, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SelectorBackground.png"))
 		{
@@ -136,7 +136,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
             LabelControl.Text = TextLabels[SelectedIndex];
             LabelControl.ForceRefresh();
-            ValueChanged?.Invoke(this, EventArgs.Empty);
+            ValueChanged?.Invoke(this, this);
 
             if (SelectedIndex == 0)
                 LeftButton.Disable();
@@ -176,9 +176,11 @@ namespace LunarLambda.GUI.Menus.Controls
             float width = Rect.GetPixelSize().X;
             float height = Rect.GetPixelSize().Y;
 
+			Vector2 origin = Rect.GetPixelOrigin();
+
             float availableDist = width - (height * 2);
 
-            if (location.X < height || location.X > availableDist + height)
+            if (location.X < origin.X + height || location.X > origin.X + availableDist + height)
                 return;
 
             Vector2 thisOrigin = GetScreenOrigin();
@@ -218,7 +220,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
             RelativeRect rect = new RelativeRect(new RelativeLoc(thisOrigin.X, RelativeLoc.Edge.Raw), new RelativeLoc(thisOrigin.Y, RelativeLoc.Edge.Raw), RelativeSize.FixedPixelSize(width), RelativeSize.FixedPixelSize(totalheight), originAllignment);
 
-            var popup = new UIPanel(rect, ThemeManager.GetThemeAsset(ThemeManager.GetThemeAsset("ui/SelectorPopupBackground.png")));
+            var popup = new UIPanel(rect, ThemeManager.GetThemeAsset("ui/SelectorPopupBackground.png"));
             popup.FillMode = UIFillModes.SmartStprite;
             popup.IgnoreMouse = false;
 

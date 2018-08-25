@@ -108,7 +108,7 @@ namespace LunarLambda.GUI.Menus
 			AddElement(Columns[0], 2);
 		}
 
-		private void MusicSelector_ValueChanged(object sender, EventArgs e)
+		private void MusicSelector_ValueChanged(object sender, SpinSelector e)
 		{
 			SpinSelector selector = sender as SpinSelector;
 			if (selector == null)
@@ -136,7 +136,7 @@ namespace LunarLambda.GUI.Menus
 			SoundManager.SetMasterSoundVolume((float)slider.CurrentValue);
 			PreferencesManager.Set(PrefNames.SoundVolume, (int)slider.CurrentValue);
 		}
-		private void WindowSizeSelector_ValueChanged(object sender, EventArgs e)
+		private void WindowSizeSelector_ValueChanged(object sender, SpinSelector e)
 		{
 			SpinSelector selector = sender as SpinSelector;
 			if (selector == null)
@@ -158,7 +158,7 @@ namespace LunarLambda.GUI.Menus
 			}
 		}
 
-		private void FsaaSelector_ValueChanged(object sender, EventArgs e)
+		private void FsaaSelector_ValueChanged(object sender, SpinSelector e)
 		{
 			SpinSelector selector = sender as SpinSelector;
 			if (selector == null)

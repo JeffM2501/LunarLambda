@@ -70,6 +70,15 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        internal static string DefaultServerName {
+            get {
+                return ResourceManager.GetString("DefaultServerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Effects Volume.
         /// </summary>
         internal static string EffectsVolume {
@@ -84,6 +93,24 @@ namespace LunarLambda.GUI.Menus {
         internal static string FSAA {
             get {
                 return ResourceManager.GetString("FSAA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FTL Drive Type:.
+        /// </summary>
+        internal static string FTLType {
+            get {
+                return ResourceManager.GetString("FTLType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None;Default;Warp;Jump;Warp &amp; Jump.
+        /// </summary>
+        internal static string FTLTypes {
+            get {
+                return ResourceManager.GetString("FTLTypes", resourceCulture);
             }
         }
         
@@ -106,11 +133,38 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Rules.
+        /// </summary>
+        internal static string GameRules {
+            get {
+                return ResourceManager.GetString("GameRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Graphics.
         /// </summary>
         internal static string Graphics {
             get {
                 return ResourceManager.GetString("Graphics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long Range Radar.
+        /// </summary>
+        internal static string LongRangeRadar {
+            get {
+                return ResourceManager.GetString("LongRangeRadar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Screen Options.
+        /// </summary>
+        internal static string MainScreenOptions {
+            get {
+                return ResourceManager.GetString("MainScreenOptions", resourceCulture);
             }
         }
         
@@ -151,6 +205,24 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Per-System Damage.
+        /// </summary>
+        internal static string PerSystemDamage {
+            get {
+                return ResourceManager.GetString("PerSystemDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Ship Options.
+        /// </summary>
+        internal static string PlayerShipOptions {
+            get {
+                return ResourceManager.GetString("PlayerShipOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview Soundtrack.
         /// </summary>
         internal static string PreviewSoundtrack {
@@ -169,6 +241,33 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Radar Range:.
+        /// </summary>
+        internal static string RadarRange {
+            get {
+                return ResourceManager.GetString("RadarRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan Complexity:.
+        /// </summary>
+        internal static string ScanComplexity {
+            get {
+                return ResourceManager.GetString("ScanComplexity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None (Delay);Normal;Advanced.
+        /// </summary>
+        internal static string ScanTypes {
+            get {
+                return ResourceManager.GetString("ScanTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scenario.
         /// </summary>
         internal static string Scenario {
@@ -183,6 +282,51 @@ namespace LunarLambda.GUI.Menus {
         internal static string ServerConfiguration {
             get {
                 return ResourceManager.GetString("ServerConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server IP:.
+        /// </summary>
+        internal static string ServerIP {
+            get {
+                return ResourceManager.GetString("ServerIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server Name:.
+        /// </summary>
+        internal static string ServerName {
+            get {
+                return ResourceManager.GetString("ServerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server Password:.
+        /// </summary>
+        internal static string ServerPassword {
+            get {
+                return ResourceManager.GetString("ServerPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server Visibility:.
+        /// </summary>
+        internal static string ServerVis {
+            get {
+                return ResourceManager.GetString("ServerVis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lan Only;Internet.
+        /// </summary>
+        internal static string ServerVisModes {
+            get {
+                return ResourceManager.GetString("ServerVisModes", resourceCulture);
             }
         }
         
@@ -223,11 +367,29 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tactical Radar.
+        /// </summary>
+        internal static string TacticalRadar {
+            get {
+                return ResourceManager.GetString("TacticalRadar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tutorials.
         /// </summary>
         internal static string Tutorials {
             get {
                 return ResourceManager.GetString("Tutorials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weapon Frequenceies.
+        /// </summary>
+        internal static string WeaponFrequencies {
+            get {
+                return ResourceManager.GetString("WeaponFrequencies", resourceCulture);
             }
         }
     }

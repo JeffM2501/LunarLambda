@@ -120,11 +120,20 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="DefaultServerName" xml:space="preserve">
+    <value>Server</value>
+  </data>
   <data name="EffectsVolume" xml:space="preserve">
     <value>Effects Volume</value>
   </data>
   <data name="FSAA" xml:space="preserve">
     <value>FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x</value>
+  </data>
+  <data name="FTLType" xml:space="preserve">
+    <value>FTL Drive Type:</value>
+  </data>
+  <data name="FTLTypes" xml:space="preserve">
+    <value>None;Default;Warp;Jump;Warp &amp; Jump</value>
   </data>
   <data name="FullscreenModes" xml:space="preserve">
     <value>Windowed;Maximized;Fullscreen</value>
@@ -132,8 +141,17 @@
   <data name="FullscreenToggle" xml:space="preserve">
     <value>Fullscreen Toggle</value>
   </data>
+  <data name="GameRules" xml:space="preserve">
+    <value>Game Rules</value>
+  </data>
   <data name="Graphics" xml:space="preserve">
     <value>Graphics</value>
+  </data>
+  <data name="LongRangeRadar" xml:space="preserve">
+    <value>Long Range Radar</value>
+  </data>
+  <data name="MainScreenOptions" xml:space="preserve">
+    <value>Main Screen Options</value>
   </data>
   <data name="MusicPlayback" xml:space="preserve">
     <value>Music Playblack</value>
@@ -147,17 +165,47 @@
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="PerSystemDamage" xml:space="preserve">
+    <value>Per-System Damage</value>
+  </data>
+  <data name="PlayerShipOptions" xml:space="preserve">
+    <value>Player Ship Options</value>
+  </data>
   <data name="PreviewSoundtrack" xml:space="preserve">
     <value>Preview Soundtrack</value>
   </data>
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
   </data>
+  <data name="RadarRange" xml:space="preserve">
+    <value>Radar Range:</value>
+  </data>
+  <data name="ScanComplexity" xml:space="preserve">
+    <value>Scan Complexity:</value>
+  </data>
+  <data name="ScanTypes" xml:space="preserve">
+    <value>None (Delay);Normal;Advanced</value>
+  </data>
   <data name="Scenario" xml:space="preserve">
     <value>Scenario</value>
   </data>
   <data name="ServerConfiguration" xml:space="preserve">
     <value>Server Configuration</value>
+  </data>
+  <data name="ServerIP" xml:space="preserve">
+    <value>Server IP:</value>
+  </data>
+  <data name="ServerName" xml:space="preserve">
+    <value>Server Name:</value>
+  </data>
+  <data name="ServerPassword" xml:space="preserve">
+    <value>Server Password:</value>
+  </data>
+  <data name="ServerVis" xml:space="preserve">
+    <value>Server Visibility:</value>
+  </data>
+  <data name="ServerVisModes" xml:space="preserve">
+    <value>Lan Only;Internet</value>
   </data>
   <data name="SoundOptions" xml:space="preserve">
     <value>Sound Options</value>
@@ -171,7 +219,13 @@
   <data name="StartServer" xml:space="preserve">
     <value>Start Server</value>
   </data>
+  <data name="TacticalRadar" xml:space="preserve">
+    <value>Tactical Radar</value>
+  </data>
   <data name="Tutorials" xml:space="preserve">
     <value>Tutorials</value>
+  </data>
+  <data name="WeaponFrequencies" xml:space="preserve">
+    <value>Weapon Frequenceies</value>
   </data>
 </root>
