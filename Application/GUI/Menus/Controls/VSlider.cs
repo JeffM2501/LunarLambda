@@ -19,6 +19,7 @@ namespace LunarLambda.GUI.Menus.Controls
 		{
 			IgnoreMouse = false;
 			Vertical = true;
+			ValueStep = 1;
 		}
 
 		protected override void SetupButtons()

@@ -77,9 +77,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		private void AdvanceButton_Clicked(object sender, UIButton e)
 		{
-			CurrentValue++;
+			CurrentValue += ValueStep;
 			if (CurrentValue > MaxValue)
-				CurrentValue--;
+				CurrentValue = MaxValue;
 			else
 			{
 				if (CurrentValue == MaxValue)
@@ -95,9 +95,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		private void RetreatButton_Clicked(object sender, UIButton e)
 		{
-			CurrentValue--;
+			CurrentValue -= ValueStep;
 			if (CurrentValue < MinValue)
-				CurrentValue++;
+				CurrentValue = MinValue;
 			else
 			{
 				if (CurrentValue == MinValue)
@@ -257,7 +257,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			}
 
 			int range = MaxValue - MinValue;
-			int newVal = (int)((param * range) + MinValue + 0.49f);
+			int newVal = (int)((param * range) + MinValue + 0.25f);
 
 			if (newVal == CurrentValue)
 				return;

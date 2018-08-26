@@ -11,45 +11,36 @@ using OpenTK;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class HSlider : UIPanel
+	public class HSlider : BaseSlider
 	{
 		protected string TextLabelPrefix = string.Empty;
 		protected int Font = -1;
-
 		protected UILabel LabelControl = null;
-		protected UIButton LeftButton = null;
-		protected UIButton RightButton = null;
-
-		protected UIButton ThumbButton = null;
 
 		public bool ShowPercentage = true;
+		public bool ShowLabel = true;
 
-		public double CurrentValue { get; protected set; } = 0;
-
-		public double ValueStep = 10;
-
-		public event EventHandler<HSlider> ValueChanged = null;
-
-		public HSlider(RelativeRect rect, string labelPrefix, double value, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SliderBackground.png"))
+		public HSlider(RelativeRect rect, string labelPrefix, int value, int font = -1, int min = 0, int max = 100) : base(rect, value, min, max, ThemeManager.GetThemeAsset("ui/SliderBackground.png"))
 		{
+			Vertical = false;
 			IgnoreMouse = false;
-			FillMode = UIFillModes.SmartStprite;
-			Font = font;
-			CurrentValue = value;
 			SetLabels(labelPrefix);
 
-			SetupButtons();
+			ValueChanged += HSlider_ValueChanged;
 		}
 
 		public virtual void SetLabels(string prefix)
 		{
-			TextLabelPrefix = prefix;
-			if (LabelControl == null)
-				SetupLabel();
-			else
+			if (ShowLabel)
 			{
-				LabelControl.Text = GetText();
-				SetDirty();
+				TextLabelPrefix = prefix;
+				if (LabelControl == null)
+					SetupLabel();
+				else
+				{
+					LabelControl.Text = GetText();
+					SetDirty();
+				}
 			}
 		}
 
@@ -60,7 +51,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		protected virtual void SetupLabel()
 		{
-			if (!WindowManager.Inited())
+			if (!WindowManager.Inited() || !ShowLabel)
 				return;
 
 			if (Font == -1)
@@ -72,46 +63,34 @@ namespace LunarLambda.GUI.Menus.Controls
 			AddChild(LabelControl);
 		}
 
-		protected virtual void SetupButtons()
+		protected override void SetupButtons()
 		{
 			RelativeRect leftRect = new RelativeRect(RelativePoint.MiddleLeft, new RelativeSizeXY(RelativeSize.FullHeight * 0.5f, RelativeSize.FullHeight), OriginLocation.MiddleLeft);
 
-			LeftButton = new UIButton(leftRect, string.Empty);
-			LeftButton.FillMode = UIFillModes.Stretch;
+			RetreatButton = new UIButton(leftRect, string.Empty);
+			RetreatButton.FillMode = UIFillModes.Stretch;
 
-			LeftButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderMinusButton.png");
-			LeftButton.DefaultMaterial.Color = Color.White;
-			LeftButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.LightSteelBlue);
-			LeftButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.Gray);
-			LeftButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.Transparent);
-			LeftButton.ClickSound = "button.wav";
+			RetreatButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderMinusButton.png");
+			RetreatButton.DefaultMaterial.Color = Color.White;
+			RetreatButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.LightSteelBlue);
+			RetreatButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.Gray);
+			RetreatButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderMinusButton.png"), Color.Transparent);
+			RetreatButton.ClickSound = "button.wav";
 
-			LeftButton.Clicked += LeftButton_Clicked;
-
-			if (CurrentValue <= 0.499)
-				LeftButton.Disable();
-
-			AddChild(LeftButton);
 
 			RelativeRect rightRect = new RelativeRect(RelativePoint.MiddleRight, new RelativeSizeXY(RelativeSize.FullHeight * 0.5f, RelativeSize.FullHeight), OriginLocation.MiddleRight);
 
-			RightButton = new UIButton(rightRect, string.Empty);
-			RightButton.FillMode = UIFillModes.Stretch;
+			AdvanceButton = new UIButton(rightRect, string.Empty);
+			AdvanceButton.FillMode = UIFillModes.Stretch;
 
-			RightButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png");
-			RightButton.DefaultMaterial.Color = Color.White;
-			RightButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.LightSteelBlue);
-			RightButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.Gray);
-			RightButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.Transparent);
+			AdvanceButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png");
+			AdvanceButton.DefaultMaterial.Color = Color.White;
+			AdvanceButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.LightSteelBlue);
+			AdvanceButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.Gray);
+			AdvanceButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderPlusButtons.png"), Color.Transparent);
 
-			RightButton.ClickSound = "button.wav";
+			AdvanceButton.ClickSound = "button.wav";
 
-			RightButton.Clicked += RightButton_Clicked;
-
-			if (CurrentValue >= 99.5)
-				RightButton.Disable();
-
-			AddChild(RightButton);
 
 			RelativeRect thumbRect = new RelativeRect(RelativePoint.Center, new RelativeSizeXY(RelativeSize.FullHeight, RelativeSize.FullHeight), OriginLocation.Center);
 
@@ -123,90 +102,16 @@ namespace LunarLambda.GUI.Menus.Controls
 			ThumbButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.White);
 			ThumbButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.FromArgb(128, Color.LightGray));
 			ThumbButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.Transparent);
-
-			AddChild(ThumbButton);
 		}
 
-		private void RightButton_Clicked(object sender, UIButton e)
+		private void HSlider_ValueChanged(object sender, BaseSlider e)
 		{
-			if (CurrentValue >= 100)
+			if (!ShowLabel)
 				return;
-
-			CurrentValue += ValueStep;
-			if (CurrentValue > 100)
-				CurrentValue = 100;
 
 			LabelControl.Text = GetText();
 			if (ShowPercentage)
 				LabelControl.ForceRefresh();
-			ValueChanged?.Invoke(this, this);
-
-			if (CurrentValue >= 99.5)
-				RightButton.Disable();
-
-			LeftButton.Enable();
-			SetThumbPos();
-		}
-
-		private void LeftButton_Clicked(object sender, UIButton e)
-		{
-			if(CurrentValue <= 0)
-				return;
-
-			CurrentValue -= ValueStep;
-			if (CurrentValue < 0)
-				CurrentValue = 0;
-
-			LabelControl.Text = GetText();
-			if (ShowPercentage)
-				LabelControl.ForceRefresh();
-
-			ValueChanged?.Invoke(this, this);
-
-			if (CurrentValue < 0.49)
-				LeftButton.Disable();
-
-			RightButton.Enable();
-			SetThumbPos();
-		}
-
-		public override void ProcessMouseEvent(Vector2 location, InputManager.LogicalButtonState buttons)
-		{
-			if (!buttons.PrimaryDown)
-				return;
-
-			Vector2 origin = Rect.GetPixelOrigin();
-			float width = Rect.GetPixelSize().X;
-			float height = Rect.GetPixelSize().Y;
-
-			float availableDist = width - (height * 2);
-
-			if (location.X < origin.X + height || location.X > (origin.X + availableDist + height))
-				return;
-
-			if (availableDist <= 0)
-				return;
-
-			float param = (location.X - (origin.X + height)) / availableDist;
-			CurrentValue = Math.Abs(param) * 100;
-
-			LabelControl.Text = GetText();
-			if (ShowPercentage)
-				LabelControl.ForceRefresh();
-
-			ValueChanged?.Invoke(this, this);
-
-			if (CurrentValue < 0.49)
-				LeftButton.Disable();
-			else
-				LeftButton.Enable();
-
-			if (CurrentValue >= 99.5)
-				RightButton.Disable();
-			else
-				RightButton.Enable();
-
-			SetThumbPos();
 		}
 
 		public override void FlushMaterials(bool children = false)
@@ -219,24 +124,9 @@ namespace LunarLambda.GUI.Menus.Controls
 			}
 		}
 
-		protected void SetThumbPos(bool forceThumbResize = true)
-		{
-			float width = Rect.GetPixelSize().X;
-			float height = Rect.GetPixelSize().Y;
-
-			float availableDist = width - (height * 2);
-			float paramDist = availableDist * (float)(CurrentValue / 100.0f);
-
-			ThumbButton.Rect.X.Paramater = (height * 1) + paramDist;
-			ThumbButton.Rect.X.RelativeTo = RelativeLoc.Edge.Raw;
-
-			if (forceThumbResize)
-				ThumbButton.ForceRefresh();
-		}
-
 		public override void Resize(int x, int y)
 		{
-			if ((string.IsNullOrEmpty(TextLabelPrefix) || ShowPercentage) && LabelControl == null)
+			if (ShowLabel && (string.IsNullOrEmpty(TextLabelPrefix) || ShowPercentage) && LabelControl == null)
 				SetupLabel();
 
 			// see how big this is in pixel space so we can position the thumb

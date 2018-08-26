@@ -86,7 +86,7 @@ namespace LunarLambda.GUI.Menus
 			Columns[0].AddChild(new Header(new RelativeRect(), MenuRes.SoundOptions));
 
 			// sound volume
-			double volume = PreferencesManager.GetValueI(PrefNames.SoundVolume, 50);
+			int volume = PreferencesManager.GetValueI(PrefNames.SoundVolume, 50);
 			var soundSlider = new HSlider(new RelativeRect(), MenuRes.EffectsVolume, volume);
 			soundSlider.ValueChanged += SoundSlider_ValueChanged;
 			Columns[0].AddChild(soundSlider);
@@ -117,13 +117,13 @@ namespace LunarLambda.GUI.Menus
 			PreferencesManager.Set(PrefNames.MusicEnabled, selector.SelectedIndex);
 		}
 
-		private void MusicSlider_ValueChanged(object sender, HSlider slider)
+		private void MusicSlider_ValueChanged(object sender, BaseSlider slider)
 		{
 			SoundManager.SetMusicVolume((float)slider.CurrentValue);
 			PreferencesManager.Set(PrefNames.MusicVolume, (int)slider.CurrentValue);
 		}
 
-		private void SoundSlider_ValueChanged(object sender, HSlider slider)
+		private void SoundSlider_ValueChanged(object sender, BaseSlider slider)
 		{
 			SoundManager.SetMasterSoundVolume((float)slider.CurrentValue);
 			PreferencesManager.Set(PrefNames.SoundVolume, (int)slider.CurrentValue);
