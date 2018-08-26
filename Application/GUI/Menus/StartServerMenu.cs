@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Drawing;
 
 using LudicrousElectron.Engine;
 using LudicrousElectron.GUI;
@@ -12,6 +12,7 @@ using LunarLambda.GUI.Menus.Controls;
 
 namespace LunarLambda.GUI.Menus
 {
+
 	public class ServerStartupInfo : EventArgs
 	{
 		public string Name = MenuRes.DefaultServerName;
@@ -46,6 +47,9 @@ namespace LunarLambda.GUI.Menus
         protected LayoutContainer[] Columns = new LayoutContainer[] { null, null };
 
 		protected ServerStartupInfo StartupInfo = new ServerStartupInfo();
+
+		protected TextArea SecenarioText = null;
+		protected TextArea VariationText = null;
 
 		protected override void SetupControls()
 		{
@@ -192,7 +196,6 @@ namespace LunarLambda.GUI.Menus
 			// Scenario header
 			scenarioGrid.AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
 
-			// replace with scenario list
 			ButtonScrollList scenarioList = new ButtonScrollList(RelativeRect.Full);
 			scenarioList.DesiredRows = 6;
 
@@ -215,9 +218,14 @@ namespace LunarLambda.GUI.Menus
 
 
 			// replace with scenario list
-			UIPanel panel = new UIPanel(RelativeRect.Full, ThemeManager.GetThemeAsset("ui/PanelBackground.png"));
-			panel.FillMode = UIFillModes.Stretch4Quad;
-			scenarioGrid.AddChild(panel);
+			SecenarioText = new TextArea(RelativeRect.Full,string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+			SecenarioText.DefaultMaterial.Color = Color.Gray;
+			SecenarioText.DesiredRows = 8;
+			SecenarioText.BorderPadding = 4;
+			SecenarioText.MiniumElementHeight = 20;
+			SecenarioText.SetText("Basic Scenario. A few random stations, with random stuff around them, are under attack by enemies. Kill all enemies to win.");
+
+			scenarioGrid.AddChild(SecenarioText);
 
 			// sensor scan complexity
 			// get data from selected scenario
@@ -227,9 +235,13 @@ namespace LunarLambda.GUI.Menus
 			scenarioGrid.AddChild(selector);
 
 			// replace with variation info
-			panel = new UIPanel(RelativeRect.Full, ThemeManager.GetThemeAsset("ui/PanelBackground.png"));
-			panel.FillMode = UIFillModes.Stretch4Quad;
-			scenarioGrid.AddChild(panel);
+			VariationText = new TextArea(RelativeRect.Full, string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+			VariationText.DefaultMaterial.Color = Color.Gray;
+			VariationText.DesiredRows = 6;
+			VariationText.BorderPadding = 4;
+			VariationText.MiniumElementHeight = 20;
+			VariationText.SetText("No variation selected, the scenario will play as intended.");
+			scenarioGrid.AddChild(VariationText);
 
 			AddElement(Columns[1], layerIndex+1);
 

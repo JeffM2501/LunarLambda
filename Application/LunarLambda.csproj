@@ -81,12 +81,14 @@
     <Compile Include="GUI\MenuManager.cs" />
     <Compile Include="GUI\Menus\Controls\BaseSlider.cs" />
     <Compile Include="GUI\Menus\Controls\ButtonScrollList.cs" />
+    <Compile Include="GUI\Menus\Controls\ControlScrollList.cs" />
     <Compile Include="GUI\Menus\Controls\Header.cs" />
     <Compile Include="GUI\Menus\Controls\HSlider.cs" />
     <Compile Include="GUI\Menus\Controls\MenuButton.cs" />
     <Compile Include="GUI\Menus\Controls\MenuCheckButton.cs" />
     <Compile Include="GUI\Menus\Controls\MenuTextEntry.cs" />
     <Compile Include="GUI\Menus\Controls\SpinSelector.cs" />
+    <Compile Include="GUI\Menus\Controls\TextArea.cs" />
     <Compile Include="GUI\Menus\Controls\VSlider.cs" />
     <Compile Include="GUI\Menus\MainMenu.cs" />
     <Compile Include="GUI\Menus\MenuCommon.cs" />
