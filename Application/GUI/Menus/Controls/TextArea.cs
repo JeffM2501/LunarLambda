@@ -45,8 +45,6 @@ namespace LunarLambda.GUI.Menus.Controls
 				return;
 
 			lbl.Text = text;
-// 			if (Inited)
-// 				lbl.Resize(LastParentSize);
 		}
 
 		protected override void CheckItemCount()

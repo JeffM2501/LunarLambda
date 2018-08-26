@@ -46,7 +46,7 @@ namespace LunarLambda.GUI.Menus.Controls
 		public int ScrollbarTop { get; protected set; } = 0;
 		protected int VisibleButtonCount = 0;
 
-		public ControlScrollList(RelativeRect rect, string texture = null) : base(rect, texture)
+		protected ControlScrollList(RelativeRect rect, string texture = null) : base(rect, texture)
 		{
 			NoDraw = true;
 			IgnoreMouse = false;
