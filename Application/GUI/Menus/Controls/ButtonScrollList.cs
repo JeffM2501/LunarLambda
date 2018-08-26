@@ -12,11 +12,7 @@ namespace LunarLambda.GUI.Menus.Controls
 	{
 		protected List<MenuCheckButton> ItemButtons = new List<MenuCheckButton>();
 
-		protected UIButton UpButton = null;
-		protected UIButton DownButton = null;
-
-		protected UIPanel ScrollBar = null;
-		protected UIButton ThumbButton = null;
+		protected VSlider VScrollbar = null;
 
 		public int DesiredRows = 6;
 		public float MiniumElementHeight = 45;
@@ -53,141 +49,34 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public ButtonScrollList(RelativeRect rect, int selectedIndex = -1, string texture = null) : base(rect, texture)
 		{
+			NoDraw = true;
+
 			SelectedIndex = selectedIndex;
 			IgnoreMouse = false;
 			if (string.IsNullOrEmpty(texture))
-				Show = false;
+				Hide();
 
 			SetupButtons();
 		}
 
 		protected virtual void SetupButtons()
 		{
-			// this will get put into a vscroll component
-
-			ScrollBar = new UIPanel(new RelativeRect(), ThemeManager.GetThemeAsset("ui/SliderBackground.png"));
-
-			ScrollBar.IgnoreMouse = false;
-			ScrollBar.Rect.X = RelativeLoc.XRight;
-			ScrollBar.Rect.Y = RelativeLoc.YUpper;
-			ScrollBar.Rect.Width.Mode = RelativeSize.SizeModes.Raw;
-			ScrollBar.Rect.Height = RelativeSize.FullHeight;
-			ScrollBar.Rect.AnchorLocation = OriginLocation.UpperRight;
-
-			ScrollBar.FillMode = LudicrousElectron.GUI.UIFillModes.StretchMiddle;
-			ScrollBar.Show = false;
-
-			// add buttons
- 
- 			RelativeRect upperRect = new RelativeRect(RelativePoint.UpperCenter, new RelativeSizeXY(RelativeSize.FullWidth, RelativeSize.FullWidth * 0.5f), OriginLocation.UpperCenter);
-			UpButton = new UIButton(upperRect, string.Empty);
-			UpButton.FillMode = UIFillModes.Stretch;
-			UpButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderUpButton.png");
-			UpButton.DefaultMaterial.Color = Color.White;
-			UpButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderUpButton.png"), Color.LightSteelBlue);
-			UpButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderUpButton.png"), Color.Gray);
-			UpButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderUpButton.png"), Color.Transparent);
- 			UpButton.Show = false;
- 			ScrollBar.AddChild(UpButton);
-
-			RelativeRect lowerRect = new RelativeRect(RelativePoint.LowerCenter, new RelativeSizeXY(RelativeSize.FullWidth, RelativeSize.FullWidth * 0.5f), OriginLocation.LowerCenter);
- 			DownButton = new UIButton(lowerRect, string.Empty);
-			DownButton.FillMode = UIFillModes.Stretch;
-			DownButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderDownButton.png");
-			DownButton.DefaultMaterial.Color = Color.White;
-			DownButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderDownButton.png"), Color.LightSteelBlue);
-			DownButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderDownButton.png"), Color.Gray);
-			DownButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderDownButton.png"), Color.Transparent);
-
-			DownButton.Show = false;
- 			ScrollBar.AddChild(DownButton);
-
-
-
-			RelativeRect thumbRect = new RelativeRect(RelativePoint.Center, new RelativeSizeXY(RelativeSize.FullWidth, RelativeSize.FullWidth), OriginLocation.Center);
-
-			ThumbButton = new UIButton(thumbRect, string.Empty);
-			ThumbButton.FillMode = UIFillModes.Stretch;
-
-			ThumbButton.DefaultMaterial.Texture = ThemeManager.GetThemeAsset("ui/SliderKnob.png");
-			ThumbButton.DefaultMaterial.Color = Color.FromArgb(128, Color.WhiteSmoke);
-			ThumbButton.HoverMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.White);
-			ThumbButton.ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.FromArgb(128, Color.LightGray));
-			ThumbButton.DisabledMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/SliderKnob.png"), Color.Transparent);
-			ThumbButton.Show = false;
-
-			ScrollBar.AddChild(ThumbButton);
-
-			AddChild(ScrollBar);
-			
-			if (ScrollbarTop == 0)
-				UpButton.Disable();
-			else if (ScrollbarTop + VisibleButtonCount == ItemList.Count)
-				DownButton.Disable();
-
-			UpButton.Clicked += UpButton_Clicked;
-			DownButton.Clicked += DownButton_Clicked;
+			VScrollbar = new VSlider(new RelativeRect(), 0);
+			VScrollbar.Rect.X = RelativeLoc.XRight;
+			VScrollbar.Rect.Y = RelativeLoc.YUpper;
+			VScrollbar.Rect.Width.Mode = RelativeSize.SizeModes.Raw;
+			VScrollbar.Rect.Height = RelativeSize.FullHeight;
+			VScrollbar.Rect.AnchorLocation = OriginLocation.UpperRight;
+			AddChild(VScrollbar);
+			VScrollbar.ValueChanged += VScrollbar_ValueChanged;
 		}
 
-		protected double GetCurrentValue()
+		private void VScrollbar_ValueChanged(object sender, BaseSlider e)
 		{
-			if (ItemList.Count == 0 || ItemList.Count <= VisibleButtonCount)
-				return 0;
-
-			return ((double)ScrollbarTop / (double)(ItemList.Count - VisibleButtonCount)) * 100;
+			ScrollbarTop = e.CurrentValue;
+			ForceRefresh();
 		}
-
-		protected void SetThumbPos(bool forceThumbResize = true)
-		{
-			float width = ScrollBar.Rect.GetPixelSize().X;
-			float height = ScrollBar.Rect.GetPixelSize().Y;
-
-			float availableDist = height - (width * 2);
-			float paramDist = availableDist * (float)(GetCurrentValue() / 100.0f);
-
-			float top = height - (width);
-
-			ThumbButton.Rect.Y.Paramater = top - paramDist;
-			ThumbButton.Rect.Y.RelativeTo = RelativeLoc.Edge.Raw;
-
-			if (forceThumbResize)
-				ThumbButton.ForceRefresh();
-		}
-
-		private void DownButton_Clicked(object sender, UIButton e)
-		{
-			ScrollbarTop++;
-			if (ScrollbarTop + VisibleButtonCount > ItemList.Count)
-				ScrollbarTop--;
-			else
-			{
-				if (ScrollbarTop + VisibleButtonCount == ItemList.Count)
-					DownButton.Disable();
-				else
-					DownButton.Enable();
-				UpButton.Enable();
-				SetThumbPos();
-				ForceRefresh();
-			}
-		}
-
-		private void UpButton_Clicked(object sender, UIButton e)
-		{
-			ScrollbarTop--;
-			if (ScrollbarTop < 0)
-				ScrollbarTop++;
-			else
-			{
-				if (ScrollbarTop == 0)
-					UpButton.Disable();
-				else
-					UpButton.Enable();
-				DownButton.Enable();
-				SetThumbPos();
-				ForceRefresh();
-			}
-		}
-
+		
 		public void SetSelectedIndex(int index)
 		{
 			SelectedIndex = index;
@@ -240,11 +129,15 @@ namespace LunarLambda.GUI.Menus.Controls
 				{
 					MenuCheckButton newButton = new MenuCheckButton(new RelativeRect(),"Button");
 					newButton.Tag = ItemButtons.Count;
-					newButton.Show = false;
+					newButton.Hide();
 					newButton.ButtonCheckChanged += ListButton_ButtonCheckChanged;
 					ItemButtons.Add(newButton);
 					AddChild(newButton);
 				}
+
+				VScrollbar.MinValue = 0;
+				VScrollbar.MaxValue = ItemList.Count - rowCount;
+				VScrollbar.ResetScroll(false);
 			}
 
 			VisibleButtonCount = rowCount;
@@ -262,8 +155,6 @@ namespace LunarLambda.GUI.Menus.Controls
 
 			for (int i = 0; i < ItemButtons.Count; i++)
 			{
-				ItemButtons[i].Show = i < ItemList.Count;
-
 				ItemButtons[i].Rect.X.Paramater = 0;
 				ItemButtons[i].Rect.X.RelativeTo = RelativeLoc.Edge.Raw;
 
@@ -278,9 +169,9 @@ namespace LunarLambda.GUI.Menus.Controls
 
 				ItemButtons[i].Rect.AnchorLocation = OriginLocation.UpperLeft;
 
-				ItemButtons[i].Show = i < ItemList.Count;
+				ItemButtons[i].SetVisibility(i < ItemList.Count);
 
-				if (ItemButtons[i].Show)
+				if (ItemButtons[i].Shown)
 				{
 					int itemIndex = ScrollbarTop + i;
 					ItemButtons[i].SetText(ItemList[itemIndex].Text);
@@ -291,19 +182,13 @@ namespace LunarLambda.GUI.Menus.Controls
 						ItemButtons[i].UnCheck();
 				}
 
-				ItemButtons[i].Resize((int)pixelSize.X, (int)pixelSize.Y);
+				ItemButtons[i].Resize(pixelSize);
 				buttonY -= desiredSize;
 			}
 
-			// position the scrollbar
-			ScrollBar.Rect.Width.Paramater = scrollWidth;
-			ScrollBar.Show = showScrool;
-			DownButton.Show = showScrool;
-			UpButton.Show = showScrool;
-			ThumbButton.Show = showScrool;
-
-			ScrollBar.Resize((int)pixelSize.X, (int)pixelSize.Y);
-			SetThumbPos();
+			VScrollbar.Rect.Width.Paramater = scrollWidth;
+			VScrollbar.SetVisibility(showScrool);
+			VScrollbar.Resize(pixelSize);
 
 			base.Resize(x, y);
 

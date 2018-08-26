@@ -28,7 +28,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public double ValueStep = 10;
 
-		public event EventHandler ValueChanged = null;
+		public event EventHandler<HSlider> ValueChanged = null;
 
 		public HSlider(RelativeRect rect, string labelPrefix, double value, int font = -1) : base(rect, ThemeManager.GetThemeAsset("ui/SliderBackground.png"))
 		{
@@ -139,7 +139,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			LabelControl.Text = GetText();
 			if (ShowPercentage)
 				LabelControl.ForceRefresh();
-			ValueChanged?.Invoke(this, EventArgs.Empty);
+			ValueChanged?.Invoke(this, this);
 
 			if (CurrentValue >= 99.5)
 				RightButton.Disable();
@@ -161,7 +161,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			if (ShowPercentage)
 				LabelControl.ForceRefresh();
 
-			ValueChanged?.Invoke(this, EventArgs.Empty);
+			ValueChanged?.Invoke(this, this);
 
 			if (CurrentValue < 0.49)
 				LeftButton.Disable();
@@ -194,7 +194,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			if (ShowPercentage)
 				LabelControl.ForceRefresh();
 
-			ValueChanged?.Invoke(this, EventArgs.Empty);
+			ValueChanged?.Invoke(this, this);
 
 			if (CurrentValue < 0.49)
 				LeftButton.Disable();

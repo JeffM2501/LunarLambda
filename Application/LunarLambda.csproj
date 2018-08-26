@@ -79,6 +79,7 @@
     <Compile Include="GUI\Config\ColorConfig.cs" />
     <Compile Include="GUI\Config\HotKeys.cs" />
     <Compile Include="GUI\MenuManager.cs" />
+    <Compile Include="GUI\Menus\Controls\BaseSlider.cs" />
     <Compile Include="GUI\Menus\Controls\ButtonScrollList.cs" />
     <Compile Include="GUI\Menus\Controls\Header.cs" />
     <Compile Include="GUI\Menus\Controls\HSlider.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="GUI\Menus\Controls\MenuCheckButton.cs" />
     <Compile Include="GUI\Menus\Controls\MenuTextEntry.cs" />
     <Compile Include="GUI\Menus\Controls\SpinSelector.cs" />
+    <Compile Include="GUI\Menus\Controls\VSlider.cs" />
     <Compile Include="GUI\Menus\MainMenu.cs" />
     <Compile Include="GUI\Menus\MenuCommon.cs" />
     <Compile Include="GUI\Menus\MenuRes.Designer.cs">

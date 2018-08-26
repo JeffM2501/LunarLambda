@@ -117,25 +117,18 @@ namespace LunarLambda.GUI.Menus
 			PreferencesManager.Set(PrefNames.MusicEnabled, selector.SelectedIndex);
 		}
 
-		private void MusicSlider_ValueChanged(object sender, EventArgs e)
+		private void MusicSlider_ValueChanged(object sender, HSlider slider)
 		{
-			HSlider slider = sender as HSlider;
-			if (slider == null)
-				return;
-
 			SoundManager.SetMusicVolume((float)slider.CurrentValue);
 			PreferencesManager.Set(PrefNames.MusicVolume, (int)slider.CurrentValue);
 		}
 
-		private void SoundSlider_ValueChanged(object sender, EventArgs e)
+		private void SoundSlider_ValueChanged(object sender, HSlider slider)
 		{
-			HSlider slider = sender as HSlider;
-			if (slider == null)
-				return;
-
 			SoundManager.SetMasterSoundVolume((float)slider.CurrentValue);
 			PreferencesManager.Set(PrefNames.SoundVolume, (int)slider.CurrentValue);
 		}
+
 		private void WindowSizeSelector_ValueChanged(object sender, SpinSelector e)
 		{
 			SpinSelector selector = sender as SpinSelector;
