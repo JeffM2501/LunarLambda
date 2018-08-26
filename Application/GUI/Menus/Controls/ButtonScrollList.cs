@@ -131,7 +131,8 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		protected double GetCurrentValue()
 		{
-			if (ItemList.Count == 0 || ItemList.Count <= VisibleButtonCount) ;
+			if (ItemList.Count == 0 || ItemList.Count <= VisibleButtonCount)
+				return 0;
 
 			return ((double)ScrollbarTop / (double)(ItemList.Count - VisibleButtonCount)) * 100;
 		}
