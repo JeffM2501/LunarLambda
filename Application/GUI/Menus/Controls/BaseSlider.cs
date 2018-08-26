@@ -123,9 +123,6 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		protected virtual void SetThumbPos(bool forceThumbResize)
 		{
-			float width = Rect.GetPixelSize().X;
-			float height = Rect.GetPixelSize().Y;
-
 			float paramDist = GetParamDistance();
 			if (Vertical)
 			{
@@ -229,10 +226,6 @@ namespace LunarLambda.GUI.Menus.Controls
 		{
 			if (!buttons.PrimaryDown)
 				return;
-
-			Vector2 origin = Rect.GetPixelOrigin();
-			float width = Rect.GetPixelSize().X;
-			float height = Rect.GetPixelSize().Y;
 
 			float availableDist = GetAvalailableClickDistance();
 			if (availableDist <= 0)
