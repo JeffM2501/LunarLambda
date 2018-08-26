@@ -26,6 +26,7 @@ namespace LunarLambda.GUI.Menus.Controls
 		public event EventHandler<BaseSlider> ValueChanged = null;
 
 		protected bool Vertical = true;
+		public bool UseWheelInput = true;
 
 		protected BaseSlider(RelativeRect rect, int value, int min = 0, int max = 100, string texture = null) : base(rect, texture)
 		{
@@ -77,7 +78,12 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		private void AdvanceButton_Clicked(object sender, UIButton e)
 		{
-			CurrentValue += ValueStep;
+			Advance(1);
+		}
+
+		public virtual void Advance(int count)
+		{
+			CurrentValue += ValueStep * count;
 			if (CurrentValue > MaxValue)
 				CurrentValue = MaxValue;
 			else
@@ -95,7 +101,11 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		private void RetreatButton_Clicked(object sender, UIButton e)
 		{
-			CurrentValue -= ValueStep;
+			Retreat(1);
+		}
+		public virtual void Retreat(int count)
+		{
+			CurrentValue -= ValueStep * count;
 			if (CurrentValue < MinValue)
 				CurrentValue = MinValue;
 			else
@@ -224,6 +234,19 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public override void ProcessMouseEvent(Vector2 location, InputManager.LogicalButtonState buttons)
 		{
+			int wheelAbs = Math.Abs(buttons.WheelTick);
+			if (UseWheelInput && wheelAbs > 0)
+			{
+				bool advance = buttons.WheelTick > 0;
+				if (Vertical)
+					advance = !advance;
+
+				if (!advance)
+					Retreat(Math.Abs(wheelAbs));
+				else
+					Advance(Math.Abs(wheelAbs));
+			}
+
 			if (!buttons.PrimaryDown)
 				return;
 

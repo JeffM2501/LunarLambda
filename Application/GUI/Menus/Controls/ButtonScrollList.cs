@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using LudicrousElectron.Engine.Input;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
@@ -67,6 +68,7 @@ namespace LunarLambda.GUI.Menus.Controls
 			VScrollbar.Rect.Width.Mode = RelativeSize.SizeModes.Raw;
 			VScrollbar.Rect.Height = RelativeSize.FullHeight;
 			VScrollbar.Rect.AnchorLocation = OriginLocation.UpperRight;
+			VScrollbar.UseWheelInput = false;
 			AddChild(VScrollbar);
 			VScrollbar.ValueChanged += VScrollbar_ValueChanged;
 		}
@@ -211,6 +213,20 @@ namespace LunarLambda.GUI.Menus.Controls
 
 			SelectedIndex = index;
 			SelectedIndexChanged?.Invoke(this, this);
+		}
+
+		public override void ProcessMouseEvent(Vector2 location, InputManager.LogicalButtonState buttons)
+		{
+			int wheelAbs = Math.Abs(buttons.WheelTick);
+			if (wheelAbs > 0)
+			{
+				if (buttons.WheelTick > 0)
+					VScrollbar.Retreat(Math.Abs(wheelAbs));
+				else
+					VScrollbar.Advance(Math.Abs(wheelAbs));
+			}
+
+			base.ProcessMouseEvent(location, buttons);
 		}
 	}
 }
