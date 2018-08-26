@@ -170,7 +170,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
         public override void ProcessMouseEvent(Vector2 location, InputManager.LogicalButtonState buttons)
         {
-            if (!buttons.PrimaryClick || ParentCanvas == null || ParentCanvas.PopupEnabled())
+            if (!buttons.PrimaryClick || ParentCanvas == null || ParentCanvas.PopupEnabled() || TextLabels.Count < 2)
                 return;
 
             float width = Rect.GetPixelSize().X;
