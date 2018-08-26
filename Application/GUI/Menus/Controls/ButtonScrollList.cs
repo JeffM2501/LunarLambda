@@ -256,9 +256,8 @@ namespace LunarLambda.GUI.Menus.Controls
 			if (showScrool)
 				buttonWidth -= scrollWidth - CellPadding;
 
-			// set the postions and visibility;
+			// set the positions and visibility
 
-			int count = VisibleButtonCount;
 			float buttonY = pixelSize.Y;
 
 			for (int i = 0; i < ItemButtons.Count; i++)
