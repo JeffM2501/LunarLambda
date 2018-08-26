@@ -19,7 +19,7 @@ namespace LunarLambda.API
 		internal static void CallFinalizeDatabases(object sender = null) { FinalizeDatabases?.Invoke(sender, EventArgs.Empty); }
 		internal static void CallMissionStart(object sender = null) { MissionStart?.Invoke(sender, EventArgs.Empty); }
 
-		internal static void CallGetDefaultServerInfo(ServerStartupInfo info = null) { MissionStart?.Invoke(null, info); }
-		internal static void CallGetServerInfoForScenario(ServerStartupInfo info = null) { MissionStart?.Invoke(null, info); }
+		internal static void CallGetDefaultServerInfo(ServerStartupInfo info = null) { GetDefaultServerInfo?.Invoke(null, info); }
+		internal static void CallGetServerInfoForScenario(ServerStartupInfo info = null) { GetServerInfoForScenario?.Invoke(null, info); }
 	}
 }
