@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using LunarLambda.GUI.Menus;
 
 namespace LunarLambda.API
 {
@@ -35,5 +35,7 @@ namespace LunarLambda.API
 
 		public static event EventHandler MissionStart = null;
 
-    }
+		public static event EventHandler<ServerStartupInfo> GetDefaultServerInfo = null;
+		public static event EventHandler<ServerStartupInfo> GetServerInfoForScenario = null;
+	}
 }

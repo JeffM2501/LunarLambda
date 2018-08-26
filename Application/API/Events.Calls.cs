@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using LudicrousElectron.Engine.Audio;
+using LunarLambda.GUI.Menus;
 
 namespace LunarLambda.API
 {
@@ -17,5 +18,8 @@ namespace LunarLambda.API
 
 		internal static void CallFinalizeDatabases(object sender = null) { FinalizeDatabases?.Invoke(sender, EventArgs.Empty); }
 		internal static void CallMissionStart(object sender = null) { MissionStart?.Invoke(sender, EventArgs.Empty); }
+
+		internal static void CallGetDefaultServerInfo(ServerStartupInfo info = null) { MissionStart?.Invoke(null, info); }
+		internal static void CallGetServerInfoForScenario(ServerStartupInfo info = null) { MissionStart?.Invoke(null, info); }
 	}
 }
