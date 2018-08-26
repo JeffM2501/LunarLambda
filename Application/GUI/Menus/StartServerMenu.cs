@@ -1,23 +1,55 @@
-﻿using LudicrousElectron.Engine;
+﻿using System;
+using System.Collections.Generic;
+
+
+using LudicrousElectron.Engine;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
+
+using LunarLambda.API;
 using LunarLambda.GUI.Menus.Controls;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LunarLambda.GUI.Menus
 {
+	public class ServerStartupInfo : EventArgs
+	{
+		public string Name = MenuRes.DefaultServerName;
+		public string Password = string.Empty;
+		public bool Public = false;
+
+		public enum FTLSettings
+		{
+			None = 0,
+			Default,
+			Warp,
+			Jump,
+			All,
+		}
+		public FTLSettings FTL = FTLSettings.Default;
+		public double SensorRange = 30;
+		public bool TacticalRadarMSD = true;
+		public bool LongRangeRadarMSD = true;
+		public enum ScanSettings
+		{
+			None = 0,
+			Normal,
+			Advanced,
+		}
+		public ScanSettings Scans = ScanSettings.Normal;
+		public bool UseWeaponFrequencies = false;
+		public bool UseSystemDamage = true;
+	}
+
 	public class StartServerMenu : MenuCommon
 	{
         protected LayoutContainer[] Columns = new LayoutContainer[] { null, null };
 
-        protected override void SetupControls()
+		protected ServerStartupInfo StartupInfo = new ServerStartupInfo();
+
+		protected override void SetupControls()
 		{
+			Events.CallGetDefaultServerInfo(StartupInfo);
 			SetupBackground(0);
 			SetupBackButton(1);
 
@@ -52,76 +84,98 @@ namespace LunarLambda.GUI.Menus
             serverSetupGrid.SetColSpan(8);
             serverSetupGrid.SetColSpan(10);
 
+			// server config header
             serverSetupGrid.AddChild(new Header(new RelativeRect(), MenuRes.ServerConfiguration));
 
+			// name
             serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerName));
-            var te = new MenuTextEntry(RelativeRect.FullLeft, MenuRes.DefaultServerName);
-			te.TextChanged += ServerAddress_TextChanged;
+            var te = new MenuTextEntry(RelativeRect.FullLeft, StartupInfo.Name);
+			te.TextChanged += ServerName_TextChanged;
 			serverSetupGrid.AddChild(te);
 
+			// password
 			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerPassword));
-			te = new MenuTextEntry(RelativeRect.FullLeft, string.Empty);
+			te = new MenuTextEntry(RelativeRect.FullLeft, StartupInfo.Password);
 			te.TextChanged += Password_TextChanged;
 			serverSetupGrid.AddChild(te);
 
+			// ip address
 			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerIP));
 			var ip = MakeGridLabel(Core.GetLocalIPString());
 			ip.Rect.AnchorLocation = OriginLocation.MiddleLeft;
 			serverSetupGrid.AddChild(ip);
 
+			// public visibility (should this be a checkbox?)
 			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerVis));
-			SpinSelector selector = new SpinSelector(new RelativeRect(), MenuRes.ServerVisModes.Split(";".ToCharArray()), 0);
+			SpinSelector selector = new SpinSelector(new RelativeRect(), MenuRes.ServerVisModes.Split(";".ToCharArray()), StartupInfo.Public ? 1 : 0);
 			selector.ValueChanged += ServerVis_ValueChanged;
 			serverSetupGrid.AddChild(selector);
 
+			// ship options section
 			serverSetupGrid.AddChild(new Header(new RelativeRect(), MenuRes.PlayerShipOptions));
 
+			// FTL Drive type
 			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.FTLType));
-			selector = new SpinSelector(new RelativeRect(), MenuRes.FTLTypes.Split(";".ToCharArray()), 1);
+			selector = new SpinSelector(new RelativeRect(), MenuRes.FTLTypes.Split(";".ToCharArray()), (int)StartupInfo.FTL);
 			selector.ValueChanged += FTLType_ValueChanged;
 			serverSetupGrid.AddChild(selector);
 
+			// sensor range
 			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.RadarRange));
 			List<string> radarRanges = new List<string>();
 			for (int i = 10; i <= 50; i += 5)
 				radarRanges.Add(i.ToString() + "u");
 
-			selector = new SpinSelector(new RelativeRect(), radarRanges, 4);
+			selector = new SpinSelector(new RelativeRect(), radarRanges, ((int)StartupInfo.SensorRange/5) - 2);
 			selector.ValueChanged += RadarRange_ValueChanged;
 			serverSetupGrid.AddChild(selector);
 
+			// main screen display options (why are these not dynamic?)
 			serverSetupGrid.AddChild(new Header(new RelativeRect(), MenuRes.MainScreenOptions));
 
+			// tactical radar button
 			var cb = new MenuCheckButton(RelativeRect.Full, MenuRes.TacticalRadar);
 			cb.ButtonCheckChanged += TacRadar_CheckChanged;
-			cb.Check();
+			if (StartupInfo.TacticalRadarMSD)
+				cb.Check();
 			serverSetupGrid.AddChild(cb);
 
+			// long range radar button
 			cb = new MenuCheckButton(RelativeRect.Full, MenuRes.LongRangeRadar);
 			cb.ButtonCheckChanged += LRRadar_CheckChanged;
-			cb.Check();
+			if (StartupInfo.LongRangeRadarMSD)
+				cb.Check();
 			serverSetupGrid.AddChild(cb);
 
-
+			// game rules section
 			serverSetupGrid.AddChild(new Header(new RelativeRect(), MenuRes.GameRules));
 
+			// sensor scan complexity
 			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ScanComplexity));
-			selector = new SpinSelector(new RelativeRect(), MenuRes.ScanTypes.Split(";".ToCharArray()), 1);
+			selector = new SpinSelector(new RelativeRect(), MenuRes.ScanTypes.Split(";".ToCharArray()), (int)StartupInfo.Scans);
 			selector.ValueChanged += Scan_ValueChanged;
+
 			serverSetupGrid.AddChild(selector);
 
+			// use weapon frequencies
 			cb = new MenuCheckButton(RelativeRect.Full, MenuRes.WeaponFrequencies);
 			cb.ButtonCheckChanged += WeaponFreq_CheckChanged;
+			if (StartupInfo.UseWeaponFrequencies)
+				cb.Check();
 			serverSetupGrid.AddChild(cb);
 
+			// use individual system damage
 			cb = new MenuCheckButton(RelativeRect.Full, MenuRes.PerSystemDamage);
 			cb.ButtonCheckChanged += SystemDamage_CheckChanged;
-			cb.Check();
+			if (StartupInfo.UseSystemDamage)
+				cb.Check();
 			serverSetupGrid.AddChild(cb);
 
-			// config header
+			// add the left side group to the main layout
 			AddElement(Columns[0], layerIndex);
 
+
+			// right side group
             rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperRight);
 
             GridLayoutGroup scenarioGrid = new GridLayoutGroup(rect, 15, 2);
@@ -130,58 +184,110 @@ namespace LunarLambda.GUI.Menus
 
             scenarioGrid.MaxChildSize = MenuCommon.ButtonHeight.Paramater;
 
-            scenarioGrid.SetColSpan(0);
+            scenarioGrid.SetColSpan(0, 1);
+			scenarioGrid.SetColSpan(1, 6);
+			scenarioGrid.SetColSpan(7, 4);
+			scenarioGrid.SetColSpan(12, 3);
 
-            // 15 total slots
-            // config header
-            scenarioGrid.AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
+			// Scenario header
+			scenarioGrid.AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
 
-            AddElement(Columns[1], layerIndex+1);
+			// replace with scenario list
+			ButtonScrollList scenarioList = new ButtonScrollList(RelativeRect.Full);
+			scenarioList.DesiredRows = 6;
+
+			// REPLACE with actual scenarios
+			scenarioList.AddItem("Basic");
+			scenarioList.AddItem("Waves");
+			scenarioList.AddItem("Beacon of Light Series");
+			scenarioList.AddItem("The Edge-of-Space");
+			scenarioList.AddItem("Ghost from the past");
+			scenarioList.AddItem("Surrounded");
+			scenarioList.AddItem("Battlefield");
+			scenarioList.AddItem("Quick Basic");
+			scenarioList.AddItem("Birth of the Atlantis");
+			scenarioList.AddItem("Empty space");
+
+			scenarioList.SetSelectedIndex(0);
+
+			scenarioList.FillMode = UIFillModes.Stretch4Quad;
+			scenarioGrid.AddChild(scenarioList);
+
+
+			// replace with scenario list
+			UIPanel panel = new UIPanel(RelativeRect.Full, ThemeManager.GetThemeAsset("ui/PanelBackground.png"));
+			panel.FillMode = UIFillModes.Stretch4Quad;
+			scenarioGrid.AddChild(panel);
+
+			// sensor scan complexity
+			// get data from selected scenario
+			scenarioGrid.AddChild(MakeGridLabel(MenuRes.Variation));
+			selector = new SpinSelector(new RelativeRect(), MenuRes.DefaultVariation.Split(";".ToCharArray()), 0);
+			selector.ValueChanged += ScenarioVariation_ValueChanged;
+			scenarioGrid.AddChild(selector);
+
+			// replace with variation info
+			panel = new UIPanel(RelativeRect.Full, ThemeManager.GetThemeAsset("ui/PanelBackground.png"));
+			panel.FillMode = UIFillModes.Stretch4Quad;
+			scenarioGrid.AddChild(panel);
+
+			AddElement(Columns[1], layerIndex+1);
 
             return layerIndex + 2;
         }
 
-		private void ServerAddress_TextChanged(object sender, UITextEntry e)
+		private void ServerName_TextChanged(object sender, UITextEntry e)
 		{
-			
+			StartupInfo.Name = e.GetCurrentText();
 		}
 
 		private void Password_TextChanged(object sender, UITextEntry e)
 		{
-
+			StartupInfo.Password = e.GetCurrentText();
 		}
+
 		private void ServerVis_ValueChanged(object sender, SpinSelector e)
 		{
-
+			StartupInfo.Public = e.SelectedIndex != 0;
 		}
+
 		private void FTLType_ValueChanged(object sender, SpinSelector e)
 		{
-
+			StartupInfo.FTL = (ServerStartupInfo.FTLSettings)e.SelectedIndex;
 		}
+
 		private void RadarRange_ValueChanged(object sender, SpinSelector e)
 		{
-
+			StartupInfo.SensorRange = ((e.SelectedIndex + 2) * 5);
 		}
+
 		private void TacRadar_CheckChanged(object sender, UIButton e)
 		{
-
+			StartupInfo.TacticalRadarMSD = e.IsChecked();
 		}
+
 		private void LRRadar_CheckChanged(object sender, UIButton e)
 		{
-
+			StartupInfo.LongRangeRadarMSD = e.IsChecked();
 		}
+
 		private void Scan_ValueChanged(object sender, SpinSelector e)
 		{
-
+			StartupInfo.Scans = (ServerStartupInfo.ScanSettings)e.SelectedIndex;
 		}
+
 		private void WeaponFreq_CheckChanged(object sender, UIButton e)
 		{
-
+			StartupInfo.UseWeaponFrequencies = e.IsChecked();
 		}
 
 		private void SystemDamage_CheckChanged(object sender, UIButton e)
 		{
-
+			StartupInfo.UseSystemDamage = e.IsChecked();
+		}
+		private void ScenarioVariation_ValueChanged(object sender, SpinSelector e)
+		{
+			// set variation
 		}
 
 		protected virtual void SetupStartServerButton(int layerIndex)

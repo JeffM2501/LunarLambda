@@ -79,6 +79,7 @@
     <Compile Include="GUI\Config\ColorConfig.cs" />
     <Compile Include="GUI\Config\HotKeys.cs" />
     <Compile Include="GUI\MenuManager.cs" />
+    <Compile Include="GUI\Menus\Controls\ButtonScrollList.cs" />
     <Compile Include="GUI\Menus\Controls\Header.cs" />
     <Compile Include="GUI\Menus\Controls\HSlider.cs" />
     <Compile Include="GUI\Menus\Controls\MenuButton.cs" />

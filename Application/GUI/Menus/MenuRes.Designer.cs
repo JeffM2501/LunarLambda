@@ -79,6 +79,15 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string DefaultVariation {
+            get {
+                return ResourceManager.GetString("DefaultVariation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Effects Volume.
         /// </summary>
         internal static string EffectsVolume {
@@ -241,7 +250,7 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Radar Range:.
+        ///   Looks up a localized string similar to Nominal Sensor Range:.
         /// </summary>
         internal static string RadarRange {
             get {
@@ -381,6 +390,15 @@ namespace LunarLambda.GUI.Menus {
         internal static string Tutorials {
             get {
                 return ResourceManager.GetString("Tutorials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variation:.
+        /// </summary>
+        internal static string Variation {
+            get {
+                return ResourceManager.GetString("Variation", resourceCulture);
             }
         }
         

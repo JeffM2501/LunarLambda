@@ -123,6 +123,9 @@
   <data name="DefaultServerName" xml:space="preserve">
     <value>Server</value>
   </data>
+  <data name="DefaultVariation" xml:space="preserve">
+    <value>None</value>
+  </data>
   <data name="EffectsVolume" xml:space="preserve">
     <value>Effects Volume</value>
   </data>
@@ -178,7 +181,7 @@
     <value>Quit</value>
   </data>
   <data name="RadarRange" xml:space="preserve">
-    <value>Radar Range:</value>
+    <value>Nominal Sensor Range:</value>
   </data>
   <data name="ScanComplexity" xml:space="preserve">
     <value>Scan Complexity:</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="Tutorials" xml:space="preserve">
     <value>Tutorials</value>
+  </data>
+  <data name="Variation" xml:space="preserve">
+    <value>Variation:</value>
   </data>
   <data name="WeaponFrequencies" xml:space="preserve">
     <value>Weapon Frequenceies</value>
