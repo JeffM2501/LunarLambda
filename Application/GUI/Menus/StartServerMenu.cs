@@ -9,10 +9,10 @@ using LudicrousElectron.GUI.Geometry;
 
 using LunarLambda.API;
 using LunarLambda.GUI.Menus.Controls;
+using static LunarLambda.API.Scenarios;
 
 namespace LunarLambda.GUI.Menus
 {
-
 	public class ServerStartupInfo : EventArgs
 	{
 		public string Name = MenuRes.DefaultServerName;
@@ -40,6 +40,9 @@ namespace LunarLambda.GUI.Menus
 		public ScanSettings Scans = ScanSettings.Normal;
 		public bool UseWeaponFrequencies = false;
 		public bool UseSystemDamage = true;
+
+		public ScenarioInfo SelectedScenario = null;
+		public ScenarioInfo.VariationInfo SelectedVariation = null;
 	}
 
 	public class StartServerMenu : MenuCommon
@@ -50,6 +53,7 @@ namespace LunarLambda.GUI.Menus
 
 		protected TextArea SecenarioText = null;
 		protected TextArea VariationText = null;
+		protected SpinSelector VariationList = null;
 
 		protected override void SetupControls()
 		{
@@ -200,19 +204,10 @@ namespace LunarLambda.GUI.Menus
 			scenarioList.DesiredRows = 6;
 
 			// REPLACE with actual scenarios
-			scenarioList.AddItem("Basic");
-			scenarioList.AddItem("Waves");
-			scenarioList.AddItem("Beacon of Light Series");
-			scenarioList.AddItem("The Edge-of-Space");
-			scenarioList.AddItem("Ghost from the past");
-			scenarioList.AddItem("Surrounded");
-			scenarioList.AddItem("Battlefield");
-			scenarioList.AddItem("Quick Basic");
-			scenarioList.AddItem("Birth of the Atlantis");
-			scenarioList.AddItem("Empty space");
+			foreach (var scenario in Scenarios.GetScenarioList())
+				scenarioList.AddItem(scenario.Name, scenario);
 
-			scenarioList.SetSelectedIndex(0);
-
+			scenarioList.SelectedIndexChanged += ScenarioList_SelectedIndexChanged;
 			scenarioList.FillMode = UIFillModes.Stretch4Quad;
 			scenarioGrid.AddChild(scenarioList);
 
@@ -223,16 +218,15 @@ namespace LunarLambda.GUI.Menus
 			SecenarioText.DesiredRows = 8;
 			SecenarioText.BorderPadding = 4;
 			SecenarioText.MiniumElementHeight = 20;
-			SecenarioText.SetText("Basic Scenario. A few random stations, with random stuff around them, are under attack by enemies. Kill all enemies to win.");
 
 			scenarioGrid.AddChild(SecenarioText);
 
 			// sensor scan complexity
 			// get data from selected scenario
 			scenarioGrid.AddChild(MakeGridLabel(MenuRes.Variation));
-			selector = new SpinSelector(new RelativeRect(), MenuRes.DefaultVariation.Split(";".ToCharArray()), 0);
-			selector.ValueChanged += ScenarioVariation_ValueChanged;
-			scenarioGrid.AddChild(selector);
+			VariationList = new SpinSelector(new RelativeRect(), MenuRes.DefaultVariation.Split(";".ToCharArray()), 0);
+			VariationList.ValueChanged += ScenarioVariation_ValueChanged;
+			scenarioGrid.AddChild(VariationList);
 
 			// replace with variation info
 			VariationText = new TextArea(RelativeRect.Full, string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
@@ -240,13 +234,49 @@ namespace LunarLambda.GUI.Menus
 			VariationText.DesiredRows = 6;
 			VariationText.BorderPadding = 4;
 			VariationText.MiniumElementHeight = 20;
-			VariationText.SetText("No variation selected, the scenario will play as intended.");
 			scenarioGrid.AddChild(VariationText);
 
 			AddElement(Columns[1], layerIndex+1);
 
-            return layerIndex + 2;
+			scenarioList.SetSelectedIndex(0);
+
+			return layerIndex + 2;
         }
+
+		private void ScenarioList_SelectedIndexChanged(object sender, ButtonScrollList e)
+		{
+			if (e.SelectedIndex < 0)
+				return;
+
+			StartupInfo.SelectedScenario = Scenarios.GetScenarioList()[e.SelectedIndex];
+			StartupInfo.SelectedVariation = null;
+
+			API.Events.CallGetServerInfoForScenario(StartupInfo);
+
+			SecenarioText.SetText(StartupInfo.SelectedScenario.Description);
+
+			List<string> names = new List<string>();
+			names.Add(MenuRes.NoVariatioName);
+			foreach (var vars in StartupInfo.SelectedScenario.Variations)
+				names.Add(vars.DisplayName);
+
+			VariationList.SetLabels(names);
+			VariationList.SetSelectedIndex(0);
+		}
+
+		private void ScenarioVariation_ValueChanged(object sender, SpinSelector e)
+		{
+			if (e.SelectedIndex == 0)
+			{
+				StartupInfo.SelectedVariation = null;
+				VariationText.SetText(MenuRes.NoVariationDescription);
+			}
+			else
+			{
+				StartupInfo.SelectedVariation = StartupInfo.SelectedScenario.Variations[e.SelectedIndex - 1];
+				VariationText.SetText(StartupInfo.SelectedVariation.Description);
+			}
+		}
 
 		private void ServerName_TextChanged(object sender, UITextEntry e)
 		{
@@ -296,10 +326,6 @@ namespace LunarLambda.GUI.Menus
 		private void SystemDamage_CheckChanged(object sender, UIButton e)
 		{
 			StartupInfo.UseSystemDamage = e.IsChecked();
-		}
-		private void ScenarioVariation_ValueChanged(object sender, SpinSelector e)
-		{
-			// set variation
 		}
 
 		protected virtual void SetupStartServerButton(int layerIndex)

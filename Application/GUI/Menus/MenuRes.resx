@@ -165,6 +165,12 @@
   <data name="MusicVolume" xml:space="preserve">
     <value>Music Volume</value>
   </data>
+  <data name="NoVariatioName" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NoVariationDescription" xml:space="preserve">
+    <value>No variation selected, the scenario will run using the default settings.</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
@@ -190,7 +196,7 @@
     <value>None (Delay);Normal;Advanced</value>
   </data>
   <data name="Scenario" xml:space="preserve">
-    <value>Scenario</value>
+    <value>Scenarios</value>
   </data>
   <data name="ServerConfiguration" xml:space="preserve">
     <value>Server Configuration</value>

@@ -205,6 +205,24 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string NoVariatioName {
+            get {
+                return ResourceManager.GetString("NoVariatioName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No variation selected, the scenario will run using the default settings..
+        /// </summary>
+        internal static string NoVariationDescription {
+            get {
+                return ResourceManager.GetString("NoVariationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         internal static string Options {
@@ -277,7 +295,7 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scenario.
+        ///   Looks up a localized string similar to Scenarios.
         /// </summary>
         internal static string Scenario {
             get {
