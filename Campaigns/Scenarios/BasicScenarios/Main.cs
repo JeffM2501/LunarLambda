@@ -21,6 +21,17 @@ namespace LunarLambda.Campaigns.BasicScenarios
 			quickBasic.Scenario = new QuickBasic();
 
 			Scenarios.RegisterScenario(quickBasic);
+
+			Scenarios.ScenarioInfo waves = new Scenarios.ScenarioInfo();
+
+			waves.Name = "Waves";
+			waves.Description = "Waves of increasingly difficult enemies.";
+			waves.Type = "Basic";
+			waves.Variations.Add(new Scenarios.ScenarioInfo.VariationInfo("Hard", "Hard", "Difficulty starts at wave 5 and increases by 1.5 after the players defeat each wave. (Players are more quickly overwhelmed, leading to shorter games.)"));
+			waves.Variations.Add(new Scenarios.ScenarioInfo.VariationInfo("Easy", "Easy", "Makes each wave easier by decreasing the number of ships in each wave. (Takes longer for the players to be overwhelmed; good for new players.)"));
+			waves.Scenario = new QuickBasic();
+
+			Scenarios.RegisterScenario(waves);
 		}
 	}
 }
