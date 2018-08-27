@@ -25,6 +25,8 @@ namespace LunarLambda.GUI.Menus.Controls
 			SelectedIndex = index;
 			if (Inited)
 				ForceRefresh();
+
+			SelectedIndexChanged?.Invoke(this, this);
 		}
 
 		protected override GUIElement GetElement(RelativeRect rect)
