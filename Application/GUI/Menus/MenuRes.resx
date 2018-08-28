@@ -220,13 +220,13 @@
     <value>Sound Options</value>
   </data>
   <data name="StartClient" xml:space="preserve">
-    <value>Start Client</value>
+    <value>Join A Game</value>
   </data>
   <data name="StartScenario" xml:space="preserve">
     <value>Start Scenario</value>
   </data>
   <data name="StartServer" xml:space="preserve">
-    <value>Start Server</value>
+    <value>Create A Game</value>
   </data>
   <data name="TacticalRadar" xml:space="preserve">
     <value>Tactical Radar</value>

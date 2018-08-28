@@ -367,7 +367,7 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Client.
+        ///   Looks up a localized string similar to Join A Game.
         /// </summary>
         internal static string StartClient {
             get {
@@ -385,7 +385,7 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Server.
+        ///   Looks up a localized string similar to Create A Game.
         /// </summary>
         internal static string StartServer {
             get {
