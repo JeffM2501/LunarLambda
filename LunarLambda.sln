@@ -35,6 +35,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Data", "LunarLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.API", "LunarLambda.API\LunarLambda.API.csproj", "{154F8F3B-7315-43A9-B177-EF1E1D715CA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Host.Game", "LunarLambda.Host.Game\LunarLambda.Host.Game.csproj", "{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Client.Ship", "LunarLambda.Client.Ship\LunarLambda.Client.Ship.csproj", "{14E86065-BF4F-49EC-863E-0BF798FA49F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Messges.Ship", "LunarLambda.Messges.Ship\LunarLambda.Messges.Ship.csproj", "{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +195,42 @@ Global
 		{154F8F3B-7315-43A9-B177-EF1E1D715CA5}.Release|x64.Build.0 = Release|Any CPU
 		{154F8F3B-7315-43A9-B177-EF1E1D715CA5}.Release|x86.ActiveCfg = Release|Any CPU
 		{154F8F3B-7315-43A9-B177-EF1E1D715CA5}.Release|x86.Build.0 = Release|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Debug|x64.Build.0 = Debug|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Debug|x86.Build.0 = Debug|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Release|x64.ActiveCfg = Release|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Release|x64.Build.0 = Release|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Release|x86.ActiveCfg = Release|Any CPU
+		{ADDD72D6-C8F5-4D04-B102-5B7CD16B0EBA}.Release|x86.Build.0 = Release|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Debug|x64.Build.0 = Debug|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Debug|x86.Build.0 = Debug|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Release|x64.ActiveCfg = Release|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Release|x64.Build.0 = Release|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Release|x86.ActiveCfg = Release|Any CPU
+		{14E86065-BF4F-49EC-863E-0BF798FA49F3}.Release|x86.Build.0 = Release|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Debug|x64.Build.0 = Debug|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Debug|x86.Build.0 = Debug|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x64.ActiveCfg = Release|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x64.Build.0 = Release|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x86.ActiveCfg = Release|Any CPU
+		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

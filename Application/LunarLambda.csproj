@@ -145,9 +145,17 @@
       <Project>{154f8f3b-7315-43a9-b177-ef1e1d715ca5}</Project>
       <Name>LunarLambda.API</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LunarLambda.Client.Ship\LunarLambda.Client.Ship.csproj">
+      <Project>{14e86065-bf4f-49ec-863e-0bf798fa49f3}</Project>
+      <Name>LunarLambda.Client.Ship</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LunarLambda.Data\LunarLambda.Data.csproj">
       <Project>{b26b3c18-676f-4e87-a1f2-2b49db59bdfd}</Project>
       <Name>LunarLambda.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunarLambda.Host.Game\LunarLambda.Host.Game.csproj">
+      <Project>{addd72d6-c8f5-4d04-b102-5b7cd16b0eba}</Project>
+      <Name>LunarLambda.Host.Game</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
