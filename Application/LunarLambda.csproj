@@ -156,9 +156,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.exe $(SolutionDir)_bin_debug
-if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.dll $(SolutionDir)_bin_debug
-if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.exe $(SolutionDir)_bin_release
-if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.dll $(SolutionDir)_bin_release</PostBuildEvent>
+    <PostBuildEvent>if "$(OS)" == "Windows_NT"  if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.exe $(SolutionDir)_bin_debug
+if "$(OS)" == "Windows_NT"  if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug copy $(TargetDir)*.dll $(SolutionDir)_bin_debug
+if "$(OS)" == "Windows_NT"  if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_release copy $(TargetDir)*.exe $(SolutionDir)_bin_release
+if "$(OS)" == "Windows_NT"  if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_release copy $(TargetDir)*.dll $(SolutionDir)_bin_release
+if "$(OS)" == "Unix"  if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug cp $(TargetDir)*.exe $(SolutionDir)_bin_debug
+if "$(OS)" == "Unix"  if "$(ConfigurationName)" == "Debug" if exist $(SolutionDir)_bin_debug cp $(TargetDir)*.dll $(SolutionDir)_bin_debug
+if "$(OS)" == "Unix"  if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_release cp $(TargetDir)*.exe $(SolutionDir)_bin_release
+if "$(OS)" == "Unix"  if "$(ConfigurationName)" == "Release" if exist $(SolutionDir)_bin_release cp $(TargetDir)*.dll $(SolutionDir)_bin_release
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
