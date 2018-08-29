@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace LunarLambda.Host.Game
 {
-    class ShipServer
+    internal class ShipServer
     {
+
+        public ShipServer(int port)
+        {
+            if (port < 1024)
+                throw new Exception("invalid port range");
+        }
     }
 }

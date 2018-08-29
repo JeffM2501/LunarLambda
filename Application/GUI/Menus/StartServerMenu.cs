@@ -9,6 +9,7 @@ using LudicrousElectron.GUI.Geometry;
 
 using LunarLambda.API;
 using LunarLambda.GUI.Menus.Controls;
+using LunarLambda.Data;
 
 namespace LunarLambda.GUI.Menus
 {

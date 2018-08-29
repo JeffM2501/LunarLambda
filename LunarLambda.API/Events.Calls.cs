@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using LunarLambda.Data;
+
 namespace LunarLambda.API
 {
     public static partial class Events
