@@ -9,42 +9,9 @@ using LudicrousElectron.GUI.Geometry;
 
 using LunarLambda.API;
 using LunarLambda.GUI.Menus.Controls;
-using static LunarLambda.API.Scenarios;
 
 namespace LunarLambda.GUI.Menus
 {
-	public class ServerStartupInfo : EventArgs
-	{
-		public string Name = MenuRes.DefaultServerName;
-		public string Password = string.Empty;
-		public bool Public = false;
-
-		public enum FTLSettings
-		{
-			None = 0,
-			Default,
-			Warp,
-			Jump,
-			All,
-		}
-		public FTLSettings FTL = FTLSettings.Default;
-		public double SensorRange = 30;
-		public bool TacticalRadarMSD = true;
-		public bool LongRangeRadarMSD = true;
-		public enum ScanSettings
-		{
-			None = 0,
-			Normal,
-			Advanced,
-		}
-		public ScanSettings Scans = ScanSettings.Normal;
-		public bool UseWeaponFrequencies = false;
-		public bool UseSystemDamage = true;
-
-		public ScenarioInfo SelectedScenario = null;
-		public ScenarioInfo.VariationInfo SelectedVariation = null;
-	}
-
 	public class StartServerMenu : MenuCommon
 	{
         protected LayoutContainer[] Columns = new LayoutContainer[] { null, null };

@@ -56,13 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Events.Calls.cs" />
-    <Compile Include="API\Events.cs" />
     <Compile Include="API\MenuAPI.cs" />
-    <Compile Include="API\Scenarios.cs" />
-    <Compile Include="API\Plugin.cs" />
     <Compile Include="API\PluginLoader.cs" />
-    <Compile Include="API\StateData.cs" />
     <Compile Include="Common\Graphics.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="GUI\Config\ColorConfig.cs" />
@@ -145,6 +140,10 @@
     <ProjectReference Include="..\..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj">
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunarLambda.API\LunarLambda.API.csproj">
+      <Project>{154f8f3b-7315-43a9-b177-ef1e1d715ca5}</Project>
+      <Name>LunarLambda.API</Name>
     </ProjectReference>
     <ProjectReference Include="..\LunarLambda.Data\LunarLambda.Data.csproj">
       <Project>{b26b3c18-676f-4e87-a1f2-2b49db59bdfd}</Project>

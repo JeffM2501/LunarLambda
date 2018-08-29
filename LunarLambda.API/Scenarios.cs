@@ -87,7 +87,7 @@ namespace LunarLambda.API
 			return ScenarioList.Find((x) => x.Name == name);
 		}
 
-        internal static ScenarioInfo[] GetScenarioList()
+        public static ScenarioInfo[] GetScenarioList()
         {
             return ScenarioList.ToArray();
         }

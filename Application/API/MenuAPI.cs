@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
-using LunarLambda.GUI.Menus.Controls;
+
 using static LunarLambda.API.Events;
+using LunarLambda.GUI.Menus.Controls;
 
 namespace LunarLambda.API
 {

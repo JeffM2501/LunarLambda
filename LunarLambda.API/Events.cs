@@ -2,10 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using LunarLambda.GUI.Menus;
-
 namespace LunarLambda.API
 {
+    public class ServerStartupInfo : EventArgs
+    {
+        public string Name = string.Empty;
+        public string Password = string.Empty;
+        public bool Public = false;
+
+        public enum FTLSettings
+        {
+            None = 0,
+            Default,
+            Warp,
+            Jump,
+            All,
+        }
+        public FTLSettings FTL = FTLSettings.Default;
+        public double SensorRange = 30;
+        public bool TacticalRadarMSD = true;
+        public bool LongRangeRadarMSD = true;
+        public enum ScanSettings
+        {
+            None = 0,
+            Normal,
+            Advanced,
+        }
+        public ScanSettings Scans = ScanSettings.Normal;
+        public bool UseWeaponFrequencies = false;
+        public bool UseSystemDamage = true;
+
+        public Scenarios.ScenarioInfo SelectedScenario = null;
+        public Scenarios.ScenarioInfo.VariationInfo SelectedVariation = null;
+    }
+
     public static partial class Events
     {
         public class APIEventArgs : EventArgs

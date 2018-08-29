@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B26B3C18-676F-4E87-A1F2-2B49DB59BDFD}</ProjectGuid>
+    <ProjectGuid>{154F8F3B-7315-43A9-B177-EF1E1D715CA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LunarLambda.Data</RootNamespace>
-    <AssemblyName>LunarLambda.Data</AssemblyName>
+    <RootNamespace>LunarLambda.API</RootNamespace>
+    <AssemblyName>LunarLambda.API</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,12 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenTK">
-      <HintPath>..\Libs\OpenTK\Lib\OpenTK.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,18 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Databases\FactionDatabase.cs" />
-    <Compile Include="Databases\ModelDatabase.cs" />
-    <Compile Include="Databases\ScienceDatabase.cs" />
-    <Compile Include="Databases\TemplateDatabase.cs" />
-    <Compile Include="Databases\Templates\BaseTemplate.cs" />
-    <Compile Include="Databases\Templates\ShipTemplate.cs" />
-    <Compile Include="DefaultDatabaseStrings.Designer.cs">
-      <DependentUpon>DefaultDatabaseStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Events.Calls.cs" />
+    <Compile Include="Events.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios.cs" />
+    <Compile Include="StateData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LudicrousElectron\LudicrousElectron.Entities\LudicrousElectron.Entities.csproj">
@@ -67,13 +58,10 @@
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="DefaultDatabaseStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DefaultDatabaseStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <ProjectReference Include="..\LunarLambda.Data\LunarLambda.Data.csproj">
+      <Project>{b26b3c18-676f-4e87-a1f2-2b49db59bdfd}</Project>
+      <Name>LunarLambda.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
