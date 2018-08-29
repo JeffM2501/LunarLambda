@@ -56,17 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Databases\FactionDatabase.cs" />
-    <Compile Include="API\Databases\ModelDatabase.cs" />
-    <Compile Include="API\Databases\ScienceDatabase.cs" />
-    <Compile Include="API\Databases\TemplateDatabase.cs" />
-    <Compile Include="API\Databases\Templates\BaseTemplate.cs" />
-    <Compile Include="API\Databases\Templates\ShipTemplate.cs" />
-    <Compile Include="API\DefaultDatabaseStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DefaultDatabaseStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="API\Events.Calls.cs" />
     <Compile Include="API\Events.cs" />
     <Compile Include="API\MenuAPI.cs" />
@@ -111,10 +100,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="API\DefaultDatabaseStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DefaultDatabaseStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Menus\MenuRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuRes.Designer.cs</LastGenOutput>
@@ -160,6 +145,10 @@
     <ProjectReference Include="..\..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj">
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunarLambda.Data\LunarLambda.Data.csproj">
+      <Project>{b26b3c18-676f-4e87-a1f2-2b49db59bdfd}</Project>
+      <Name>LunarLambda.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

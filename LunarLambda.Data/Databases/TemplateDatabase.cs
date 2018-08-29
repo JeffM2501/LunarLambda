@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using OpenTK;
-
-namespace LunarLambda.API.Databases
+namespace LunarLambda.Data.Databases
 {
-   
-
     public static class TemplateDatabase
     {
         internal static List<BaseTemplate> Templates = new List<BaseTemplate>();

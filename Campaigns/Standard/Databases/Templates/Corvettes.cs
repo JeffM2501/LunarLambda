@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using LunarLambda.API;
-using LunarLambda.API.Databases;
+using LunarLambda.Data.Databases;
 
 /* Corvette
 Corvettes are the common large ships.Larger then a frigate, smaller then a dreadnaught.

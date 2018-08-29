@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LunarLambda.API {
+namespace LunarLambda.Data
+{
     using System;
     
     
@@ -39,7 +40,7 @@ namespace LunarLambda.API {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LunarLambda.API.DefaultDatabaseStrings", typeof(DefaultDatabaseStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LunarLambda.Data.DefaultDatabaseStrings", typeof(DefaultDatabaseStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

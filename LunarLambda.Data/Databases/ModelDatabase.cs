@@ -7,7 +7,7 @@ using System.Drawing;
 
 using OpenTK;
 
-namespace LunarLambda.API.Databases
+namespace LunarLambda.Data.Databases
 {
     public class ModelData
     {

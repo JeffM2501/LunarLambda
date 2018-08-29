@@ -1,9 +1,7 @@
-﻿using LunarLambda.API.Databases;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using LunarLambda.Data.Databases;
 
 namespace LunarLambda.Campaigns.Standard.Databases
 {

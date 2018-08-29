@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LunarLambda.API.Databases
+namespace LunarLambda.Data.Databases
 {
     public class BaseTemplate
     {

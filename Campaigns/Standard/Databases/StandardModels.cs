@@ -1,7 +1,7 @@
 ﻿using System;
 
 using LunarLambda.API;
-using LunarLambda.API.Databases;
+using LunarLambda.Data.Databases;
 
 namespace LunarLambda.Campaigns.Standard.Databases
 {

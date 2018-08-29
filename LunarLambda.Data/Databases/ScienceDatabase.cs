@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 using LudicrousElectron.Types;
 
-namespace LunarLambda.API.Databases
+using LunarLambda.Data;
+
+namespace LunarLambda.Data.Databases
 {
 	public static class Tools
 	{
@@ -12,6 +14,7 @@ namespace LunarLambda.API.Databases
 			return val ? DefaultDatabaseStrings.True : DefaultDatabaseStrings.False;
 		}
 	}
+
 	public class ScienceInfo
 	{
 		public string Name = string.Empty;

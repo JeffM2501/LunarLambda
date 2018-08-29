@@ -80,6 +80,10 @@
       <Project>{30cc895b-bfc4-4402-8cc0-513ead76706f}</Project>
       <Name>LunarLambda</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\LunarLambda.Data\LunarLambda.Data.csproj">
+      <Project>{b26b3c18-676f-4e87-a1f2-2b49db59bdfd}</Project>
+      <Name>LunarLambda.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

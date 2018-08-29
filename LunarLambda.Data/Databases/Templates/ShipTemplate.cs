@@ -4,7 +4,7 @@ using OpenTK;
 
 using LudicrousElectron.Types;
 
-namespace LunarLambda.API.Databases
+namespace LunarLambda.Data.Databases
 {
     public enum DockingClasses
     {
