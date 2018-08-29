@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.GUI", "..
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plug-Ins", "Plug-Ins", "{2FC13151-A761-4448-863E-0452C7A40815}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Entities", "..\LudicrousElectron\Engine\LudicrousElectron.Entities\LudicrousElectron.Entities.csproj", "{DDD156CD-AE0D-4581-B895-4FE8FB58A88C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Entities", "..\LudicrousElectron\LudicrousElectron.Entities\LudicrousElectron.Entities.csproj", "{DDD156CD-AE0D-4581-B895-4FE8FB58A88C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidgren.Network", "..\LudicrousElectron\Lidgren.Network\Lidgren.Network.csproj", "{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}"
 EndProject
