@@ -4,15 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Lidgren.Network;
+using LunarLambda.Messges.Ship;
+
 namespace LunarLambda.Host.Game
 {
     internal class ShipServer
     {
+        protected NetServer Server = null;
 
         public ShipServer(int port)
         {
-            if (port < 1024)
-                throw new Exception("invalid port range");
+            NetPeerConfiguration config = new NetPeerConfiguration("LL_ShipHost_" + ShipMessage.ProtocolVersion.ToString());
+            config.Port = port;
+            Server = new NetServer(config);
+
+            Server.Start();
+        }
+
+        public void Shutdown()
+        {
+            Server.Shutdown("BYE!");
         }
     }
 }

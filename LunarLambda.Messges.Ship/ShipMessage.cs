@@ -8,5 +8,6 @@ namespace LunarLambda.Messges.Ship
 {
     public class ShipMessage
     {
+        public static readonly int ProtocolVersion = 1;
     }
 }

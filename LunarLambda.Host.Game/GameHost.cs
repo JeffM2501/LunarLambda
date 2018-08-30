@@ -18,10 +18,18 @@ namespace LunarLambda.Host.Game
             if (ActiveScenario == null)
                 return;
 
-
             ActiveScenario.Init(info.SelectedVariation.Name);
 
             ShipHost = new ShipServer(info.Port);
+        }
+
+        public void Shutdown()
+        {
+            ActiveScenario.Shutdown();
+            ActiveScenario = null;
+
+            ShipHost.Shutdown();
+            ShipHost = null;
         }
     }
 }
