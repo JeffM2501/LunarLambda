@@ -16,9 +16,24 @@ namespace LunarLambda.Host.Game
 
         protected bool Running = false;
 
-        protected List<NetPeer> ConnectedClients = new List<NetPeer>();
+		public class ShipPeer : EventArgs
+		{
+			public NetPeer Connection = null;
+			public List<ShipMessage> PendingInbound = new List<ShipMessage>();
 
-        public ShipServer(int port)
+			public object Tag = null;
+
+			internal ShipPeer(NetPeer peer)
+			{
+				Connection = peer;
+			}
+		}
+		protected Dictionary<long,ShipPeer> ConnectedClients = new Dictionary<long, ShipPeer>();
+
+		public event EventHandler<ShipPeer> PeerConnected = null;
+		public event EventHandler<ShipPeer> PeerDisconnected = null;
+
+		public ShipServer(int port)
         {
             NetPeerConfiguration config = new NetPeerConfiguration("LL_ShipHost_" + ShipMessage.ProtocolVersion.ToString());
             config.Port = port;
@@ -53,13 +68,38 @@ namespace LunarLambda.Host.Game
 
         protected virtual void ProcessNewPeer(NetPeer peer)
         {
-            ConnectedClients.Add(peer);
-        }
+			ShipPeer newPeer = new ShipPeer(peer);
+
+			lock (this)
+				ConnectedClients.Add(peer.UniqueIdentifier,newPeer);
+
+			PeerConnected?.Invoke(this, newPeer);
+		}
 
         protected virtual void RemovePeer(NetPeer peer)
         {
-            ConnectedClients.Remove(peer);
+			if (!ConnectedClients.ContainsKey(peer.UniqueIdentifier))
+				return;
+
+			PeerConnected?.Invoke(this, ConnectedClients[peer.UniqueIdentifier]);
+			lock(this)
+				ConnectedClients.Remove(peer.UniqueIdentifier);
         }
+
+		protected virtual void ProcessMessage(NetIncomingMessage message)
+		{
+			if (!ConnectedClients.ContainsKey(message.SenderConnection.Peer.UniqueIdentifier))
+				return;
+
+			var peer = ConnectedClients[message.SenderConnection.Peer.UniqueIdentifier];
+
+			ShipMessage msg = Serialization.Unpack(message);
+			if (msg != null)
+			{
+				lock (peer)
+					peer.PendingInbound.Add(msg);
+			}
+		}
 
         private void ProcessNetwork()
         {
@@ -87,8 +127,8 @@ namespace LunarLambda.Host.Game
                             break;
 
                         case NetIncomingMessageType.Data:
-                            // process the data here
-                            break;
+							ProcessMessage(peerStateMsg);
+							break;
                     }
                     Server.Recycle(peerStateMsg);
                 }
