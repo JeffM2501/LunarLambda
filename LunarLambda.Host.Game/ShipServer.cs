@@ -18,14 +18,24 @@ namespace LunarLambda.Host.Game
 
 		public class ShipPeer : EventArgs
 		{
-			public NetPeer Connection = null;
+			protected NetServer Server = null;
+
+			public NetConnection Connection = null;
 			public List<ShipMessage> PendingInbound = new List<ShipMessage>();
 
 			public object Tag = null;
 
-			internal ShipPeer(NetPeer peer)
+			internal ShipPeer(NetConnection connection, NetServer server)
 			{
-				Connection = peer;
+				Server = server;
+				Connection = connection;
+			}
+
+			public void Send(ShipMessage message)
+			{
+				var outbound = Server.CreateMessage();
+				if (Serialization.Pack(message, outbound))
+					Server.SendMessage(outbound, Connection, NetDeliveryMethod.ReliableOrdered);
 			}
 		}
 		protected Dictionary<long,ShipPeer> ConnectedClients = new Dictionary<long, ShipPeer>();
@@ -66,12 +76,12 @@ namespace LunarLambda.Host.Game
                 return Running;
         }
 
-        protected virtual void ProcessNewPeer(NetPeer peer)
+        protected virtual void ProcessNewPeer(NetConnection connection)
         {
-			ShipPeer newPeer = new ShipPeer(peer);
+			ShipPeer newPeer = new ShipPeer(connection, Server);
 
 			lock (this)
-				ConnectedClients.Add(peer.UniqueIdentifier,newPeer);
+				ConnectedClients.Add(connection.Peer.UniqueIdentifier,newPeer);
 
 			PeerConnected?.Invoke(this, newPeer);
 		}
@@ -81,7 +91,7 @@ namespace LunarLambda.Host.Game
 			if (!ConnectedClients.ContainsKey(peer.UniqueIdentifier))
 				return;
 
-			PeerConnected?.Invoke(this, ConnectedClients[peer.UniqueIdentifier]);
+			PeerDisconnected?.Invoke(this, ConnectedClients[peer.UniqueIdentifier]);
 			lock(this)
 				ConnectedClients.Remove(peer.UniqueIdentifier);
         }
@@ -116,7 +126,7 @@ namespace LunarLambda.Host.Game
                             switch (peerStateMsg.SenderConnection.Status)
                             {
                                 case NetConnectionStatus.Connected:
-                                    ProcessNewPeer(peerStateMsg.SenderConnection.Peer);
+                                    ProcessNewPeer(peerStateMsg.SenderConnection);
                                     break;
 
                                 case NetConnectionStatus.Disconnected:

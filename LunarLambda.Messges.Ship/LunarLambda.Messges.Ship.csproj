@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connect\ConnectRequest.cs" />
+    <Compile Include="Connect\ConnectResponce.cs" />
     <Compile Include="MessageManager.cs" />
     <Compile Include="ShipMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
