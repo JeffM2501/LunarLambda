@@ -16,6 +16,11 @@ namespace LunarLambda.Messges.Ship.Connect
 		public ResponceTypes Responce = ResponceTypes.Rejected;
 		public string Reason = string.Empty;
 
+        public string ServerKey = string.Empty;
+
+        public string SerververWANAddress = string.Empty;
+        public string ServerLANAddress = string.Empty;
+
 		public string ScenarioName = string.Empty;
 		public string ScenarioDescription = string.Empty;
 		public string ScenarioType = string.Empty;
@@ -33,6 +38,11 @@ namespace LunarLambda.Messges.Ship.Connect
 			public List<string> Stats = new List<string>();
 
 			public bool Spawned = false;
+
+            public string ServerAddress = string.Empty;
+            public string ServerLANAddress = string.Empty;
+
+            public bool Protected = false;
 			public int CrewCount = 0;
 			public List<string> CrewedConsoles = new List<string>();
 			public List<string> AvailableConsoles = new List<string>();

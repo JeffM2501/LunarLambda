@@ -13,10 +13,11 @@ namespace LunarLambda.API
 	{
 		public static readonly string MainMenuName = "LL.Main.Menu";
 		public static readonly string OptionsMenuName = "LL.Options.Menu";
-		public static readonly string StartServerMenuName = "LL.StartServer.Menu";
-		public static readonly string StartClientMenuName = "LL.StartClient.Menu";
+		public static readonly string StartGameMenuName = "LL.StartGame.Menu";
+        public static readonly string JoinGameMenuName = "LL.JoinGame.Menu";
+        public static readonly string GameStatusMenu = "LL.GameStatus.Menu";
 
-		public static event EventHandler SetupMenus = null;
+        public static event EventHandler SetupMenus = null;
 		internal static void CallSetupMenus() { SetupMenus?.Invoke(null, EventArgs.Empty); }
 
 		public static event EventHandler<StringDataEventArgs> MenuChanged = null;

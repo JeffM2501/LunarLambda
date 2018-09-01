@@ -78,8 +78,10 @@ namespace LunarLambda.GUI
 		{
 			RegisterMenu(MenuAPI.MainMenuName, Main);
 			RegisterMenu(MenuAPI.OptionsMenuName, new OptionsMenu());
-			RegisterMenu(MenuAPI.StartServerMenuName, new StartServerMenu());
-		}
+			RegisterMenu(MenuAPI.StartGameMenuName, new StartServerMenu());
+            RegisterMenu(MenuAPI.GameStatusMenu, new GameStatusMenu());
+            RegisterMenu(MenuAPI.JoinGameMenuName, new JoinGameMenu());
+        }
 
 		public static void PushMenu(string name)
 		{
@@ -92,6 +94,27 @@ namespace LunarLambda.GUI
 			GUIManager.PushCanvas(newMenu);
 			newMenu.Activate();
 		}
+
+        /// <summary>
+        ///  replaces the current top with a new menu, then pushes a new menu on top of that, used to insert the game status menu in the history.
+        /// </summary>
+        /// <param name="replacementMenu">The menu to replace the current top with</param>
+        /// <param name="newMenu">the new menu to push to the top of the stack after the replacment menu</param>
+        public static void ReplaceAndPushMenu(string replacementMenu, string newMenu)
+        {
+            GUIManager.PeekCanvas<Menu>()?.Deactivate();
+            GUIManager.PopCanvas();
+
+            Menu replaceMenu = MenuCache[replacementMenu.ToLowerInvariant()];
+            Menu topMenu = MenuCache[newMenu.ToLowerInvariant()];
+
+            GUIManager.PushCanvas(replaceMenu);
+            replaceMenu.Activate();
+            replaceMenu.Deactivate();
+
+            GUIManager.PushCanvas(topMenu);
+            topMenu.Activate();
+        }
 		
 		public static void PopMenu()
 		{

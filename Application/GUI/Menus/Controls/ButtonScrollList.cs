@@ -16,7 +16,7 @@ namespace LunarLambda.GUI.Menus.Controls
 
 		public ButtonScrollList(RelativeRect rect, int selectedIndex = -1, string texture = null) : base(rect, texture)
 		{
-			NoDraw = true;
+			NoDraw = texture == null;
 			SelectedIndex = selectedIndex;
 		}
 

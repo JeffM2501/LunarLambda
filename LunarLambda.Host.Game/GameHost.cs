@@ -8,6 +8,25 @@ namespace LunarLambda.Host.Game
 {
     public class GameHost
     {
+        public static GameHost ActiveGameHost = null;
+
+        public static void StartGame(ServerStartupInfo info)
+        {
+            if (ActiveGameHost != null)
+                ActiveGameHost.Shutdown();
+
+            ActiveGameHost = new GameHost();
+            ActiveGameHost.Startup(info);
+        }
+
+        public static void StopGame()
+        {
+            if (ActiveGameHost != null)
+                ActiveGameHost.Shutdown();
+
+            ActiveGameHost = null;
+        }
+
         private LLScenario ActiveScenario = null;
 
         private ShipServer ShipHost = null;
@@ -18,7 +37,11 @@ namespace LunarLambda.Host.Game
             if (ActiveScenario == null)
                 return;
 
-            ActiveScenario.Init(info.SelectedVariation.Name);
+            string variationName = string.Empty;
+            if (info.SelectedVariation != null)
+                variationName = info.SelectedVariation.Name;
+
+            ActiveScenario.Init(variationName);
 
             ShipHost = new ShipServer(info.Port);
         }

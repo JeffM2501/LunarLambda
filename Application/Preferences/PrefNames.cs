@@ -24,5 +24,7 @@ namespace LunarLambda.Preferences
 
         public static readonly string ThemeName = "ui_theme";
 
-	}
+        public static readonly string PublicHostName = "public_host_name";
+
+    }
 }

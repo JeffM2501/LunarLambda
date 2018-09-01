@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Diagnostics;
 
-using OpenTK;
-
 using LudicrousElectron.GUI;
 using LudicrousElectron.Engine;
 using LudicrousElectron.GUI.Elements;
@@ -54,13 +52,13 @@ namespace LunarLambda.GUI.Menus
 
         private void StartServer_Clicked(object sender, UIButton e)
         {
-            MenuManager.PushMenu(MenuAPI.StartServerMenuName);
+            MenuManager.PushMenu(MenuAPI.StartGameMenuName);
         }
 
 
         private void StartClient_Clicked(object sender, UIButton e)
         {
-            MenuManager.PushMenu(MenuAPI.StartClientMenuName);
+            MenuManager.PushMenu(MenuAPI.JoinGameMenuName);
         }
 
         private void Options_Clicked(object sender, UIButton e)

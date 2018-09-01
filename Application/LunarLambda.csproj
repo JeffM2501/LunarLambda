@@ -74,6 +74,8 @@
     <Compile Include="GUI\Menus\Controls\SpinSelector.cs" />
     <Compile Include="GUI\Menus\Controls\TextArea.cs" />
     <Compile Include="GUI\Menus\Controls\VSlider.cs" />
+    <Compile Include="GUI\Menus\GameStatusMenu.cs" />
+    <Compile Include="GUI\Menus\JoinGameMenu.cs" />
     <Compile Include="GUI\Menus\MainMenu.cs" />
     <Compile Include="GUI\Menus\MenuCommon.cs" />
     <Compile Include="GUI\Menus\MenuRes.Designer.cs">

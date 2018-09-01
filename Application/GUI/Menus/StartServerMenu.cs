@@ -10,6 +10,8 @@ using LudicrousElectron.GUI.Geometry;
 using LunarLambda.API;
 using LunarLambda.GUI.Menus.Controls;
 using LunarLambda.Data;
+using LunarLambda.Preferences;
+using LunarLambda.Host.Game;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -31,6 +33,7 @@ namespace LunarLambda.GUI.Menus
 
             int layerIndex = 2;
             layerIndex = SetupServerConfig(layerIndex);
+            layerIndex = SetupScenarioList(layerIndex);
 
             SetupStartServerButton(layerIndex++);
 
@@ -45,6 +48,66 @@ namespace LunarLambda.GUI.Menus
 			return label;
 		}
 
+        protected int SetupScenarioList(int layerIndex)
+        {
+            // right side group
+            RelativeRect rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperRight);
+
+            GridLayoutGroup scenarioGrid = new GridLayoutGroup(rect, 15, 2);
+
+            Columns[1] = scenarioGrid;
+
+            scenarioGrid.MaxChildSize = MenuCommon.ButtonHeight.Paramater;
+
+            scenarioGrid.SetColSpan(0, 1);
+            scenarioGrid.SetColSpan(1, 6);
+            scenarioGrid.SetColSpan(7, 4);
+            scenarioGrid.SetColSpan(12, 3);
+
+            // Scenario header
+            scenarioGrid.AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
+
+            ButtonScrollList scenarioList = new ButtonScrollList(RelativeRect.Full);
+            scenarioList.DesiredRows = 6;
+
+            foreach (var scenario in Scenarios.GetScenarioList())
+                scenarioList.AddItem(scenario.Name, scenario);
+
+            scenarioList.SelectedIndexChanged += ScenarioList_SelectedIndexChanged;
+            scenarioList.FillMode = UIFillModes.Stretch4Quad;
+            scenarioGrid.AddChild(scenarioList);
+
+
+            SecenarioText = new TextArea(RelativeRect.Full, string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+            SecenarioText.DefaultMaterial.Color = Color.Gray;
+            SecenarioText.DesiredRows = 8;
+            SecenarioText.BorderPadding = 4;
+            SecenarioText.MiniumElementHeight = 20;
+
+            scenarioGrid.AddChild(SecenarioText);
+
+            // sensor scan complexity
+            // get data from selected scenario
+            scenarioGrid.AddChild(MakeGridLabel(MenuRes.Variation));
+            VariationList = new SpinSelector(new RelativeRect(), MenuRes.DefaultVariation.Split(";".ToCharArray()), 0);
+            VariationList.ValueChanged += ScenarioVariation_ValueChanged;
+            scenarioGrid.AddChild(VariationList);
+
+            // replace with variation info
+            VariationText = new TextArea(RelativeRect.Full, string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+            VariationText.DefaultMaterial.Color = Color.Gray;
+            VariationText.DesiredRows = 6;
+            VariationText.BorderPadding = 4;
+            VariationText.MiniumElementHeight = 20;
+            scenarioGrid.AddChild(VariationText);
+
+            AddElement(Columns[1], layerIndex + 1);
+
+            scenarioList.SetSelectedIndex(0);
+
+            return layerIndex + 1;
+        }
+
         protected int SetupServerConfig(int layerIndex)
         {
             RelativeRect rect = new RelativeRect(RelativeLoc.XLeftBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperLeft);
@@ -56,9 +119,9 @@ namespace LunarLambda.GUI.Menus
             serverSetupGrid.MaxChildSize = MenuCommon.ButtonHeight.Paramater;
 
             serverSetupGrid.SetColSpan(0);
-            serverSetupGrid.SetColSpan(5);
-            serverSetupGrid.SetColSpan(8);
-            serverSetupGrid.SetColSpan(10);
+            serverSetupGrid.SetColSpan(6);
+            serverSetupGrid.SetColSpan(9);
+            serverSetupGrid.SetColSpan(11);
 
 			// server config header
             serverSetupGrid.AddChild(new Header(new RelativeRect(), MenuRes.ServerConfiguration));
@@ -76,13 +139,22 @@ namespace LunarLambda.GUI.Menus
 			serverSetupGrid.AddChild(te);
 
 			// ip address
-			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerIP));
+			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerLanIP));
 			var ip = MakeGridLabel(Core.GetLocalIPString());
 			ip.Rect.AnchorLocation = OriginLocation.MiddleLeft;
 			serverSetupGrid.AddChild(ip);
 
-			// public visibility (should this be a checkbox?)
-			serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerVis));
+            serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerWANIP));
+            string wan = Core.GetWANIPString();
+            if(PreferencesManager.GetValueB(PrefNames.PublicHostName))
+                wan = PreferencesManager.Get(PrefNames.PublicHostName);
+            var wanIP = MakeGridLabel(wan);
+            wanIP.Rect.AnchorLocation = OriginLocation.MiddleLeft;
+            serverSetupGrid.AddChild(wanIP);
+
+
+            // public visibility (should this be a checkbox?)
+            serverSetupGrid.AddChild(MakeGridLabel(MenuRes.ServerVis));
 			SpinSelector selector = new SpinSelector(new RelativeRect(), MenuRes.ServerVisModes.Split(";".ToCharArray()), StartupInfo.Public ? 1 : 0);
 			selector.ValueChanged += ServerVis_ValueChanged;
 			serverSetupGrid.AddChild(selector);
@@ -150,65 +222,7 @@ namespace LunarLambda.GUI.Menus
 			// add the left side group to the main layout
 			AddElement(Columns[0], layerIndex);
 
-
-			// right side group
-            rect = new RelativeRect(RelativeLoc.XRightBorder + RelativeLoc.BorderOffset, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.TwoColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperRight);
-
-            GridLayoutGroup scenarioGrid = new GridLayoutGroup(rect, 15, 2);
-
-            Columns[1] = scenarioGrid;
-
-            scenarioGrid.MaxChildSize = MenuCommon.ButtonHeight.Paramater;
-
-            scenarioGrid.SetColSpan(0, 1);
-			scenarioGrid.SetColSpan(1, 6);
-			scenarioGrid.SetColSpan(7, 4);
-			scenarioGrid.SetColSpan(12, 3);
-
-			// Scenario header
-			scenarioGrid.AddChild(new Header(new RelativeRect(), MenuRes.Scenario));
-
-			ButtonScrollList scenarioList = new ButtonScrollList(RelativeRect.Full);
-			scenarioList.DesiredRows = 6;
-
-			// REPLACE with actual scenarios
-			foreach (var scenario in Scenarios.GetScenarioList())
-				scenarioList.AddItem(scenario.Name, scenario);
-
-			scenarioList.SelectedIndexChanged += ScenarioList_SelectedIndexChanged;
-			scenarioList.FillMode = UIFillModes.Stretch4Quad;
-			scenarioGrid.AddChild(scenarioList);
-
-
-			// replace with scenario list
-			SecenarioText = new TextArea(RelativeRect.Full,string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
-			SecenarioText.DefaultMaterial.Color = Color.Gray;
-			SecenarioText.DesiredRows = 8;
-			SecenarioText.BorderPadding = 4;
-			SecenarioText.MiniumElementHeight = 20;
-
-			scenarioGrid.AddChild(SecenarioText);
-
-			// sensor scan complexity
-			// get data from selected scenario
-			scenarioGrid.AddChild(MakeGridLabel(MenuRes.Variation));
-			VariationList = new SpinSelector(new RelativeRect(), MenuRes.DefaultVariation.Split(";".ToCharArray()), 0);
-			VariationList.ValueChanged += ScenarioVariation_ValueChanged;
-			scenarioGrid.AddChild(VariationList);
-
-			// replace with variation info
-			VariationText = new TextArea(RelativeRect.Full, string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
-			VariationText.DefaultMaterial.Color = Color.Gray;
-			VariationText.DesiredRows = 6;
-			VariationText.BorderPadding = 4;
-			VariationText.MiniumElementHeight = 20;
-			scenarioGrid.AddChild(VariationText);
-
-			AddElement(Columns[1], layerIndex+1);
-
-			scenarioList.SetSelectedIndex(0);
-
-			return layerIndex + 2;
+            return layerIndex + 1;
         }
 
 		private void ScenarioList_SelectedIndexChanged(object sender, ButtonScrollList e)
@@ -308,6 +322,18 @@ namespace LunarLambda.GUI.Menus
         protected void Start_Clicked (object server, EventArgs e)
         {
             // call start server
+            StartupInfo.ServerLANAddress = Core.GetLocalIPString();
+            if (PreferencesManager.GetValueB(PrefNames.PublicHostName))
+                StartupInfo.ServerWANHost = PreferencesManager.Get(PrefNames.PublicHostName);
+            else
+                StartupInfo.ServerWANHost = Core.GetWANIPString();
+
+            if (GameHost.ActiveGameHost != null)
+                GameHost.ActiveGameHost.Shutdown();
+
+            GameHost.StartGame(StartupInfo);
+
+            MenuManager.ReplaceAndPushMenu(MenuAPI.GameStatusMenu, MenuAPI.JoinGameMenuName);
         }
     }
 }

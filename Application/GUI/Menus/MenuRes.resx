@@ -120,14 +120,23 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="ConsoleSelectorHeader" xml:space="preserve">
+    <value>Select Consoles &amp; Screens</value>
+  </data>
   <data name="DefaultServerName" xml:space="preserve">
     <value>Server</value>
+  </data>
+  <data name="DefaultShilSelection" xml:space="preserve">
+    <value>Default Ship</value>
   </data>
   <data name="DefaultVariation" xml:space="preserve">
     <value>None</value>
   </data>
   <data name="EffectsVolume" xml:space="preserve">
     <value>Effects Volume</value>
+  </data>
+  <data name="FlightControllName" xml:space="preserve">
+    <value>Flight Controller</value>
   </data>
   <data name="FSAA" xml:space="preserve">
     <value>FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x</value>
@@ -150,8 +159,14 @@
   <data name="Graphics" xml:space="preserve">
     <value>Graphics</value>
   </data>
+  <data name="JoinGameInProgress" xml:space="preserve">
+    <value>Join</value>
+  </data>
   <data name="LongRangeRadar" xml:space="preserve">
     <value>Long Range Radar</value>
+  </data>
+  <data name="MainScreenName" xml:space="preserve">
+    <value>Main View Screen</value>
   </data>
   <data name="MainScreenOptions" xml:space="preserve">
     <value>Main Screen Options</value>
@@ -164,6 +179,9 @@
   </data>
   <data name="MusicVolume" xml:space="preserve">
     <value>Music Volume</value>
+  </data>
+  <data name="NewShipHeader" xml:space="preserve">
+    <value>New Ship</value>
   </data>
   <data name="NoVariatioName" xml:space="preserve">
     <value>None</value>
@@ -201,8 +219,8 @@
   <data name="ServerConfiguration" xml:space="preserve">
     <value>Server Configuration</value>
   </data>
-  <data name="ServerIP" xml:space="preserve">
-    <value>Server IP:</value>
+  <data name="ServerLanIP" xml:space="preserve">
+    <value>Server LAN IP:</value>
   </data>
   <data name="ServerName" xml:space="preserve">
     <value>Server Name:</value>
@@ -216,6 +234,15 @@
   <data name="ServerVisModes" xml:space="preserve">
     <value>Lan Only;Internet</value>
   </data>
+  <data name="ServerWANIP" xml:space="preserve">
+    <value>External Server Address:</value>
+  </data>
+  <data name="ShipInfoHeader" xml:space="preserve">
+    <value>Ship Information</value>
+  </data>
+  <data name="ShipListHeader" xml:space="preserve">
+    <value>Ships</value>
+  </data>
   <data name="SoundOptions" xml:space="preserve">
     <value>Sound Options</value>
   </data>
@@ -227,6 +254,9 @@
   </data>
   <data name="StartServer" xml:space="preserve">
     <value>Create A Game</value>
+  </data>
+  <data name="TacticalName" xml:space="preserve">
+    <value>Tactical</value>
   </data>
   <data name="TacticalRadar" xml:space="preserve">
     <value>Tactical Radar</value>

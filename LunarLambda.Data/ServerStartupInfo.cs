@@ -12,6 +12,9 @@ namespace LunarLambda.Data
         public string Password = string.Empty;
         public bool Public = false;
 
+        public string ServerWANHost = string.Empty;
+        public string ServerLANAddress = string.Empty;
+
         public int Port = 1701;
 
         public enum FTLSettings
