@@ -55,7 +55,9 @@ namespace LunarLambda.Host.Game
             Server.Start();
 
             WorkerThread = new Thread(new ThreadStart(ProcessNetwork));
-        }
+			WorkerThread.Start();
+
+		}
 
         public void Shutdown()
         {

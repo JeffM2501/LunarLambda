@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Client.Ship", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Messges.Ship", "LunarLambda.Messges.Ship\LunarLambda.Messges.Ship.csproj", "{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDiscoveryServices", "GameDiscoveryServices\GameDiscoveryServices.csproj", "{79C18A0E-46AB-4296-B968-DC7B67D30B62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -231,6 +233,18 @@ Global
 		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x64.Build.0 = Release|Any CPU
 		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x86.ActiveCfg = Release|Any CPU
 		{BCBFB0C8-6853-4FBD-A9FF-3A115F63A24E}.Release|x86.Build.0 = Release|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Debug|x64.Build.0 = Debug|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Debug|x86.Build.0 = Debug|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Release|x64.ActiveCfg = Release|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Release|x64.Build.0 = Release|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Release|x86.ActiveCfg = Release|Any CPU
+		{79C18A0E-46AB-4296-B968-DC7B67D30B62}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
