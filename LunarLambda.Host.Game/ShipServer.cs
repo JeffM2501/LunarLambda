@@ -16,7 +16,7 @@ namespace LunarLambda.Host.Game
 
         protected bool Running = false;
 
-        private object Locker = new object();
+        private readonly object Locker = new object();
 
 		public class ShipPeer : EventArgs
 		{
