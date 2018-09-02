@@ -155,7 +155,7 @@ namespace LunarLambda.Host.Game
                 }
             }
 
-            lock (this)
+            lock (Locker)
                 WorkerThread = null;
         }
     }
