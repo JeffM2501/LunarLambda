@@ -90,9 +90,9 @@ namespace LunarLambda.GUI.Menus {
         /// <summary>
         ///   Looks up a localized string similar to Default Ship.
         /// </summary>
-        internal static string DefaultShilSelection {
+        internal static string DefaultShipSelection {
             get {
-                return ResourceManager.GetString("DefaultShilSelection", resourceCulture);
+                return ResourceManager.GetString("DefaultShipSelection", resourceCulture);
             }
         }
         
