@@ -136,6 +136,10 @@ namespace LunarLambda.Host.Game
                                 case NetConnectionStatus.Disconnected:
                                     RemovePeer(peerStateMsg.SenderConnection.Peer);
                                     break;
+
+                                default:
+                                    //log other statuses
+                                    break;
                             }
                             break;
 
