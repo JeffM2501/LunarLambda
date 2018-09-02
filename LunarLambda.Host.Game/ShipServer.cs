@@ -16,6 +16,8 @@ namespace LunarLambda.Host.Game
 
         protected bool Running = false;
 
+        private object Locker = new object();
+
 		public class ShipPeer : EventArgs
 		{
 			protected NetServer Server = null;
@@ -63,7 +65,7 @@ namespace LunarLambda.Host.Game
         {
             Running = false;
 
-            lock(this)
+            lock(Locker)
             {
                 WorkerThread?.Abort();
                 WorkerThread = null;
@@ -74,7 +76,7 @@ namespace LunarLambda.Host.Game
 
         private bool IsRunning()
         {
-            lock (this)
+            lock (Locker)
                 return Running;
         }
 
@@ -82,7 +84,7 @@ namespace LunarLambda.Host.Game
         {
 			ShipPeer newPeer = new ShipPeer(connection, Server);
 
-			lock (this)
+			lock (Locker)
 				ConnectedClients.Add(connection.Peer.UniqueIdentifier,newPeer);
 
 			PeerConnected?.Invoke(this, newPeer);
@@ -94,7 +96,7 @@ namespace LunarLambda.Host.Game
 				return;
 
 			PeerDisconnected?.Invoke(this, ConnectedClients[peer.UniqueIdentifier]);
-			lock(this)
+			lock(Locker)
 				ConnectedClients.Remove(peer.UniqueIdentifier);
         }
 
@@ -135,12 +137,15 @@ namespace LunarLambda.Host.Game
                                     RemovePeer(peerStateMsg.SenderConnection.Peer);
                                     break;
                             }
-
                             break;
 
                         case NetIncomingMessageType.Data:
 							ProcessMessage(peerStateMsg);
 							break;
+
+                        case NetIncomingMessageType.Error:
+                            // log error
+                            break;
                     }
                     Server.Recycle(peerStateMsg);
                 }

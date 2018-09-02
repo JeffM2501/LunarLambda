@@ -7,7 +7,7 @@ namespace LunarLambda.Host.Game.Processors
 {
 	internal class ConnectionProcessor
 	{
-		private ShipServer Server = null;
+		private readonly ShipServer Server = null;
 
 		public ConnectionProcessor(ShipServer server)
 		{
