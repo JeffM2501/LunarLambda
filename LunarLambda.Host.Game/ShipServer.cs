@@ -143,7 +143,7 @@ namespace LunarLambda.Host.Game
 							ProcessMessage(peerStateMsg);
 							break;
 
-                        case NetIncomingMessageType.Error:
+                        default:
                             // log error
                             break;
                     }
