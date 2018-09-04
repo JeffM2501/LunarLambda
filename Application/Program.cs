@@ -23,6 +23,7 @@ using LunarLambda.GUI;
 using LudicrousElectron.GUI.Text;
 using LudicrousElectron.Engine.Graphics.Textures;
 using LunarLambda.Host.Game;
+using GameDiscoveryServices;
 
 namespace LunarLambda
 {
@@ -54,6 +55,7 @@ namespace LunarLambda
 			Core.Run();
 
             GameHost.StopGame();
+            InternetDiscoveryConnection.Shutdown();
 
             SavePrefs();
             CleanUpPlugins();

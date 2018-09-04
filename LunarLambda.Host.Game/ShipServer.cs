@@ -7,6 +7,8 @@ using System.Threading;
 using Lidgren.Network;
 using LunarLambda.Messges.Ship;
 
+using GameDiscoveryServices;
+
 namespace LunarLambda.Host.Game
 {
     internal class ShipServer
@@ -24,6 +26,8 @@ namespace LunarLambda.Host.Game
 
 			public NetConnection Connection = null;
 			public List<ShipMessage> PendingInbound = new List<ShipMessage>();
+
+            public HostedService ShipHostInformation = null;
 
 			public object Tag = null;
 
@@ -44,6 +48,8 @@ namespace LunarLambda.Host.Game
 
 		public event EventHandler<ShipPeer> PeerConnected = null;
 		public event EventHandler<ShipPeer> PeerDisconnected = null;
+
+        public event EventHandler<ShipPeer> ShipServerAdded = null;
 
 		public ShipServer(int port)
         {

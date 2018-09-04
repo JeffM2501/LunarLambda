@@ -52,6 +52,16 @@ namespace LunarLambda.Host.Game
 			Register();
 
 			ShipHost = new ShipServer(info.Port);
+            ShipHost.ShipServerAdded += ShipHost_ShipServerAdded;
+        }
+
+        private void ShipHost_ShipServerAdded(object sender, ShipServer.ShipPeer e)
+        {
+            var existing = ServiceInfo.SubServices.Find( (x)=> e.ShipHostInformation.IDKey == x.Item2.IDKey);
+            if (existing != null)
+                ServiceInfo.SubServices.Remove(existing);
+
+            ServiceInfo.SubServices.Add(existing);
         }
 
         public void Shutdown()
@@ -63,16 +73,18 @@ namespace LunarLambda.Host.Game
             ShipHost = null;
 
 			if (ServiceInfo != null)
-				ServiceList.RemoveLocalService(ServiceInfo);
+				ServiceList.RemoveLocalService();
 
 			ServiceInfo = null;
-
-		}
+        }
 
 		protected void Register()
 		{
 			ServiceInfo = new HostedService();
-			ServiceInfo.Name = StartupInfo.Name;
+
+            ServiceInfo.IDKey = HostedService.GenerateKey();
+
+            ServiceInfo.Name = StartupInfo.Name;
 			ServiceInfo.Port = StartupInfo.Port;
 			ServiceInfo.WANAddress = StartupInfo.ServerWANHost;
 			ServiceInfo.LANAddress = StartupInfo.ServerLANAddress;

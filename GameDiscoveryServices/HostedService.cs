@@ -12,7 +12,8 @@ namespace GameDiscoveryServices
 
 		public string Name = string.Empty;
 		public string TypeID = string.Empty;
-		public string Key = string.Empty;
+		public string IDKey = string.Empty;
+        public string GlobalAccessKey = string.Empty;
 
 		public string LANAddress = string.Empty;
 		public string WANAddress = string.Empty;
@@ -24,11 +25,16 @@ namespace GameDiscoveryServices
 
 		internal bool IsLocal = false;
 		internal bool WasPublished = false;
-		internal string GlobalAccessKey = string.Empty;
 
 		public List<Tuple<string, string>> Properties = new List<Tuple<string, string>>();
 
-		public List<Tuple<string, HostedService>> KnownOtherServices = new List<Tuple<string, HostedService>>();
+		public List<Tuple<string, HostedService>> SubServices = new List<Tuple<string, HostedService>>();
+
+        public static string GenerateKey()
+        {
+            var rng = new Random();
+            return rng.Next().ToString() + "." + rng.Next().ToString() + rng.Next().ToString() + "-" + DateTime.Now.ToBinary().ToString();
+        }
     }
 
 	public class HostedServicesList

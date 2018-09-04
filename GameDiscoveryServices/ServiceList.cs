@@ -11,39 +11,40 @@ namespace GameDiscoveryServices
 		public static event EventHandler ServiceListUpdated = null;
 
 		public static List<HostedService> KnownServices = new List<HostedService>();
-		public static List<HostedService> LocalServices = new List<HostedService>();
+        public static HostedService LocalService = null;
 
 		public static void RegisterLocalService(HostedService localService, bool publish)
 		{
 			localService.IsLocal = true;
 
-			var existing = LocalServices.Find((x) => x.Key == localService.Key);
-			if (existing != null)
-				LocalServices.Remove(existing);
+            if (LocalService != null && LocalService.WasPublished)
+                InternetDiscoveryConnection.PushPublicSevice(LocalService);
 
-			LocalServices.Add(existing);
+            LocalService = localService;
 
 			if (publish)
 				InternetDiscoveryConnection.PushPublicSevice(localService);
-		}
 
-		public static void RemoveLocalService(HostedService localService)
+            CallUpdateNotifiation();
+        }
+
+		public static void RemoveLocalService()
 		{
-			var existing = LocalServices.Find((x) => x.Key == localService.Key);
-			if (existing != null)
-				LocalServices.Remove(localService);
+			if (LocalService != null && LocalService.WasPublished)
+				InternetDiscoveryConnection.PushPublicSevice(LocalService);
 
-			if (localService.WasPublished)
-				InternetDiscoveryConnection.PushPublicSevice(localService);
-		}
+            LocalService = null;
+
+            CallUpdateNotifiation();
+
+        }
 
 		internal static void AddRemoteService(HostedService service)
 		{
-			var existing = LocalServices.Find((x) => x.Key == service.Key);
-			if (existing != null)
-				return;
+            if (service.IDKey == LocalService.IDKey)
+                return;
 
-			existing = KnownServices.Find((x) => x.Key == service.Key);
+            HostedService existing = KnownServices.Find((x) => x.IDKey == service.IDKey);
 			if (existing != null)
 				KnownServices.Remove(existing);
 

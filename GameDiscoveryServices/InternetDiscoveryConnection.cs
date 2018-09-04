@@ -5,6 +5,7 @@ using System.Threading;
 using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Json;
+using System.Diagnostics;
 
 namespace GameDiscoveryServices
 {
@@ -22,6 +23,8 @@ namespace GameDiscoveryServices
 
 		public static int ServiceUpdateIntervalSeconds = 300;
 
+        private static Timer UpdateTimer = new Timer(new TimerCallback(TimerProc));
+
 		public enum PendingActions
 		{
 			Nothing,
@@ -31,7 +34,13 @@ namespace GameDiscoveryServices
 		}
 		private static List<PendingActions> Pending = new List<PendingActions>();
 
-		internal static void PushPublicSevice(HostedService service)
+        public static void Shutdown()
+        {
+            UpdateTimer.Dispose();
+            UpdateTimer = null;
+        }
+
+        internal static void PushPublicSevice(HostedService service)
 		{
 			if (ServiceToUpdate != null)
 			{
@@ -41,22 +50,31 @@ namespace GameDiscoveryServices
 			}
 			service.WasPublished = true;
 			ServiceToUpdate = service;
-			lock (Pending)
-				Pending.Add(PendingActions.Push);
+            lock (Pending)
+            {
+                Pending.Add(PendingActions.Push);
+                Pending.Add(PendingActions.Pull);
+            }
 			CheckThread();
-		}
+
+            UpdateTimer?.Change(0, ServiceUpdateIntervalSeconds);
+        }
 
 		internal static void RemovePublisService()
 		{
 			if (ServiceToUpdate != null)
 			{
 				ServiceToRemove = ServiceToUpdate;
-				lock (Pending)
-					Pending.Add(PendingActions.Remove);
+                lock (Pending)
+                {
+                    Pending.Add(PendingActions.Remove);
+                    Pending.Add(PendingActions.Pull);
+                }
 				ServiceToUpdate = null;
 				CheckThread();
 			}
-		}
+            UpdateTimer?.Change(0, ServiceUpdateIntervalSeconds);
+        }
 
 		internal static void CheckThread()
 		{
@@ -83,7 +101,17 @@ namespace GameDiscoveryServices
 			}
 		}
 
-		private static void CheckOnline()
+        private static void TimerProc(object state)
+        {
+            lock (Pending)
+            {
+                if (ServiceToUpdate != null)
+                    Pending.Add(PendingActions.Push);
+                Pending.Add(PendingActions.Pull);
+            }
+        }
+
+        private static void CheckOnline()
 		{
 			if (CurrentWebClient == null)
 				CurrentWebClient = new WebClient();
@@ -154,6 +182,11 @@ namespace GameDiscoveryServices
 						lock (Pending)
 							ServiceToRemove = null;
 						break;
+
+                    case PendingActions.Nothing:
+                    default:
+                        // should never be hit
+                        break;
 				}
 				action = PopPending();
 			}
