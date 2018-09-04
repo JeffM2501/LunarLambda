@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.IO;
-using System.Runtime.Serialization;
+using System.Text;
 using System.Runtime.Serialization.Json;
 
 namespace GameDiscoveryServices
@@ -14,23 +14,55 @@ namespace GameDiscoveryServices
 	public static class InternetDiscoveryConnection
 	{
 		public static string DefaultServiceURL = "https://services.hyperdrive.tech/ll/";
-		internal static WebClient CurrentWebClient = null;
-		internal static Thread WorkerThread = null;
+		private static WebClient CurrentWebClient = null;
+		private static Thread WorkerThread = null;
 
-		internal static List<HostedService> PendingPublicUpdates = new List<HostedService>();
-		internal static bool PendingPull = false;
+		private static HostedService ServiceToUpdate = null;
+		private static HostedService ServiceToRemove = null;
+
+		public static int ServiceUpdateIntervalSeconds = 300;
+
+		public enum PendingActions
+		{
+			Nothing,
+			Push,
+			Pull,
+			Remove,
+		}
+		private static List<PendingActions> Pending = new List<PendingActions>();
 
 		internal static void PushPublicSevice(HostedService service)
 		{
-			PendingPublicUpdates.Add(service);
+			if (ServiceToUpdate != null)
+			{
+				ServiceToRemove = ServiceToUpdate;
+				lock (Pending)
+					Pending.Add(PendingActions.Remove);
+			}
+			service.WasPublished = true;
+			ServiceToUpdate = service;
+			lock (Pending)
+				Pending.Add(PendingActions.Push);
 			CheckThread();
+		}
+
+		internal static void RemovePublisService()
+		{
+			if (ServiceToUpdate != null)
+			{
+				ServiceToRemove = ServiceToUpdate;
+				lock (Pending)
+					Pending.Add(PendingActions.Remove);
+				ServiceToUpdate = null;
+				CheckThread();
+			}
 		}
 
 		internal static void CheckThread()
 		{
-			lock(PendingPublicUpdates)
+			lock(Pending)
 			{
-				if (PendingPublicUpdates.Count == 0 || !PendingPull || WorkerThread != null)
+				if (Pending.Count == 0 || WorkerThread != null)
 					return;
 
 				WorkerThread = new Thread(new ThreadStart(CheckOnline));
@@ -38,14 +70,14 @@ namespace GameDiscoveryServices
 			}
 		}
 
-		private static HostedService PopPendingUpdate()
+		private static PendingActions PopPending()
 		{
-			lock(PendingPublicUpdates)
+			lock(Pending)
 			{
-				if (PendingPublicUpdates.Count == 0)
-					return null;
-				HostedService s = PendingPublicUpdates[0];
-				PendingPublicUpdates.RemoveAt(0);
+				if (Pending.Count == 0)
+					return PendingActions.Nothing;
+				PendingActions s = Pending[0];
+				Pending.RemoveAt(0);
 
 				return s;
 			}
@@ -56,57 +88,77 @@ namespace GameDiscoveryServices
 			if (CurrentWebClient == null)
 				CurrentWebClient = new WebClient();
 
-			DataContractJsonSerializer updateSerializer = new DataContractJsonSerializer(typeof(HostedService));
-			HostedService update = PopPendingUpdate();
-			while (update != null)
+			
+			PendingActions action = PopPending();
+			while (action != PendingActions.Nothing)
 			{
-				try
+
+				switch (action)
 				{
-					MemoryStream ms = new MemoryStream();
-					updateSerializer.WriteObject(ms, update);
-					ms.Close();
-					CurrentWebClient.UploadData(DefaultServiceURL + "action=update", ms.ToArray());
-				}
-				catch (Exception)
-				{
-
-					// ignore web exceptions, we'll get it on the next update I guess
-				}
-
-				update = PopPendingUpdate();
-			}
-
-			bool pull = false;
-			lock (PendingPublicUpdates)
-			{
-				pull = PendingPull;
-				PendingPull = false;
-			}
-
-			if (pull)
-			{
-				DataContractJsonSerializer pullSerialzier = new DataContractJsonSerializer(typeof(HostedServicesList));
-
-				try
-				{
-					HostedServicesList list = pullSerialzier.ReadObject(CurrentWebClient.OpenRead(DefaultServiceURL + "action=get")) as HostedServicesList;
-					if (list != null)
-					{
-						if (list.StructureVersion == 1)
+					case PendingActions.Pull:
 						{
-							foreach (var host in list.Services)
-								ServiceList.AddRemoteService(host);
-						}
-					}
-				}
-				catch (Exception)
-				{
+							DataContractJsonSerializer pullSerialzier = new DataContractJsonSerializer(typeof(HostedServicesList));
 
-					// ignore web exceptions, we'll get it on the next update I guess
+							try
+							{
+								HostedServicesList list = pullSerialzier.ReadObject(CurrentWebClient.OpenRead(DefaultServiceURL + "action=get")) as HostedServicesList;
+								if (list != null)
+								{
+									if (list.StructureVersion == 1)
+									{
+										foreach (var host in list.Services)
+											ServiceList.AddRemoteService(host);
+									}
+								}
+							}
+							catch (Exception)
+							{
+								// ignore web exceptions, we'll get it on the next update I guess
+							}
+
+							ServiceList.CallUpdateNotifiation();
+						}
+						break;
+
+					case PendingActions.Push:
+						try
+						{
+							DataContractJsonSerializer updateSerializer = new DataContractJsonSerializer(typeof(HostedService));
+
+							MemoryStream ms = new MemoryStream();
+							updateSerializer.WriteObject(ms, ServiceToUpdate);
+							ms.Close();
+							byte[] responce = CurrentWebClient.UploadData(DefaultServiceURL + "?action=update", ms.ToArray());
+							ServiceToUpdate.GlobalAccessKey = Encoding.UTF8.GetString(responce);
+						}
+						catch (Exception)
+						{
+
+							// ignore web exceptions, we'll get it on the next update I guess
+						}
+						break;
+
+					case PendingActions.Remove:
+						if (ServiceToRemove == null)
+							break;
+						try
+						{
+							CurrentWebClient.UploadString(DefaultServiceURL + "?action=remove", ServiceToRemove.GlobalAccessKey);
+						}
+						catch (Exception)
+						{
+
+							// ignore web exceptions, it'll time out
+						}
+
+						lock (Pending)
+							ServiceToRemove = null;
+						break;
 				}
-		
+				action = PopPending();
 			}
+
+			WorkerThread = null;
 		}
 	}
-
 }

@@ -61,6 +61,10 @@
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GameDiscoveryServices\GameDiscoveryServices.csproj">
+      <Project>{79C18A0E-46AB-4296-B968-DC7B67D30B62}</Project>
+      <Name>GameDiscoveryServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LunarLambda.Data\LunarLambda.Data.csproj">
       <Project>{b26b3c18-676f-4e87-a1f2-2b49db59bdfd}</Project>
       <Name>LunarLambda.Data</Name>

@@ -18,15 +18,15 @@ namespace GameDiscoveryServices
 		public string WANAddress = string.Empty;
 
 		public int Port = 1701;
-
-		public string Description = string.Empty;
 		public bool Secured = false;
 
 		public bool PossibleLANService = false;
 
 		internal bool IsLocal = false;
+		internal bool WasPublished = false;
+		internal string GlobalAccessKey = string.Empty;
 
-		public List<string> Properties = new List<string>();
+		public List<Tuple<string, string>> Properties = new List<Tuple<string, string>>();
 
 		public List<Tuple<string, HostedService>> KnownOtherServices = new List<Tuple<string, HostedService>>();
     }
