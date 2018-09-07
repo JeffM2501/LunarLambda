@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using LunarLambda.Data;
+using LunarLambda.Data.Databases;
 
 namespace LunarLambda.API
 {
@@ -19,6 +20,8 @@ namespace LunarLambda.API
 		string GetPlayerShipTemplate();
 
 		void Update(double timeDelta);
+
+        List<ShipTemplate> GetPlayableShips();
 	}
 
 	public class LLScenario : ILLScenario
@@ -45,7 +48,12 @@ namespace LunarLambda.API
 		{
 
 		}
-	}
+
+        public virtual List<ShipTemplate> GetPlayableShips()
+        {
+            return TemplateDatabase.GetAllShipsThatMatch((x) => x.IsPlayable);
+        }
+    }
 
 	public static class Scenarios
 	{

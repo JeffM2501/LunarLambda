@@ -5,10 +5,12 @@ using LunarLambda.API;
 using LunarLambda.Data;
 
 using GameDiscoveryServices;
+using LunarLambda.Messges.Ship.Game;
+using LunarLambda.Data.Databases;
 
 namespace LunarLambda.Host.Game
 {
-    public class GameHost
+    public partial class GameHost
     {
         public static GameHost ActiveGameHost = null;
 		protected HostedService ServiceInfo = null;
@@ -33,8 +35,6 @@ namespace LunarLambda.Host.Game
 
         private LLScenario ActiveScenario = null;
 
-        private ShipServer ShipHost = null;
-
         public void Startup(ServerStartupInfo info)
         {
 			StartupInfo = info;
@@ -51,17 +51,7 @@ namespace LunarLambda.Host.Game
 
 			Register();
 
-			ShipHost = new ShipServer(info.Port);
-            ShipHost.ShipServerAdded += ShipHost_ShipServerAdded;
-        }
-
-        private void ShipHost_ShipServerAdded(object sender, ShipServer.ShipPeer e)
-        {
-            var existing = ServiceInfo.SubServices.Find( (x)=> e.ShipHostInformation.IDKey == x.Item2.IDKey);
-            if (existing != null)
-                ServiceInfo.SubServices.Remove(existing);
-
-            ServiceInfo.SubServices.Add(existing);
+			Listen(info.Port);
         }
 
         public void Shutdown()
@@ -69,11 +59,12 @@ namespace LunarLambda.Host.Game
             ActiveScenario.Shutdown();
             ActiveScenario = null;
 
-            ShipHost.Shutdown();
-            ShipHost = null;
+            ShutdownNetwork();
 
 			if (ServiceInfo != null)
 				ServiceList.RemoveLocalService();
+
+            LANDiscoveryHost.Shutdown();
 
 			ServiceInfo = null;
         }
@@ -116,6 +107,40 @@ namespace LunarLambda.Host.Game
 				ServiceInfo.Properties.Add(new Tuple<string, string>("ScenarioName", "NONE"));
 
 			ServiceList.RegisterLocalService(ServiceInfo, StartupInfo.Public);
+
+            LANDiscoveryHost.Startup();
 		}
+
+
+        private void ShipServerAdded(ShipPeer e)
+        {
+            var existing = ServiceInfo.SubServices.Find((x) => e.ShipHostInformation.IDKey == x.Item2.IDKey);
+            if (existing != null)
+                ServiceInfo.SubServices.Remove(existing);
+
+            ServiceInfo.SubServices.Add(existing);
+        }
+
+        private void GetShipList(UpdateShipList list)
+        {
+            foreach (var avalabileShips in ActiveScenario.GetPlayableShips())
+                list.Ships.Add(InfoFromTempalte(avalabileShips));
+        }
+
+        protected virtual UpdateShipList.ShipInfo InfoFromTempalte(ShipTemplate template)
+        {
+            UpdateShipList.ShipInfo info = new UpdateShipList.ShipInfo();
+            info.Spawned = false;
+            info.CrewCount = 0;
+            info.ID = template.ID;
+            info.Name = template.DisplayName;
+            info.TypeName = template.ClassName + " " + template.SubClassName;
+            info.ModelName = template.ModelName;
+            info.IconImage = template.IconImage;
+            info.Protected = false;
+
+
+            return info;
+        }
     }
 }

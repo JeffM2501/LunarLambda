@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LunarLambda.Messges.Ship
 {
-    public class ShipMessage
+    public class ShipMessage : EventArgs
     {
         public static readonly int ProtocolVersion = 1;
 

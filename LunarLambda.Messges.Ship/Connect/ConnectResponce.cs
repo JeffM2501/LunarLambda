@@ -27,27 +27,5 @@ namespace LunarLambda.Messges.Ship.Connect
 		public string ScenarioAuthor = string.Empty;
 		public string ScenarioVariation = string.Empty;
 		public string ScenarioIconImage = string.Empty;
-
-		public class ShipInfo
-		{
-			public int ID = -1;
-			public string Name = string.Empty;
-			public string Type = string.Empty;
-			public string ModelName = string.Empty;
-			public string IconImage = string.Empty;
-			public List<string> Stats = new List<string>();
-
-			public bool Spawned = false;
-
-            public string ServerAddress = string.Empty;
-            public string ServerLANAddress = string.Empty;
-
-            public bool Protected = false;
-			public int CrewCount = 0;
-			public List<string> CrewedConsoles = new List<string>();
-			public List<string> AvailableConsoles = new List<string>();
-		}
-
-		public List<ShipInfo> Ships = new List<ShipInfo>();
 	}
 }

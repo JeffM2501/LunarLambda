@@ -182,20 +182,22 @@ namespace LunarLambda
 
 		static void LoadResources()
 		{
-			FileLocations.AddUserAndApplicationSubDirAssets("assets");
-            FileLocations.AddUserAndApplicationSubDirAssets("music");
-
+			
             foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packages"), "*.pack"))
-				AssetManager.AddProvider(new PackAssetProvider(file));
-
-			foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packages"), "*.pack"))
 				AssetManager.AddProvider(new PackAssetProvider(file));
 
             foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetApplicationDataDir("packages"), "*.zip"))
                 AssetManager.AddProvider(new ZipPackageAssetProvider(file));
 
+            FileLocations.AddUserAndApplicationSubDirAssets("assets");
+            FileLocations.AddUserAndApplicationSubDirAssets("music");
+
+            foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packages"), "*.pack"))
+				AssetManager.AddProvider(new PackAssetProvider(file));
+
             foreach (var file in FileLocations.GetAllSubFiles(FileLocations.GetUserDataSubDir("packages"), "*.zip"))
                 AssetManager.AddProvider(new ZipPackageAssetProvider(file));
+
         }
 
 		static void LoadMods()

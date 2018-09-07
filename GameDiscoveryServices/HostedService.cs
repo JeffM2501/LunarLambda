@@ -8,7 +8,8 @@ namespace GameDiscoveryServices
 {
     public class HostedService
     {
-		public int StructureVersion = 1;
+        public static readonly int DefaultStructureVersion = 1;
+		public int StructureVersion = DefaultStructureVersion;
 
 		public string Name = string.Empty;
 		public string TypeID = string.Empty;

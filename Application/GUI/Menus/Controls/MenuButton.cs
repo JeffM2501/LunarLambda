@@ -28,8 +28,8 @@ namespace LunarLambda.GUI.Menus.Controls
 
         protected override void Setup()
         {
-			ClickSound = "button.wav";
-			HoverSound = "effects/click.wav";
+			ClickSound = "effects/click1.wav";
+			HoverSound = "effects/rollover3.wav";
 
             DefaultMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/ButtonBackground.png"), Color.White);
             ActiveMaterial = new GUIMaterial(ThemeManager.GetThemeAsset("ui/ButtonBackground.active.png"), Color.White);

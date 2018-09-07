@@ -18,6 +18,7 @@ namespace LunarLambda.Data.Databases
 
         public TemplateTypes Type = TemplateTypes.Other;
 
+        public int ID = -1;
         public string Name = string.Empty;
 		public string DisplayName = string.Empty;
 		public string ClassName = string.Empty;
@@ -26,8 +27,9 @@ namespace LunarLambda.Data.Databases
         public string ModelName = string.Empty;
         public string RadarTrace = string.Empty;
         public string DefaultAIName = string.Empty;
+        public string IconImage = string.Empty;
 
-		public bool Known = true;
+        public bool Known = true;
 
         public float Hull = 0;
         public List<float> Shields = new List<float>();

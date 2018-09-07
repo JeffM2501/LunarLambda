@@ -10,9 +10,9 @@ namespace LunarLambda.Messges.Ship.Connect
 	{
 		public enum ClientTypes
 		{
-			Ship,
-			GameManager,
-			API,
+			Ship = 1,
+			GameManager = 2,
+			API = 3,
 		}
 		public ClientTypes ClientType = ClientTypes.Ship;
 		public string Name = string.Empty;

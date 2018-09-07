@@ -46,7 +46,7 @@
     <Compile Include="Processors\ConnectionProcessor.cs" />
     <Compile Include="GameHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShipServer.cs" />
+    <Compile Include="GameHost.Ships.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LudicrousElectron\Lidgren.Network\Lidgren.Network.csproj">

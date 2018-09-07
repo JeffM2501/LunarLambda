@@ -11,7 +11,7 @@ using GameDiscoveryServices;
 
 namespace LunarLambda.Host.Game
 {
-    internal class ShipServer
+    public partial class GameHost
     {
         protected NetServer Server = null;
         protected Thread WorkerThread = null;
@@ -19,6 +19,9 @@ namespace LunarLambda.Host.Game
         protected bool Running = false;
 
         private readonly object Locker = new object();
+
+
+        protected MessageDispatcher Dispatcher = new MessageDispatcher();
 
 		public class ShipPeer : EventArgs
 		{
@@ -44,15 +47,16 @@ namespace LunarLambda.Host.Game
 					Server.SendMessage(outbound, Connection, NetDeliveryMethod.ReliableOrdered);
 			}
 		}
+
 		protected Dictionary<long,ShipPeer> ConnectedClients = new Dictionary<long, ShipPeer>();
 
 		public event EventHandler<ShipPeer> PeerConnected = null;
 		public event EventHandler<ShipPeer> PeerDisconnected = null;
 
-        public event EventHandler<ShipPeer> ShipServerAdded = null;
-
-		public ShipServer(int port)
+		private void Listen(int port)
         {
+            SetupMessages();
+
             NetPeerConfiguration config = new NetPeerConfiguration("LL_ShipHost_" + ShipMessage.ProtocolVersion.ToString());
             config.Port = port;
             config.AcceptIncomingConnections = true;
@@ -65,10 +69,13 @@ namespace LunarLambda.Host.Game
             WorkerThread = new Thread(new ThreadStart(ProcessNetwork));
 			WorkerThread.Start();
 
-		}
+            LANDiscoveryHost.Startup();
+        }
 
-        public void Shutdown()
+        private void ShutdownNetwork()
         {
+            LANDiscoveryHost.Shutdown();
+
             Running = false;
 
             lock(Locker)
@@ -78,6 +85,11 @@ namespace LunarLambda.Host.Game
             }
 
             Server.Shutdown("BYE!");
+        }
+
+        private void SetupMessages()
+        {
+           // Dispatcher.RegisterHandler();
         }
 
         private bool IsRunning()
@@ -116,6 +128,9 @@ namespace LunarLambda.Host.Game
 			ShipMessage msg = Serialization.Unpack(message);
 			if (msg != null)
 			{
+                if (Dispatcher.Dispatch(this, msg))
+                    return;
+
 				lock (peer)
 					peer.PendingInbound.Add(msg);
 			}
@@ -159,6 +174,7 @@ namespace LunarLambda.Host.Game
                     }
                     Server.Recycle(peerStateMsg);
                 }
+                Server.WaitMessage(1000);
             }
 
             lock (Locker)

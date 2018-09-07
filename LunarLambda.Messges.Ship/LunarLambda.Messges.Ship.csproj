@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Connect\ConnectRequest.cs" />
     <Compile Include="Connect\ConnectResponce.cs" />
+    <Compile Include="Game\UpdateShipList.cs" />
+    <Compile Include="MessageDispatcher.cs" />
     <Compile Include="MessageManager.cs" />
     <Compile Include="ShipMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

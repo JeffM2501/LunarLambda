@@ -46,6 +46,7 @@
     <Compile Include="InternetDiscoveryConnection.cs" />
     <Compile Include="LANDiscoveryClient.cs" />
     <Compile Include="LANDiscoveryHost.cs" />
+    <Compile Include="LanUDPPinger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceList.cs" />
   </ItemGroup>
