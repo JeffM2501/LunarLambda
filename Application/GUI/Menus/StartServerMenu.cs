@@ -12,6 +12,7 @@ using LunarLambda.GUI.Menus.Controls;
 using LunarLambda.Data;
 using LunarLambda.Preferences;
 using LunarLambda.Host.Game;
+using LunarLambda.Client.Ship;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -332,6 +333,7 @@ namespace LunarLambda.GUI.Menus
                 GameHost.ActiveGameHost.Shutdown();
 
             GameHost.StartGame(StartupInfo);
+            ShipClient.ActiveShipClient = new ShipClient("localhost", StartupInfo.Port);
 
             MenuManager.ReplaceAndPushMenu(MenuAPI.GameStatusMenu, MenuAPI.JoinGameMenuName);
         }

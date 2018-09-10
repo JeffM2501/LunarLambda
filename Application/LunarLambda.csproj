@@ -163,6 +163,10 @@
       <Project>{addd72d6-c8f5-4d04-b102-5b7cd16b0eba}</Project>
       <Name>LunarLambda.Host.Game</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LunarLambda.Messges.Ship\LunarLambda.Messges.Ship.csproj">
+      <Project>{bcbfb0c8-6853-4fbd-a9ff-3a115f63a24e}</Project>
+      <Name>LunarLambda.Messges.Ship</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LL_icon.ico" />

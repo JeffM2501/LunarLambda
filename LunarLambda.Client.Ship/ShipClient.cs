@@ -13,6 +13,8 @@ namespace LunarLambda.Client.Ship
 {
     public partial class ShipClient
     {
+        public static ShipClient ActiveShipClient = null;
+
         protected NetClient Client = null;
         protected Thread WorkerThread = null;
         private object Locker = new object();
@@ -43,6 +45,15 @@ namespace LunarLambda.Client.Ship
         {
             Dispatcher.RegisterHandler(typeof(ConnectResponce), HandleConnectResponce);
             Dispatcher.RegisterHandler(typeof(UpdateShipList), HandleUpdateShipList);
+        }
+
+        public void Shutdown()
+        {
+            Client.Disconnect("shutdown");
+
+            if (WorkerThread != null)
+                WorkerThread.Abort();
+            WorkerThread = null;
         }
 
         private bool IsRunning()

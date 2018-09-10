@@ -21,9 +21,20 @@ namespace LunarLambda.Host.Game
 			{
 				ConnectResponce responce = new ConnectResponce();
 				responce.Responce = ConnectResponce.ResponceTypes.Accepted;
-				responce.ScenarioName = ActiveScenario.in
+                responce.ScenarioName = StartupInfo.SelectedScenario.Name;
+                responce.ScenarioAuthor = StartupInfo.SelectedScenario.Author;
+                responce.ScenarioDescription = StartupInfo.SelectedScenario.Description;
+                responce.ScenarioType = StartupInfo.SelectedScenario.Type;
+                responce.ScenarioVariation = StartupInfo.SelectedVariation.DisplayName;
+                responce.ScenarioIconImage = StartupInfo.SelectedScenario.IconImage;
 
-				UpdateShipList shipList = new UpdateShipList();
+                responce.ServerKey = ServiceInfo.IDKey;
+                responce.ServerLANAddress = StartupInfo.ServerLANAddress;
+                responce.SerververWANAddress = StartupInfo.ServerWANHost;
+                peer.Send(responce);
+
+
+                UpdateShipList shipList = new UpdateShipList();
 				GetShipList(shipList);
 				peer.Send(shipList);
 			}

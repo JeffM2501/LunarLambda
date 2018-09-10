@@ -13,6 +13,7 @@ using LunarLambda.GUI.Menus.Controls;
 using LudicrousElectron.Engine.Graphics.Textures;
 using LunarLambda.API;
 using LunarLambda.Host.Game;
+using LunarLambda.Client.Ship;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -23,6 +24,33 @@ namespace LunarLambda.GUI.Menus
         internal JoinGameMenu() : base()
         {
 
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+
+            if (ShipClient.ActiveShipClient == null)
+                return;
+
+            ShipClient.ActiveShipClient.ConnectionAccepted += ActiveShipClient_ConnectionAccepted;
+            ShipClient.ActiveShipClient.ShipListUpdated += this.ActiveShipClient_ShipListUpdated;
+
+            if (ShipClient.ActiveShipClient.LastConnectResponce != null && ShipClient.ActiveShipClient.LastConnectResponce.Responce == Messges.Ship.Connect.ConnectResponce.ResponceTypes.Accepted)
+                ActiveShipClient_ConnectionAccepted(ShipClient.ActiveShipClient, ShipClient.ActiveShipClient.LastConnectResponce);
+            if (ShipClient.ActiveShipClient.LastShipList != null && ShipClient.ActiveShipClient.LastConnectResponce.Responce == Messges.Ship.Connect.ConnectResponce.ResponceTypes.Accepted)
+                ActiveShipClient_ShipListUpdated(ShipClient.ActiveShipClient, ShipClient.ActiveShipClient.LastShipList);
+
+        }
+
+        private void ActiveShipClient_ConnectionAccepted(object sender, Messges.Ship.Connect.ConnectResponce e)
+        {
+            // setup the scenario info
+        }
+
+        private void ActiveShipClient_ShipListUpdated(object sender, LunarLambda.Messges.Ship.Game.UpdateShipList e)
+        {
+            // load the ship list
         }
 
         protected override void SetupControls()
@@ -141,6 +169,16 @@ namespace LunarLambda.GUI.Menus
         private void Join_Clicked(object sender, UIButton e)
         {
             MenuManager.PushMenu(MenuAPI.JoinGameMenuName);
+        }
+
+        protected override void Back_Clicked(object sender, UIButton e)
+        {
+            if (ShipClient.ActiveShipClient != null)
+            {
+                ShipClient.ActiveShipClient.Shutdown();
+                ShipClient.ActiveShipClient = null;
+            }
+            base.Back_Clicked(sender, e);
         }
     }
 }
