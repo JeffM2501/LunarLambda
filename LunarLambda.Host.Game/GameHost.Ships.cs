@@ -8,6 +8,7 @@ using Lidgren.Network;
 using LunarLambda.Messges.Ship;
 
 using GameDiscoveryServices;
+using LunarLambda.Messges.Ship.Connect;
 
 namespace LunarLambda.Host.Game
 {
@@ -89,8 +90,8 @@ namespace LunarLambda.Host.Game
 
         private void SetupMessages()
         {
-           // Dispatcher.RegisterHandler();
-        }
+			Dispatcher.RegisterHandler(typeof(ConnectRequest), HandleConnectRequest);
+		}
 
         private bool IsRunning()
         {
@@ -128,7 +129,7 @@ namespace LunarLambda.Host.Game
 			ShipMessage msg = Serialization.Unpack(message);
 			if (msg != null)
 			{
-                if (Dispatcher.Dispatch(this, msg))
+                if (Dispatcher.Dispatch(peer, msg))
                     return;
 
 				lock (peer)
