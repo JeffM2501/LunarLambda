@@ -21,6 +21,9 @@ namespace LunarLambda.GUI.Menus
     {
         protected LayoutContainer[] Columns = new LayoutContainer[] { null, null, null };
 
+        protected ButtonScrollList NewShipList = null;
+        protected ButtonScrollList ActiveShipList = null;
+
         internal JoinGameMenu() : base()
         {
 
@@ -50,7 +53,23 @@ namespace LunarLambda.GUI.Menus
 
         private void ActiveShipClient_ShipListUpdated(object sender, LunarLambda.Messges.Ship.Game.UpdateShipList e)
         {
+            if (ActiveShipList == null || NewShipList == null)
+                return;
+
+            ActiveShipList.ClearItems();
+            NewShipList.ClearItems();
+            NewShipList.AddItem(MenuRes.DefaultShipSelection);
+
             // load the ship list
+            foreach (var ship in e.Ships)
+            {
+                if (ship.Spawned)
+                    ActiveShipList.AddItem(ship.Name,ship);
+                else
+                    NewShipList.AddItem(ship.Name, ship);
+            }
+
+            NewShipList.SetSelectedIndex(0);
         }
 
         protected override void SetupControls()
@@ -92,29 +111,29 @@ namespace LunarLambda.GUI.Menus
             // Scenario header
             shipList.AddChild(new Header(new RelativeRect(), MenuRes.ShipListHeader));
 
-            ButtonScrollList currentShipList = new ButtonScrollList(RelativeRect.Full, -1, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
-            currentShipList.DesiredRows = 8;
+            ActiveShipList = new ButtonScrollList(RelativeRect.Full, -1, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+            ActiveShipList.DesiredRows = 8;
 
 
-            currentShipList.FillMode = UIFillModes.Stretch4Quad;
-            shipList.AddChild(currentShipList);
+            ActiveShipList.FillMode = UIFillModes.Stretch4Quad;
+            shipList.AddChild(ActiveShipList);
 
            
             shipList.AddChild(new Header(new RelativeRect(), MenuRes.NewShipHeader));
 
-            ButtonScrollList newShipList = new ButtonScrollList(RelativeRect.Full, -1, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
-            newShipList.DesiredRows = 8;
+            NewShipList = new ButtonScrollList(RelativeRect.Full, -1, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+            NewShipList.DesiredRows = 8;
 
-            newShipList.AddItem(MenuRes.DefaultShipSelection);
+            NewShipList.AddItem(MenuRes.DefaultShipSelection);
 
-            newShipList.FillMode = UIFillModes.Stretch4Quad;
-            shipList.AddChild(newShipList);
+            NewShipList.FillMode = UIFillModes.Stretch4Quad;
+            shipList.AddChild(NewShipList);
 
 
             AddElement(Columns[0], layerIndex + 1);
 
 
-            newShipList.SetSelectedIndex(0);
+            NewShipList.SetSelectedIndex(0);
 
             return layerIndex + 1;
         }

@@ -14,7 +14,7 @@ namespace LunarLambda.Host.Game
     {
         public static GameHost ActiveGameHost = null;
 		protected HostedService ServiceInfo = null;
-		protected ServerStartupInfo StartupInfo = null;
+		public  ServerStartupInfo StartupInfo { get; protected set; } = null;
 
 		public static void StartGame(ServerStartupInfo info)
         {

@@ -13,6 +13,7 @@ using LunarLambda.GUI.Menus.Controls;
 using LudicrousElectron.Engine.Graphics.Textures;
 using LunarLambda.API;
 using LunarLambda.Host.Game;
+using LunarLambda.Client.Ship;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -53,6 +54,9 @@ namespace LunarLambda.GUI.Menus
 
         private void Join_Clicked(object sender, UIButton e)
         {
+            if (ShipClient.ActiveShipClient == null && GameHost.ActiveGameHost != null)
+                ShipClient.ActiveShipClient = new ShipClient("localhost", GameHost.ActiveGameHost.StartupInfo.Port);
+
             MenuManager.PushMenu(MenuAPI.JoinGameMenuName);
         }
     }

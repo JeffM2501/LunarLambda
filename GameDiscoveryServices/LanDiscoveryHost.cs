@@ -45,6 +45,9 @@ namespace GameDiscoveryServices
 
         private static void AcceptRequest(IAsyncResult result)
         {
+            if (SocketHost == null)
+                return;
+
             var client = SocketHost.EndAcceptTcpClient(result);
             SocketHost.BeginAcceptTcpClient(AcceptRequest, null);
 
@@ -62,6 +65,9 @@ namespace GameDiscoveryServices
 
         private static void HandleUDPPing (IAsyncResult result)
         {
+            if (UDPPingResponder == null)
+                return;
+
             IPEndPoint client = null;
             byte[] data = UDPPingResponder.EndReceive(result, ref client);
             UDPPingResponder.BeginReceive(HandleUDPPing, null);

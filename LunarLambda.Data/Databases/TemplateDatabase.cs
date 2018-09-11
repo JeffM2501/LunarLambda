@@ -34,6 +34,12 @@ namespace LunarLambda.Data.Databases
             return AddTemplate(ship) as ShipTemplate;
         }
 
+        public static ShipTemplate CloneShip(ShipTemplate template, string name)
+        {
+            ShipTemplate ship = template.CloneShip(name);
+            return AddTemplate(ship) as ShipTemplate;
+        }
+
         public static BaseTemplate GetTemplate(string name)
         {
             return Templates.Find((x) => x.Name == name);

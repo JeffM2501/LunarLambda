@@ -14,26 +14,19 @@ namespace LunarLambda.Messges.Ship
 				return null;
 
 			ShipMessage msg = Activator.CreateInstance(t) as ShipMessage;
-			if (msg.UseSerialization)
-				message.ReadAllFields(msg, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-			else if (!msg.Unpack(message))
+			if (!msg.Unpack(message))
 				return null;
 			
 			return msg;
 		}
 
-		public static bool Pack(ShipMessage msg, NetOutgoingMessage buffer)
-		{
-			if (msg == null)
-				return false;
+        public static bool Pack(ShipMessage msg, NetOutgoingMessage buffer)
+        {
+            if (msg == null)
+                return false;
 
-			buffer.Write(msg.GetType().Name);
-			if (msg.UseSerialization)
-				buffer.WriteAllFields(msg, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-			else
-				return msg.Pack(buffer);
-
-			return true;
-		}
+            msg.WriteMessageHeader(buffer);
+            return msg.Pack(buffer);
+        }
 	}
 }

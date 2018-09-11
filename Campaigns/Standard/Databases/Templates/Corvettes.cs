@@ -102,7 +102,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // player version
-            var variation = template.CloneShip("AtlantisPlayer");
+            var variation = TemplateDatabase.CloneShip(template,"AtlantisPlayer");
             variation.SetName(Resources.Corvette_AtlantisX32PName);
             variation.SetPlayable();
             variation.SetDescription(Resources.Corvette_AtlantisX32PDescription);

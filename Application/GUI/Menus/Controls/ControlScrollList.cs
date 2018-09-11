@@ -93,7 +93,15 @@ namespace LunarLambda.GUI.Menus.Controls
 			return info.Index;
 		}
 
-		protected virtual void CheckItemCount()
+        public void ClearItems()
+        {
+            ItemList.Clear();
+
+            if (Inited)
+                ForceRefresh();
+        }
+
+        protected virtual void CheckItemCount()
 		{
 			// by default we assume the item list is good, but text areas may need to reflow.
 		}

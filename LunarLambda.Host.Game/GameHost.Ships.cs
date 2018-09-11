@@ -148,6 +148,9 @@ namespace LunarLambda.Host.Game
                 {
                     switch (peerStateMsg.MessageType)
                     {
+                        case NetIncomingMessageType.ConnectionApproval:
+                            peerStateMsg.SenderConnection.Approve();
+                            break;
                         case NetIncomingMessageType.StatusChanged:
                             switch (peerStateMsg.SenderConnection.Status)
                             {
@@ -175,7 +178,7 @@ namespace LunarLambda.Host.Game
                     }
                     Server.Recycle(peerStateMsg);
                 }
-                Server.WaitMessage(1000);
+                Thread.Sleep(10);
             }
 
             lock (Locker)

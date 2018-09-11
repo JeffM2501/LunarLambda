@@ -25,7 +25,10 @@ namespace LunarLambda.Host.Game
                 responce.ScenarioAuthor = StartupInfo.SelectedScenario.Author;
                 responce.ScenarioDescription = StartupInfo.SelectedScenario.Description;
                 responce.ScenarioType = StartupInfo.SelectedScenario.Type;
-                responce.ScenarioVariation = StartupInfo.SelectedVariation.DisplayName;
+                responce.ScenarioVariation = string.Empty; 
+                if (StartupInfo.SelectedVariation != null)
+                    responce.ScenarioVariation = StartupInfo.SelectedVariation.DisplayName;
+
                 responce.ScenarioIconImage = StartupInfo.SelectedScenario.IconImage;
 
                 responce.ServerKey = ServiceInfo.IDKey;

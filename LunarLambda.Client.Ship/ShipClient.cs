@@ -8,6 +8,7 @@ using Lidgren.Network;
 using LunarLambda.Messges.Ship;
 using LunarLambda.Messges.Ship.Connect;
 using LunarLambda.Messges.Ship.Game;
+using LudicrousElectron.Engine;
 
 namespace LunarLambda.Client.Ship
 {
@@ -31,14 +32,23 @@ namespace LunarLambda.Client.Ship
             SetupMessages();
 
             NetPeerConfiguration config = new NetPeerConfiguration("LL_ShipHost_" + ShipMessage.ProtocolVersion.ToString());
-            config.Port = port;
+   
             config.AutoFlushSendQueue = true;
+            config.AcceptIncomingConnections = false;
             Client = new NetClient(config);
 
+            Client.Start();
             Client.Connect(host, port);
 
-            WorkerThread = new Thread(new ThreadStart(ProcessNetwork));
-            WorkerThread.Start();
+            //             WorkerThread = new Thread(new ThreadStart(ProcessNetwork));
+            //             WorkerThread.Start();
+
+            Core.Update += Core_Update;
+        }
+
+        private void Core_Update(object sender, Core.EngineState e)
+        {
+            PocesssMessages();
         }
 
         public void SetupMessages()
@@ -49,6 +59,7 @@ namespace LunarLambda.Client.Ship
 
         public void Shutdown()
         {
+            Core.Update -= Core_Update;
             Client.Disconnect("shutdown");
 
             if (WorkerThread != null)
@@ -70,45 +81,49 @@ namespace LunarLambda.Client.Ship
                 Client.SendMessage(outbound, NetDeliveryMethod.ReliableOrdered);
         }
 
+        protected NetIncomingMessage peerStateMsg = null;
+        protected void PocesssMessages()
+        {
+            peerStateMsg = null;
+            while ((peerStateMsg = Client.ReadMessage()) != null)
+            {
+                switch (peerStateMsg.MessageType)
+                {
+                    case NetIncomingMessageType.StatusChanged:
+                        switch (peerStateMsg.SenderConnection.Status)
+                        {
+                            case NetConnectionStatus.Connected:
+                                Send(new ConnectRequest());
+                                Connected?.Invoke(this, EventArgs.Empty);
+                                break;
+
+                            case NetConnectionStatus.Disconnected:
+                                Disconnected?.Invoke(this, EventArgs.Empty);
+                                break;
+
+                            default:
+                                //log other statuses
+                                break;
+                        }
+                        break;
+
+                    case NetIncomingMessageType.Data:
+                        Dispatcher.Dispatch(this, Serialization.Unpack(peerStateMsg));
+                        break;
+
+                    default:
+                        // log error
+                        break;
+                }
+                Client.Recycle(peerStateMsg);
+            }
+        }
+
         public virtual void ProcessNetwork()
         {
-            NetIncomingMessage peerStateMsg = null;
-
             while (IsRunning())
             {
-                peerStateMsg = null;
-                while ((peerStateMsg = Client.ReadMessage()) != null)
-                {
-                    switch (peerStateMsg.MessageType)
-                    {
-                        case NetIncomingMessageType.StatusChanged:
-                            switch (peerStateMsg.SenderConnection.Status)
-                            {
-                                case NetConnectionStatus.Connected:
-                                    Send(new ConnectRequest());
-                                    Connected?.Invoke(this, EventArgs.Empty);
-                                    break;
-
-                                case NetConnectionStatus.Disconnected:
-                                    Disconnected?.Invoke(this, EventArgs.Empty);
-                                    break;
-
-                                default:
-                                    //log other statuses
-                                    break;
-                            }
-                            break;
-
-                        case NetIncomingMessageType.Data:
-                            Dispatcher.Dispatch(this, Serialization.Unpack(peerStateMsg));
-                            break;
-
-                        default:
-                            // log error
-                            break;
-                    }
-                    Client.Recycle(peerStateMsg);
-                }
+                PocesssMessages();
                 Client.WaitMessage(100);
             }
 

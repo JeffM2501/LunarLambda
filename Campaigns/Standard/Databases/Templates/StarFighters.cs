@@ -63,7 +63,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
 			// mk2 upgrade
-			ShipTemplate variation = template.CloneShip("HornetMk2");
+			ShipTemplate variation = TemplateDatabase.CloneShip(template, "HornetMk2");
             variation.SetName(Resources.Fighter_HornetMk2Name);
             variation.SetDescription(Resources.Fighter_HornetMk2Description);
             variation.SetModel("WespeScoutRed");
@@ -74,7 +74,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // mk 3 player variant
-            variation = template.CloneShip("HornetMk3P");
+            variation = TemplateDatabase.CloneShip(template, "HornetMk3P");
             variation.SetName(Resources.Fighter_HornetMk3Name);
             variation.SetDescription(Resources.Fighter_HornetMk3Description);
 
@@ -107,7 +107,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // MK4
-            ShipTemplate variation = template.CloneShip("AdderMk4");
+            ShipTemplate variation = TemplateDatabase.CloneShip(template, "AdderMk4");
             variation.SetName(Resources.Fighter_AdderMk4Name);
             variation.SetDescription(Resources.Fighter_AdderMk4Description);
             variation.SetModel("AdlerLongRangeScoutBlue");
@@ -120,7 +120,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
 
 
             // MK6
-            variation = template.CloneShip("AdderMk6");
+            variation = TemplateDatabase.CloneShip(template, "AdderMk6");
             variation.SetName(Resources.Fighter_AdderMk6Name);
             variation.SetDescription(Resources.Fighter_AdderMk6Description);
             variation.SetupBeamWeapon(3, 35, 180, 600, 6.0f, 2.0f);

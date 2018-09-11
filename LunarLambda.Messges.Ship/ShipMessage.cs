@@ -11,16 +11,23 @@ namespace LunarLambda.Messges.Ship
     {
         public static readonly int ProtocolVersion = 1;
 
-		public virtual bool UseSerialization { get; } = true;
-
 		public virtual bool Unpack(NetIncomingMessage message)
 		{
-			return false;
+            // by default we serialize
+            message.ReadAllFields(this, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            return true;
 		}
+
+        public void WriteMessageHeader (NetOutgoingMessage buffer)
+        {
+            buffer.Write(GetType().Name);
+        }
 
 		public virtual bool Pack(NetOutgoingMessage buffer)
 		{
-			return false;
+            // by default we serialize
+            buffer.WriteAllFields(this, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            return true;
 		}
 	}
 }
