@@ -12,6 +12,8 @@ namespace LunarLambda.GUI.Menus.Controls
 	public class ButtonScrollList : ControlScrollList
 	{
 		public int SelectedIndex { get; protected set; } = - 1;
+        public object SelectedItemTag { get { if (SelectedIndex == -1 || SelectedIndex >= ItemList.Count) return null; return ItemList[SelectedIndex].Tag; } }
+
 		public event EventHandler<ButtonScrollList> SelectedIndexChanged = null;
 
 		public ButtonScrollList(RelativeRect rect, int selectedIndex = -1, string texture = null) : base(rect, texture)

@@ -139,6 +139,16 @@ namespace LunarLambda.Host.Game
             info.IconImage = template.IconImage;
             info.Protected = false;
 
+            info.Stats.Add(new Tuple<string,string>(ShipInfoStrings.ImpulseSpeed, template.ImpulseSpeed.ToString()));
+            info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.ImpulseAcceleration, template.ImpulseAcceleration.ToString()));
+            info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.ManuverSpeed, template.TurnSpeed.ToString()));
+            info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.CombatBoost, template.CombatManuverBoostSpeed.ToString() +"/" + template.CombatManuverStrafeSpeed.ToString()));
+
+
+            info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.FTLType, ShipInfoStrings.FTLTypes.Split(",".ToCharArray())[(int)template.DriveType]));
+
+
+            info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.FuelCapcity, template.FuelCapacity.ToString()));
 
             return info;
         }

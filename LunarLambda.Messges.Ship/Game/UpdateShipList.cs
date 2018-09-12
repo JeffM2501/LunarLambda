@@ -41,6 +41,7 @@ namespace LunarLambda.Messges.Ship.Game
                 buffer.Write(ship.TypeName);
                 buffer.Write(ship.ModelName);
                 buffer.Write(ship.IconImage);
+
                 buffer.Write(ship.Stats.Count);
                 foreach(var stat in ship.Stats)
                 {
@@ -54,9 +55,11 @@ namespace LunarLambda.Messges.Ship.Game
                 buffer.Write(ship.Protected);
                 buffer.Write(ship.CrewCount);
 
+                buffer.Write(ship.CrewedConsoles.Count);
                 foreach (var crew in ship.CrewedConsoles)
                     buffer.Write(crew);
 
+                buffer.Write(ship.AvailableConsoles.Count);
                 foreach (var console in ship.AvailableConsoles)
                     buffer.Write(console);
             }
@@ -101,7 +104,7 @@ namespace LunarLambda.Messges.Ship.Game
                     Ships.Add(info);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

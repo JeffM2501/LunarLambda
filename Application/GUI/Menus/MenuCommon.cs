@@ -81,8 +81,16 @@ namespace LunarLambda.GUI.Menus
 			foreach (var ctlInfo in MenuAPI.GetAPICtls(name))
 				RegisterControl(ctlInfo);
 		}
+        protected UILabel MakeGridLabel(string text, bool left = false)
+        {
+            var label = new UILabel(MenuManager.MainFont, text, RelativeRect.FullRight, UILabel.TextFittingModes.ByHeightTrim);
+            label.MaxTextSize = (int)(MenuCommon.ButtonHeight.Paramater * 0.5f);
+            if (left)
+                label.Rect.AnchorLocation = OriginLocation.MiddleLeft;
+            return label;
+        }
 
-		public static VerticalLayoutGroup SetupCommonColumn(RelativeRect rect)
+        public static VerticalLayoutGroup SetupCommonColumn(RelativeRect rect)
 		{
 			VerticalLayoutGroup column = new VerticalLayoutGroup(rect);
 			column.ChildSpacing = ButtonSpacing.Paramater;

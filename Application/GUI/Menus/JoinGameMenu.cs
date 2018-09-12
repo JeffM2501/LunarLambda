@@ -14,6 +14,8 @@ using LudicrousElectron.Engine.Graphics.Textures;
 using LunarLambda.API;
 using LunarLambda.Host.Game;
 using LunarLambda.Client.Ship;
+using LunarLambda.Messges.Ship.Game;
+using System.Text;
 
 namespace LunarLambda.GUI.Menus
 {
@@ -24,9 +26,17 @@ namespace LunarLambda.GUI.Menus
         protected ButtonScrollList NewShipList = null;
         protected ButtonScrollList ActiveShipList = null;
 
+        protected UILabel ShipNameLabel = null;
+        protected UILabel ShipTypeLabel = null;
+        protected TextArea ShipStatsTextArea = null;
+
+        protected UpdateShipList.ShipInfo DefaultShipInfo = null;
+
         internal JoinGameMenu() : base()
         {
-
+            DefaultShipInfo = new UpdateShipList.ShipInfo();
+            DefaultShipInfo.Name = MenuRes.DefaultShipSelection;
+            DefaultShipInfo.TypeName = MenuRes.DefaultShipTypeLabel;
         }
 
         public override void Activate()
@@ -58,7 +68,7 @@ namespace LunarLambda.GUI.Menus
 
             ActiveShipList.ClearItems();
             NewShipList.ClearItems();
-            NewShipList.AddItem(MenuRes.DefaultShipSelection);
+            NewShipList.AddItem(MenuRes.DefaultShipSelection, DefaultShipInfo);
 
             // load the ship list
             foreach (var ship in e.Ships)
@@ -128,7 +138,7 @@ namespace LunarLambda.GUI.Menus
             NewShipList = new ButtonScrollList(RelativeRect.Full, -1, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
             NewShipList.DesiredRows = 8;
 
-            NewShipList.AddItem(MenuRes.DefaultShipSelection);
+            NewShipList.AddItem(MenuRes.DefaultShipSelection, DefaultShipInfo);
 
             NewShipList.FillMode = UIFillModes.Stretch4Quad;
             shipList.AddChild(NewShipList);
@@ -136,10 +146,38 @@ namespace LunarLambda.GUI.Menus
 
             AddElement(Columns[0], layerIndex + 1);
 
+            NewShipList.SelectedIndexChanged += NewShipList_SelectedIndexChanged;
 
             NewShipList.SetSelectedIndex(0);
 
             return layerIndex + 1;
+        }
+
+        private void NewShipList_SelectedIndexChanged(object sender, ButtonScrollList e)
+        {
+            if (ShipNameLabel == null)
+                return;
+
+            if (e.SelectedItemTag as UpdateShipList.ShipInfo == null)
+            {
+                ShipNameLabel.Text = MenuRes.ShipNameLabel;
+                ShipTypeLabel.Text = MenuRes.ShipTypeLabel;
+                ShipStatsTextArea.SetText(string.Empty);
+            }
+            else
+            {
+                UpdateShipList.ShipInfo ship = e.SelectedItemTag as UpdateShipList.ShipInfo;
+                ShipNameLabel.Text = MenuRes.ShipNameLabel + ship.Name;
+                ShipTypeLabel.Text = MenuRes.ShipTypeLabel + ship.TypeName;
+
+                StringBuilder sb = new StringBuilder();
+                foreach (var stat in ship.Stats)
+                    sb.AppendLine(stat.Item1 + " : " + stat.Item2);
+
+                ShipStatsTextArea.SetText(sb.ToString());
+            }
+            ShipTypeLabel.ForceRefresh();
+            ShipNameLabel.ForceRefresh();
         }
 
         protected int SetupShipInfo(int layerIndex)
@@ -147,21 +185,34 @@ namespace LunarLambda.GUI.Menus
             // right side group
             RelativeRect rect = new RelativeRect(RelativeLoc.XCenter, RelativeLoc.YUpper + RelativeLoc.BorderOffset, RelativeSize.ThreeColumnWidth, RelativeSize.SevenEightsHeight, OriginLocation.UpperCenter);
 
-            GridLayoutGroup shipInfo = new GridLayoutGroup(rect, 15, 2);
+            GridLayoutGroup shipInfo = new GridLayoutGroup(rect, 15, 1);
 
             Columns[1] = shipInfo;
 
             shipInfo.MaxChildSize = ButtonHeight.Paramater;
 
-            shipInfo.SetColSpan(0, 1);
+            shipInfo.SetColSpan(4, 5);
 
             // Scenario header
             shipInfo.AddChild(new Header(new RelativeRect(), MenuRes.ShipInfoHeader));
 
+            ShipNameLabel =  MakeGridLabel(MenuRes.ShipNameLabel, true);
+            shipInfo.AddChild(ShipNameLabel);
+
+            ShipTypeLabel = MakeGridLabel(MenuRes.ShipTypeLabel, true);
+            shipInfo.AddChild(ShipTypeLabel);
+
+            shipInfo.AddChild(new Header(new RelativeRect(), MenuRes.ShipStatsLabel));
+
+            ShipStatsTextArea = new TextArea(RelativeRect.Full, string.Empty, MenuManager.MainFont, ThemeManager.GetThemeAsset("ui/TextEntryBackground.png"));
+            ShipStatsTextArea.DefaultMaterial.Color = Color.Gray;
+            ShipStatsTextArea.DesiredRows = 9;
+            ShipStatsTextArea.BorderPadding = 4;
+            ShipStatsTextArea.MiniumElementHeight = 12;
+
+            shipInfo.AddChild(ShipStatsTextArea);
 
             AddElement(Columns[1], layerIndex + 1);
-
-
             return layerIndex + 1;
         }
 

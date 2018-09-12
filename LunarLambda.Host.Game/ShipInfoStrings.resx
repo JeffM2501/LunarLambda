@@ -117,169 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Back" xml:space="preserve">
-    <value>Back</value>
+  <data name="BeamWeapons" xml:space="preserve">
+    <value>Beam Count</value>
   </data>
-  <data name="ConsoleSelectorHeader" xml:space="preserve">
-    <value>Select Consoles &amp; Screens</value>
-  </data>
-  <data name="DefaultServerName" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="DefaultShipSelection" xml:space="preserve">
-    <value>Default Ship</value>
-  </data>
-  <data name="DefaultVariation" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="EffectsVolume" xml:space="preserve">
-    <value>Effects Volume</value>
-  </data>
-  <data name="FlightControllName" xml:space="preserve">
-    <value>Flight Controller</value>
-  </data>
-  <data name="FSAA" xml:space="preserve">
-    <value>FSAA: off;FSAA: 2x;FSAA: 4x;FSAA: 8x</value>
+  <data name="CombatBoost" xml:space="preserve">
+    <value>Combat Boost</value>
   </data>
   <data name="FTLType" xml:space="preserve">
-    <value>FTL Drive Type:</value>
+    <value>FTLDriveType</value>
   </data>
   <data name="FTLTypes" xml:space="preserve">
-    <value>None;Default;Warp;Jump;Warp &amp; Jump</value>
+    <value>None,Warp,Jump</value>
   </data>
-  <data name="FullscreenModes" xml:space="preserve">
-    <value>Windowed;Maximized;Fullscreen</value>
+  <data name="FuelCapcity" xml:space="preserve">
+    <value>Fuel Capacity</value>
   </data>
-  <data name="FullscreenToggle" xml:space="preserve">
-    <value>Fullscreen Toggle</value>
+  <data name="ImpulseAcceleration" xml:space="preserve">
+    <value>Impulse Acceleration</value>
   </data>
-  <data name="GameRules" xml:space="preserve">
-    <value>Game Rules</value>
+  <data name="ImpulseSpeed" xml:space="preserve">
+    <value>Impulse Speed</value>
   </data>
-  <data name="Graphics" xml:space="preserve">
-    <value>Graphics</value>
+  <data name="ManuverSpeed" xml:space="preserve">
+    <value>Manuver Speed</value>
   </data>
-  <data name="JoinGameInProgress" xml:space="preserve">
-    <value>Join</value>
+  <data name="MissileStores" xml:space="preserve">
+    <value>Missile Storage</value>
   </data>
-  <data name="LongRangeRadar" xml:space="preserve">
-    <value>Long Range Radar</value>
+  <data name="MissileWeaponCount" xml:space="preserve">
+    <value>Missile Count</value>
   </data>
-  <data name="MainScreenName" xml:space="preserve">
-    <value>Main View Screen</value>
+  <data name="RepairCrew" xml:space="preserve">
+    <value>Repair Crew Size</value>
   </data>
-  <data name="MainScreenOptions" xml:space="preserve">
-    <value>Main Screen Options</value>
-  </data>
-  <data name="MusicPlayback" xml:space="preserve">
-    <value>Music Playblack</value>
-  </data>
-  <data name="MusicPlaybackModes" xml:space="preserve">
-    <value>Disabled;All Stations;Main Screen Only</value>
-  </data>
-  <data name="MusicVolume" xml:space="preserve">
-    <value>Music Volume</value>
-  </data>
-  <data name="NewShipHeader" xml:space="preserve">
-    <value>New Ship</value>
-  </data>
-  <data name="NoVariatioName" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="NoVariationDescription" xml:space="preserve">
-    <value>No variation selected, the scenario will run using the default settings.</value>
-  </data>
-  <data name="Options" xml:space="preserve">
-    <value>Options</value>
-  </data>
-  <data name="PerSystemDamage" xml:space="preserve">
-    <value>Per-System Damage</value>
-  </data>
-  <data name="PlayerShipOptions" xml:space="preserve">
-    <value>Player Ship Options</value>
-  </data>
-  <data name="PreviewSoundtrack" xml:space="preserve">
-    <value>Preview Soundtrack</value>
-  </data>
-  <data name="Quit" xml:space="preserve">
-    <value>Quit</value>
-  </data>
-  <data name="RadarRange" xml:space="preserve">
-    <value>Nominal Sensor Range:</value>
-  </data>
-  <data name="ScanComplexity" xml:space="preserve">
-    <value>Scan Complexity:</value>
-  </data>
-  <data name="ScanTypes" xml:space="preserve">
-    <value>None (Delay);Normal;Advanced</value>
-  </data>
-  <data name="Scenario" xml:space="preserve">
-    <value>Scenarios</value>
-  </data>
-  <data name="ServerConfiguration" xml:space="preserve">
-    <value>Server Configuration</value>
-  </data>
-  <data name="ServerLanIP" xml:space="preserve">
-    <value>Server LAN IP:</value>
-  </data>
-  <data name="ServerName" xml:space="preserve">
-    <value>Server Name:</value>
-  </data>
-  <data name="ServerPassword" xml:space="preserve">
-    <value>Server Password:</value>
-  </data>
-  <data name="ServerVis" xml:space="preserve">
-    <value>Server Visibility:</value>
-  </data>
-  <data name="ServerVisModes" xml:space="preserve">
-    <value>Lan Only;Internet</value>
-  </data>
-  <data name="ServerWANIP" xml:space="preserve">
-    <value>External Server Address:</value>
-  </data>
-  <data name="ShipInfoHeader" xml:space="preserve">
-    <value>Ship Information</value>
-  </data>
-  <data name="ShipListHeader" xml:space="preserve">
-    <value>Active Ships</value>
-  </data>
-  <data name="SoundOptions" xml:space="preserve">
-    <value>Sound Options</value>
-  </data>
-  <data name="StartClient" xml:space="preserve">
-    <value>Join A Game</value>
-  </data>
-  <data name="StartScenario" xml:space="preserve">
-    <value>Start Scenario</value>
-  </data>
-  <data name="StartServer" xml:space="preserve">
-    <value>Create A Game</value>
-  </data>
-  <data name="TacticalName" xml:space="preserve">
-    <value>Tactical</value>
-  </data>
-  <data name="TacticalRadar" xml:space="preserve">
-    <value>Tactical Radar</value>
-  </data>
-  <data name="Tutorials" xml:space="preserve">
-    <value>Tutorials</value>
-  </data>
-  <data name="Variation" xml:space="preserve">
-    <value>Variation:</value>
-  </data>
-  <data name="WeaponFrequencies" xml:space="preserve">
-    <value>Weapon Frequenceies</value>
-  </data>
-  <data name="ShipNameLabel" xml:space="preserve">
-    <value>Name:</value>
-  </data>
-  <data name="ShipStatsLabel" xml:space="preserve">
-    <value>Statistics:</value>
-  </data>
-  <data name="ShipTypeLabel" xml:space="preserve">
-    <value>Type:</value>
-  </data>
-  <data name="DefaultShipTypeLabel" xml:space="preserve">
-    <value>Selected by server</value>
+  <data name="ShieldBanks" xml:space="preserve">
+    <value>Shield Banks</value>
   </data>
 </root>

@@ -97,6 +97,15 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected by server.
+        /// </summary>
+        internal static string DefaultShipTypeLabel {
+            get {
+                return ResourceManager.GetString("DefaultShipTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         internal static string DefaultVariation {
@@ -430,11 +439,38 @@ namespace LunarLambda.GUI.Menus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ships.
+        ///   Looks up a localized string similar to Active Ships.
         /// </summary>
         internal static string ShipListHeader {
             get {
                 return ResourceManager.GetString("ShipListHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string ShipNameLabel {
+            get {
+                return ResourceManager.GetString("ShipNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics:.
+        /// </summary>
+        internal static string ShipStatsLabel {
+            get {
+                return ResourceManager.GetString("ShipStatsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type:.
+        /// </summary>
+        internal static string ShipTypeLabel {
+            get {
+                return ResourceManager.GetString("ShipTypeLabel", resourceCulture);
             }
         }
         

@@ -42,13 +42,6 @@ namespace LunarLambda.GUI.Menus
 			base.SetupControls();
 		}
 
-		protected UILabel MakeGridLabel(string text)
-		{
-			var label = new UILabel(MenuManager.MainFont, text, RelativeRect.FullRight, UILabel.TextFittingModes.ByHeightTrim);
-			label.MaxTextSize = (int)(MenuCommon.ButtonHeight.Paramater * 0.5f);
-			return label;
-		}
-
         protected int SetupScenarioList(int layerIndex)
         {
             // right side group
