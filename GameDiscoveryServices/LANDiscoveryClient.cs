@@ -12,7 +12,7 @@ namespace GameDiscoveryServices
         public class LANHost
         {
             public IPAddress LANAddress = null;
-            private TcpClient Client = null;
+            private readonly TcpClient Client = null;
 
             private bool IsDone = false;
             private bool IsError = false;
@@ -87,7 +87,9 @@ namespace GameDiscoveryServices
                         PendingAddresses.Add(address);
                 }
             }
-        }
+
+			CheckThread();
+		}
 
         public static void StartScan()
         {

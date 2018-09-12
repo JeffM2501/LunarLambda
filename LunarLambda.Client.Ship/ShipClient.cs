@@ -17,10 +17,6 @@ namespace LunarLambda.Client.Ship
         public static ShipClient ActiveShipClient = null;
 
         protected NetClient Client = null;
-        protected Thread WorkerThread = null;
-        private object Locker = new object();
-
-        protected bool Running = false;
 
         public event EventHandler Connected = null;
         public event EventHandler Disconnected = null;
@@ -39,10 +35,6 @@ namespace LunarLambda.Client.Ship
 
             Client.Start();
             Client.Connect(host, port);
-
-            //             WorkerThread = new Thread(new ThreadStart(ProcessNetwork));
-            //             WorkerThread.Start();
-
             Core.Update += Core_Update;
         }
 
@@ -61,16 +53,6 @@ namespace LunarLambda.Client.Ship
         {
             Core.Update -= Core_Update;
             Client.Disconnect("shutdown");
-
-            if (WorkerThread != null)
-                WorkerThread.Abort();
-            WorkerThread = null;
-        }
-
-        private bool IsRunning()
-        {
-            lock (Locker)
-                return Running;
         }
 
         public void Send(ShipMessage message)
@@ -117,18 +99,6 @@ namespace LunarLambda.Client.Ship
                 }
                 Client.Recycle(peerStateMsg);
             }
-        }
-
-        public virtual void ProcessNetwork()
-        {
-            while (IsRunning())
-            {
-                PocesssMessages();
-                Client.WaitMessage(100);
-            }
-
-            lock (Locker)
-                WorkerThread = null;
         }
     }
 }

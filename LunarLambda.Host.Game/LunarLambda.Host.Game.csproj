@@ -42,9 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Scenarios.cs" />
-    <Compile Include="Discovery\LANDiscovery.cs" />
     <Compile Include="GameHost.Connection.cs" />
-    <Compile Include="Processors\ConnectionProcessor.cs" />
     <Compile Include="GameHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameHost.Ships.cs" />
