@@ -70,7 +70,11 @@ namespace LunarLambda.GUI.Menus
             }
 
             NewShipList.SetSelectedIndex(0);
-        }
+
+			NewShipList.ForceRefresh();
+			ActiveShipList.ForceRefresh();
+
+		}
 
         protected override void SetupControls()
         {
