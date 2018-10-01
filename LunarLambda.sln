@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarLambda.Messges.Ship", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDiscoveryServices", "GameDiscoveryServices\GameDiscoveryServices.csproj", "{79C18A0E-46AB-4296-B968-DC7B67D30B62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Input.Controlers", "..\LudicrousElectron\LudicrousElectron.Input\LudicrousElectron.Input.Controlers.csproj", "{2B34D0A2-A49F-4EAE-8904-CCA0D8E2C87A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudicrousElectron.Input.Controlers", "..\LudicrousElectron\LudicrousElectron.Input.Controlers\LudicrousElectron.Input.Controlers.csproj", "{2B34D0A2-A49F-4EAE-8904-CCA0D8E2C87A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
