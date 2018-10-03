@@ -21,5 +21,10 @@ namespace LunarLambda.Data.Entitites
         {
             // do some damage and movement stuff now
         }
+
+        public override void OnUpdate(double dt, double now)
+        {
+            // tell the AI to update or something
+        }
     }
 }

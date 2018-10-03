@@ -21,7 +21,7 @@ namespace LunarLambda.Data.Entitites
 
         public Vector3d Postion = Vector3d.Zero;
         public Quaternion Orientation = Quaternion.Identity;
-        public Vector3 LinearVelocity = Vector3.Zero;
+        public Vector3d LinearVelocity = Vector3d.Zero;
         public Quaternion RotaryVelocity = Quaternion.Identity;
 
         public CollisionSphere BoundingSphere = new CollisionSphere();
@@ -52,5 +52,6 @@ namespace LunarLambda.Data.Entitites
         }
 
         public abstract void OnCollide(ICollisionable other);
+        public abstract void OnUpdate(double dt, double now);
     }
 }
