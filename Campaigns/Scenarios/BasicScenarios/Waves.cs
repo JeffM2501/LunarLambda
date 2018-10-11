@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using LunarLambda.API;
 
 namespace LunarLambda.Campaigns.BasicScenarios
 {
-	public class Waves : LLScenario
+    public class Waves : LLScenario
 	{
 		protected int StartingWave = 0;
 		protected float WaveShipCountFactor = 1;

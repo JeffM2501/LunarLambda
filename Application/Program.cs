@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using LudicrousElectron.Types;
@@ -27,7 +24,7 @@ using GameDiscoveryServices;
 
 namespace LunarLambda
 {
-	static class Program
+    static class Program
 	{
 		/// <summary>
 		/// The main entry point for the application.

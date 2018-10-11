@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using LunarLambda.API;
 
 namespace LunarLambda.Campaigns.BasicScenarios
 {
-	public class QuickBasic : LLScenario
+    public class QuickBasic : LLScenario
 	{
 		public int EnemyGroupCount = 3;
 

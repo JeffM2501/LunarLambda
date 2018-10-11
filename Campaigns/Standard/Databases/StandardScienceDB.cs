@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using LunarLambda.Data.Databases;
 
 namespace LunarLambda.Campaigns.Standard.Databases
 {
-	internal static class StandardScienceDB
+    internal static class StandardScienceDB
 	{
 		internal static void Load(object sender, EventArgs e)
 		{

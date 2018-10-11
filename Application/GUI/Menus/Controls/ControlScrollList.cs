@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using LudicrousElectron.Engine.Input;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
@@ -9,7 +8,7 @@ using OpenTK;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public abstract class ControlScrollList : UIPanel
+    public abstract class ControlScrollList : UIPanel
 	{
 		protected List<GUIElement> ItemControls = new List<GUIElement>();
 

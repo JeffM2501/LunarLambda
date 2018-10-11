@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using LudicrousElectron.Engine.Input;
+﻿using System.Drawing;
 using LudicrousElectron.Engine.Window;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using LudicrousElectron.GUI.Text;
-using OpenTK;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class HSlider : BaseSlider
+    public class HSlider : BaseSlider
 	{
 		protected string TextLabelPrefix = string.Empty;
 		protected int Font = -1;

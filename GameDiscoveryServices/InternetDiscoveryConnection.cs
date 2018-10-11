@@ -5,14 +5,13 @@ using System.Threading;
 using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Json;
-using System.Diagnostics;
 
 namespace GameDiscoveryServices
 {
-	/// <summary>
-	/// Connects to a global master server and gets remote WAN services
-	/// </summary>
-	public static class InternetDiscoveryConnection
+    /// <summary>
+    /// Connects to a global master server and gets remote WAN services
+    /// </summary>
+    public static class InternetDiscoveryConnection
 	{
 		public static string DefaultServiceURL = "https://services.hyperdrive.tech/ll/";
 		private static WebClient CurrentWebClient = null;

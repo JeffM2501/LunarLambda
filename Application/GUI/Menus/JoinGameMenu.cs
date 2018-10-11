@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Diagnostics;
+﻿using System.Drawing;
 
 using LudicrousElectron.GUI;
-using LudicrousElectron.Engine;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
-
-using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus.Controls;
-using LudicrousElectron.Engine.Graphics.Textures;
 using LunarLambda.API;
-using LunarLambda.Host.Game;
 using LunarLambda.Client.Ship;
 using LunarLambda.Messges.Ship.Game;
 using System.Text;

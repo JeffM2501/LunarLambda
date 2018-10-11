@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
@@ -14,7 +12,7 @@ using LunarLambda.GUI.Config;
 
 namespace LunarLambda.GUI.Menus
 {
-	public class MenuCommon : Menu
+    public class MenuCommon : Menu
 	{
 		public static RelativeSize ButtonWidth = new RelativeSize(1.0f / 4.0f, true);
 		public static RelativeSize ButtonHeight = new RelativeSize(45);

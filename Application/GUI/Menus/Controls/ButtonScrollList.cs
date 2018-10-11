@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using LudicrousElectron.Engine.Input;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
-using OpenTK;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class ButtonScrollList : ControlScrollList
+    public class ButtonScrollList : ControlScrollList
 	{
 		public int SelectedIndex { get; protected set; } = - 1;
         public object SelectedItemTag { get { if (SelectedIndex == -1 || SelectedIndex >= ItemList.Count) return null; return ItemList[SelectedIndex].Tag; } }

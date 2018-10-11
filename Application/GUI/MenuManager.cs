@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using LudicrousElectron.Assets;
-using LudicrousElectron.Engine.Graphics.Textures;
 using LudicrousElectron.GUI;
-using LudicrousElectron.GUI.Elements;
-using LudicrousElectron.GUI.Geometry;
 using LudicrousElectron.GUI.Text;
 using LunarLambda.API;
-using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus;
-using LunarLambda.GUI.Menus.Controls;
 using LunarLambda.Preferences;
 
 namespace LunarLambda.GUI
 {
-	public class Menu : Canvas
+    public class Menu : Canvas
 	{
 		public string Name = string.Empty;
 		public bool Active { get; protected set; }
