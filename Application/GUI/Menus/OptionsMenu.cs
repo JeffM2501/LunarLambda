@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 using LudicrousElectron.Assets;
@@ -15,7 +14,7 @@ using LunarLambda.Preferences;
 
 namespace LunarLambda.GUI.Menus
 {
-	public class OptionsMenu : MenuCommon
+    public class OptionsMenu : MenuCommon
 	{
 		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] { null, null };
 

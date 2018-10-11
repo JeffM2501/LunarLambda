@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
@@ -9,7 +7,7 @@ using LudicrousElectron.GUI.Text;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class TextArea : ControlScrollList
+    public class TextArea : ControlScrollList
 	{
 		public int Font = -1;
 		public Color TextColor = Color.White;

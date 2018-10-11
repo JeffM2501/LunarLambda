@@ -4,14 +4,10 @@ using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
 using OpenTK;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public abstract class BaseSlider : UIPanel
+    public abstract class BaseSlider : UIPanel
 	{
 		protected UIButton AdvanceButton = null;
 		protected UIButton RetreatButton = null;

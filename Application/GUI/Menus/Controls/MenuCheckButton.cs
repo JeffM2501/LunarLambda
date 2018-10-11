@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 
 using LudicrousElectron.GUI;
@@ -9,7 +7,7 @@ using LudicrousElectron.GUI.Geometry;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class MenuCheckButton : UIButton
+    public class MenuCheckButton : UIButton
 	{
 		public MenuCheckButton(RelativeRect rect) : base(rect)
 		{

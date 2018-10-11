@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameDiscoveryServices
 {
-	public static class ServiceList
+    public static class ServiceList
 	{
 		public static event EventHandler ServiceListUpdated = null;
 

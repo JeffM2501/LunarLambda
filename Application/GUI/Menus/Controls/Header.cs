@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 using LudicrousElectron.Engine.Window;
 using LudicrousElectron.GUI;
@@ -10,7 +8,7 @@ using LudicrousElectron.GUI.Text;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class Header : UIPanel
+    public class Header : UIPanel
 	{
 		protected string LabelText = string.Empty;
 		protected int Font = -1;

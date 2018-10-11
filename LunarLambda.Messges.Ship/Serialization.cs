@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Lidgren.Network;
 
 namespace LunarLambda.Messges.Ship
 {
-	public static class Serialization
+    public static class Serialization
 	{
 		public static ShipMessage Unpack(NetIncomingMessage message)
 		{

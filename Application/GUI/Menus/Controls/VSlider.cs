@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-
-using LudicrousElectron.Engine.Input;
-using LudicrousElectron.Engine.Window;
+﻿using System.Drawing;
 using LudicrousElectron.GUI;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
-using LudicrousElectron.GUI.Text;
-
-using OpenTK;
 
 namespace LunarLambda.GUI.Menus.Controls
 {
-	public class VSlider : BaseSlider
+    public class VSlider : BaseSlider
 	{
 		public VSlider(RelativeRect rect, int value, int min = 0, int max = 100) : base(rect,value, min, max, ThemeManager.GetThemeAsset("ui/SliderBackground.png"))
 		{

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 
 using LudicrousElectron.Types;
 
-using LunarLambda.Data;
-
 namespace LunarLambda.Data.Databases
 {
-	public static class Tools
+    public static class Tools
 	{
 		public static string Display(bool val)
 		{

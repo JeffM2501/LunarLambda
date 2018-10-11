@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Diagnostics;
 
@@ -7,15 +6,12 @@ using LudicrousElectron.GUI;
 using LudicrousElectron.Engine;
 using LudicrousElectron.GUI.Elements;
 using LudicrousElectron.GUI.Geometry;
-
-using LunarLambda.GUI.Config;
 using LunarLambda.GUI.Menus.Controls;
-using LudicrousElectron.Engine.Graphics.Textures;
 using LunarLambda.API;
 
 namespace LunarLambda.GUI.Menus
 {
-	public class MainMenu : MenuCommon
+    public class MainMenu : MenuCommon
 	{
 		protected VerticalLayoutGroup[] Columns = new VerticalLayoutGroup[] {null,null};
 
