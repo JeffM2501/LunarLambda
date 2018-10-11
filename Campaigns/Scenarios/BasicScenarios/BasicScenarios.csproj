@@ -69,7 +69,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(OS)" == "Windows_NT" copy $(TargetPath) $(SolutionDir)data\plugins
-if "$(OS)" == "Unix" cp $(TargetPath) $(SolutionDir)data\plugins</PostBuildEvent>
+    <PostBuildEvent>if "$(OS)" == "Windows_NT" copy "$(TargetPath)" "$(SolutionDir)data\plugins"
+if "$(OS)" == "Unix" cp "$(TargetPath)" "$(SolutionDir)data\plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>
