@@ -7,7 +7,7 @@ using LunarLambda.Data;
 using GameDiscoveryServices;
 using LunarLambda.Messges.Ship.Game;
 using LunarLambda.Data.Databases;
-using LunarLambda.Data.Zone;
+using LunarLambda.Data.Zones;
 
 namespace LunarLambda.Host.Game
 {
@@ -17,7 +17,7 @@ namespace LunarLambda.Host.Game
 		protected HostedService ServiceInfo = null;
 		public  ServerStartupInfo StartupInfo { get; protected set; } = null;
 
-        public List<Map> Zones = new List<Map>();
+        public List<Zone> Zones = new List<Zone>();
 
 		public static void StartGame(ServerStartupInfo info)
         {

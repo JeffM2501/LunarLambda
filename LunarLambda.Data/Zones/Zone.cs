@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 
 using LudicrousElectron.Entities.Collisions;
+using LudicrousElectron.Entities.Collisions.Volumes;
 using LunarLambda.Data.Entitites;
 using OpenTK;
 
-namespace LunarLambda.Data.Zone
+namespace LunarLambda.Data.Zones
 {
-    public class Map : CollisionManager
+    public class Zone : CollisionManager
     {
         protected SortedDictionary<int, BaseEntity> Entities = new SortedDictionary<int, BaseEntity>();
 
         protected int LastID = 0;
+
+		public string Name = string.Empty;
+		public Vector3 Center = Vector3.Zero;
 
         public int Add(BaseEntity entity)
         {
@@ -24,7 +28,14 @@ namespace LunarLambda.Data.Zone
             return entity.GUID;
         }
 
-        public void Update(double dt, double time)
+		public Ship Add(Ship entity)
+		{
+			Add(entity);
+
+			return entity;
+		}
+
+		public void Update(double dt, double time)
         {
             bool dtIsBad = false;
             double effectiveDT = dt;

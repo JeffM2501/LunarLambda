@@ -1,5 +1,9 @@
 ﻿
 using LunarLambda.API;
+using LunarLambda.Data.Databases.Factories;
+using LunarLambda.Data.Zones;
+using LunarLambda.Data.Databases;
+using OpenTK;
 
 namespace LunarLambda.Campaigns.BasicScenarios
 {
@@ -13,6 +17,11 @@ namespace LunarLambda.Campaigns.BasicScenarios
 
 			if (variation == "Advanced")
 				EnemyGroupCount *= 2;
+
+			var zone = ZoneManager.GetZone("Test Zone", Vector3.Zero);
+
+			zone.Add(ShipFactory.FromRandomTemplate(Finders.Destroyers));
+
 		}
 	}
 }

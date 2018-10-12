@@ -25,6 +25,7 @@ namespace LunarLambda.Data.Databases
         public string RadarTrace = string.Empty;
         public string DefaultAIName = string.Empty;
         public string IconImage = string.Empty;
+		public string FactionName = string.Empty;
 
         public bool Known = true;
 

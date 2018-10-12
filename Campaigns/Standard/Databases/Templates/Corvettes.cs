@@ -21,7 +21,7 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             ShipTemplate template = TemplateDatabase.AddShip("Starhammer2");
 			template.SetName(Resources.Corvette_StarhammerName);
             template.SetDescription(Resources.Corvette_StarhammerDescription);
-            template.SetClass("Corvette", "Destroyer");
+            template.SetClass(ShipTypes.CorvetteType, ShipTypes.DestroyerSubType);
             template.SetModel("battleship_destroyer_4_upgraded");
             template.SetRadarTrace("radar_dread.png");
             template.SetHull(200);
@@ -46,8 +46,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             ShipTemplate template = TemplateDatabase.AddShip("AtlantisAI");
 			template.SetName(Resources.Corvette_AtlantisX32Name);
             template.SetDescription(Resources.Corvette_AtlantisX32Description);
-            template.SetClass("Corvette", "Destroyer");
-            template.SetModel("battleship_destroyer_1_upgraded");
+            template.SetClass(ShipTypes.CorvetteType, ShipTypes.DestroyerSubType);
+			template.SetModel("battleship_destroyer_1_upgraded");
             template.SetRadarTrace("radar_dread.png");
             template.SetHull(100);
             template.SetShields(new float[] { 200, 200, 200, 200 });
@@ -123,8 +123,8 @@ namespace LunarLambda.Campaigns.Standard.Databases.Templates
             ShipTemplate template = TemplateDatabase.AddShip("DefensePlatform");
 			template.SetName(Resources.Corvette_DefensePlatformName);
             template.SetDescription(Resources.Corvette_DefensePlatformDescription);
-            template.SetClass("Corvette", "Support");
-            template.SetModel("space_station_4");
+            template.SetClass(ShipTypes.CorvetteType, ShipTypes.DestroyerSubType);
+			template.SetModel("space_station_4");
             template.SetRadarTrace("radartrace_smallstation.png");
             template.SetHull(150);
             template.SetShields(new float[] { 120, 120, 120, 120, 120, 120 });

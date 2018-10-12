@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LunarLambda.Data.Databases
 {
@@ -6,6 +7,7 @@ namespace LunarLambda.Data.Databases
     {
         internal static List<BaseTemplate> Templates = new List<BaseTemplate>();
         private static int LastTemplateID = 1;
+		private static Random RNG = new Random();
 
         public static BaseTemplate AddTemplate(BaseTemplate template)
         {
@@ -67,5 +69,74 @@ namespace LunarLambda.Data.Databases
 
             return GetAllShips().FindAll((x)=>filter(x));
         }
+
+		public static List<ShipTemplate> GetAllShipsThatMatch(ShipCategoryFinder filter)
+		{
+			if (filter == null)
+				return GetAllShips();
+
+			return GetAllShips().FindAll((x) => filter.Filter(x));
+		}
+
+
+		public static ShipTemplate RandomShip (List<ShipTemplate> templates)
+		{
+			if (templates.Count == 0)
+				return null;
+			if (templates.Count == 1)
+				return templates[0];
+
+			return templates[RNG.Next(templates.Count)];
+		}
     }
+
+	public class ShipCategoryFinder
+	{
+		public string ShipClass = string.Empty;
+		public string SubClass = string.Empty;
+		public string Faction = string.Empty;
+
+
+		public ShipCategoryFinder(string shipclass = null, string subtype = null, string faction = null)
+		{
+			if (shipclass != null)
+			{
+				ShipClass = shipclass.ToLowerInvariant();
+				if (subtype != null)
+					SubClass = subtype.ToLowerInvariant();
+			}
+
+			if (faction != null)
+				Faction = faction.ToLowerInvariant();
+		}
+
+		public bool Filter(ShipTemplate template)
+		{
+			if (ShipClass != string.Empty && template.ClassName.ToLowerInvariant() != ShipClass)
+				return ShipClass == string.Empty || template.SubClassName.ToLowerInvariant() == SubClass;
+
+			if (Faction != string.Empty && template.FactionName != string.Empty && template.FactionName.ToLowerInvariant() != Faction)
+				return false;
+
+			return true;
+		}
+	}
+
+	public static class ShipTypes
+	{
+		public static readonly string CorvetteType = "Corvette";
+		public static readonly string FigherType = "Fighter";
+
+		public static readonly string DestroyerSubType = "Destroyer";
+		public static readonly string SupportSubType = "Support";
+		public static readonly string TransportType = "Transport";
+
+	}
+
+	public static class Finders
+	{
+		public static readonly ShipCategoryFinder Destroyers = new ShipCategoryFinder(ShipTypes.CorvetteType, ShipTypes.DestroyerSubType);
+		public static readonly ShipCategoryFinder Fighters = new ShipCategoryFinder(ShipTypes.FigherType);
+		public static readonly ShipCategoryFinder Transports = new ShipCategoryFinder(null, ShipTypes.TransportType);
+	}
 }

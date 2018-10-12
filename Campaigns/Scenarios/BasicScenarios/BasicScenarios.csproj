@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenTK, Version=3.0.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\OpenTK\Lib\OpenTK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,10 @@
     <Compile Include="Waves.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\LudicrousElectron\LudicrousElectron.Entities\LudicrousElectron.Entities.csproj">
+      <Project>{DDD156CD-AE0D-4581-B895-4FE8FB58A88C}</Project>
+      <Name>LudicrousElectron.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\LudicrousElectron\LudicrousElectron.Types\LudicrousElectron.Types.csproj">
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>

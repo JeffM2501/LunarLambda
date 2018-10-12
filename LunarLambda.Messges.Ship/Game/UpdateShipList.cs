@@ -101,7 +101,7 @@ namespace LunarLambda.Messges.Ship.Game
                     Ships.Add(info);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
