@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using LunarLambda.Data.Entitites;
 using OpenTK;
 
 namespace LunarLambda.Data.Zones
@@ -11,6 +11,8 @@ namespace LunarLambda.Data.Zones
 	public static class ZoneManager
 	{
 		private static List<Zone> ZoneMaps = new List<Zone>();
+
+		public static Zone[] GetZones() { return ZoneMaps.ToArray(); }
 
 		public static Zone GetZone(string name, Vector3 position)
 		{
@@ -28,6 +30,20 @@ namespace LunarLambda.Data.Zones
 		public static Zone FindZone(string name)
 		{
 			return ZoneMaps.Find((x) => x.Name.ToLowerInvariant() == name.ToLowerInvariant());
+		}
+
+		public static List<BaseEntity> GetAllThatMatch(Zone.EntityFilter filter)
+		{
+			List<BaseEntity> list = new List<BaseEntity>();
+			foreach (var zone in ZoneMaps)
+				list.AddRange(zone.GetAllThatMatch(filter).ToArray());
+
+			return list;
+		}
+
+		public static List<BaseEntity> GetAllThatMatch(EntityFinder filter)
+		{
+			return GetAllThatMatch(filter.Filter);
 		}
 	}
 }

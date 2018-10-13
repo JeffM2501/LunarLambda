@@ -32,7 +32,7 @@ namespace LunarLambda.Host.Game
 			if (request.ClientType == ConnectRequest.ClientTypes.Ship)
 			{
                 UpdateShipList shipList = new UpdateShipList();
-				GetShipList(shipList);
+				GetPlayableShipList(shipList);
 				peer.Send(shipList);
 			}
 		}

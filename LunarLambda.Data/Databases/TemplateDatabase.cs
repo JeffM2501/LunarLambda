@@ -70,7 +70,7 @@ namespace LunarLambda.Data.Databases
             return GetAllShips().FindAll((x)=>filter(x));
         }
 
-		public static List<ShipTemplate> GetAllShipsThatMatch(ShipCategoryFinder filter)
+		public static List<ShipTemplate> GetAllShipsThatMatch(ShipFinder filter)
 		{
 			if (filter == null)
 				return GetAllShips();
@@ -90,12 +90,16 @@ namespace LunarLambda.Data.Databases
 		}
     }
 
-	public class ShipCategoryFinder
+	public abstract class ShipFinder
+	{
+		public abstract bool Filter(ShipTemplate template);
+	}
+
+	public class ShipCategoryFinder : ShipFinder
 	{
 		public string ShipClass = string.Empty;
 		public string SubClass = string.Empty;
 		public string Faction = string.Empty;
-
 
 		public ShipCategoryFinder(string shipclass = null, string subtype = null, string faction = null)
 		{
@@ -110,7 +114,7 @@ namespace LunarLambda.Data.Databases
 				Faction = faction.ToLowerInvariant();
 		}
 
-		public bool Filter(ShipTemplate template)
+		public override bool Filter(ShipTemplate template)
 		{
 			if (ShipClass != string.Empty && template.ClassName.ToLowerInvariant() != ShipClass)
 				return ShipClass == string.Empty || template.SubClassName.ToLowerInvariant() == SubClass;

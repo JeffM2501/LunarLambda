@@ -82,5 +82,35 @@ namespace LunarLambda.Data.Zones
         {
             return ent.Postion + (ent.LinearVelocity * (float)dt);
         }
-    }
+
+		public delegate bool EntityFilter(BaseEntity template);
+
+		public List<BaseEntity> GetAllThatMatch(EntityFilter filter)
+		{
+			var ents = new List<BaseEntity>(Entities.Values);
+			if (filter == null)
+				return ents;
+
+			return ents.FindAll((x) => filter(x));
+		}
+
+		public List<BaseEntity> GetAllThatMatch(EntityFinder filter)
+		{
+			return GetAllThatMatch(filter.Filter);
+		}
+	}
+
+	public abstract class EntityFinder
+	{
+		public abstract bool Filter(BaseEntity entity);
+	}
+
+	public class PlayableShipFinder : EntityFinder
+	{
+		public override bool Filter(BaseEntity entity)
+		{
+			Ship ship = entity as Ship;
+			return ship != null && ship.ShipInfo.IsPlayable;
+		}
+	}
 }

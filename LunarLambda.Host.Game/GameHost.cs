@@ -8,6 +8,7 @@ using GameDiscoveryServices;
 using LunarLambda.Messges.Ship.Game;
 using LunarLambda.Data.Databases;
 using LunarLambda.Data.Zones;
+using LunarLambda.Data.Entitites;
 
 namespace LunarLambda.Host.Game
 {
@@ -124,16 +125,19 @@ namespace LunarLambda.Host.Game
             ServiceInfo.SubServices.Add(existing);
         }
 
-        private void GetShipList(UpdateShipList list)
+        private void GetPlayableShipList(UpdateShipList list)
         {
-            foreach (var avalabileShips in ActiveScenario.GetPlayableShips())
-                list.Ships.Add(InfoFromTempalte(avalabileShips));
+			foreach (var ship in ZoneManager.GetAllThatMatch(new PlayableShipFinder()))
+				list.Ships.Add(InfoFromTempalte((ship as Ship).ShipInfo, true));
+
+			foreach (var avalabileShips in ActiveScenario.GetPlayableShips())
+                list.Ships.Add(InfoFromTempalte(avalabileShips, false));
         }
 
-        protected virtual UpdateShipList.ShipInfo InfoFromTempalte(ShipTemplate template)
+        protected virtual UpdateShipList.ShipInfo InfoFromTempalte(ShipTemplate template, bool spawned)
         {
             UpdateShipList.ShipInfo info = new UpdateShipList.ShipInfo();
-            info.Spawned = false;
+            info.Spawned = spawned;
             info.CrewCount = 0;
             info.ID = template.ID;
             info.Name = template.DisplayName;
@@ -146,11 +150,7 @@ namespace LunarLambda.Host.Game
             info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.ImpulseAcceleration, template.ImpulseAcceleration.ToString()));
             info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.ManuverSpeed, template.TurnSpeed.ToString()));
             info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.CombatBoost, template.CombatManuverBoostSpeed.ToString() +"/" + template.CombatManuverStrafeSpeed.ToString()));
-
-
             info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.FTLType, ShipInfoStrings.FTLTypes.Split(",".ToCharArray())[(int)template.DriveType]));
-
-
             info.Stats.Add(new Tuple<string, string>(ShipInfoStrings.FuelCapcity, template.FuelCapacity.ToString()));
 
             return info;
