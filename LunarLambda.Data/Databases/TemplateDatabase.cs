@@ -46,6 +46,11 @@ namespace LunarLambda.Data.Databases
             return Templates.Find((x) => x.Name == name);
         }
 
+        public static BaseTemplate GetTemplate(int id)
+        {
+            return Templates.Find((x) => x.ID == id);
+        }
+
         public static List<ShipTemplate> GetAllShips()
         {
             List<ShipTemplate> ships = new List<ShipTemplate>();

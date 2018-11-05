@@ -7,6 +7,7 @@ using LunarLambda.Messges.Ship;
 
 using GameDiscoveryServices;
 using LunarLambda.Messges.Ship.Connect;
+using LunarLambda.Data.Entitites;
 
 namespace LunarLambda.Host.Game
 {
@@ -22,11 +23,24 @@ namespace LunarLambda.Host.Game
 
         protected MessageDispatcher Dispatcher = new MessageDispatcher();
 
+        public class PlayerShip
+        {
+            public Ship LinkedShip = null;
+            public List<ShipPeer> ControlingPeers = new List<ShipPeer>();
+
+            public string Password = string.Empty;
+            public bool Locked = false;
+        }
+
+        public List<PlayerShip> PlayerShips = new List<PlayerShip>();
+
 		public class ShipPeer : EventArgs
 		{
 			protected NetServer Server = null;
 
-			public NetConnection Connection = null;
+            public PlayerShip LinkedShip = null;
+
+            public NetConnection Connection = null;
 			public List<ShipMessage> PendingInbound = new List<ShipMessage>();
 
             public HostedService ShipHostInformation = null;
@@ -89,7 +103,8 @@ namespace LunarLambda.Host.Game
         private void SetupMessages()
         {
 			Dispatcher.RegisterHandler(typeof(ConnectRequest), HandleConnectRequest);
-		}
+            Dispatcher.RegisterHandler(typeof(ShipRequest), HandleShipRequest);
+        }
 
         private bool IsRunning()
         {

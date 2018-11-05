@@ -15,6 +15,8 @@ namespace LunarLambda.Data.Entitites
 
         public BaseTemplate Template = null;
 
+        public string Name = string.Empty;
+
         public Vector3d Postion = Vector3d.Zero;
         public Quaternion Orientation = Quaternion.Identity;
         public Vector3d LinearVelocity = Vector3d.Zero;
@@ -30,6 +32,12 @@ namespace LunarLambda.Data.Entitites
             BoundingSphere.Radius = 10;
 
             CollisionVolumes.Add(BoundingSphere);
+        }
+
+        public virtual void SetTemplate(BaseTemplate template)
+        {
+            Name = template.Name;
+            Template = template;
         }
 
         protected Vector3d GetBoundsCenter()

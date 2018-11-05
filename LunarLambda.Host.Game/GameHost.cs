@@ -127,19 +127,30 @@ namespace LunarLambda.Host.Game
 
         private void GetPlayableShipList(UpdateShipList list)
         {
-			foreach (var ship in ZoneManager.GetAllThatMatch(new PlayableShipFinder()))
-				list.Ships.Add(InfoFromTempalte((ship as Ship).ShipInfo, true));
+			foreach (var ship in PlayerShips)
+				list.Ships.Add(InfoFromShip(ship));
 
-			foreach (var avalabileShips in ActiveScenario.GetPlayableShips())
-                list.Ships.Add(InfoFromTempalte(avalabileShips, false));
+			foreach (ShipTemplate avalabileShips in ActiveScenario.GetPlayableShips())
+                list.Ships.Add(InfoFromTempalte(avalabileShips));
         }
 
-        protected virtual UpdateShipList.ShipInfo InfoFromTempalte(ShipTemplate template, bool spawned)
+        protected virtual UpdateShipList.ShipInfo InfoFromShip(PlayerShip ship)
+        {
+            UpdateShipList.ShipInfo info = InfoFromTempalte(ship.LinkedShip.ShipInfo);
+            info.Spawned = true;
+            info.ID = ship.LinkedShip.GUID;
+            info.Protected = ship.Locked;
+            
+            // TODO, setup the station and crew info about the ship
+           
+            return info;
+        }
+        protected virtual UpdateShipList.ShipInfo InfoFromTempalte(ShipTemplate template)
         {
             UpdateShipList.ShipInfo info = new UpdateShipList.ShipInfo();
-            info.Spawned = spawned;
+            info.Spawned = false;
             info.CrewCount = 0;
-            info.ID = template.ID;
+            info.ID = template.ID * -1;
             info.Name = template.DisplayName;
             info.TypeName = template.ClassName + " " + template.SubClassName;
             info.ModelName = template.ModelName;

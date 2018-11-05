@@ -8,6 +8,9 @@ namespace LunarLambda.Data.Databases
         public enum TemplateTypes
         {
             Other,
+            Star,
+            Planetoid,
+            Debris,
             Ship,
             PlayerShip,
             Station

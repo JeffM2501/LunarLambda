@@ -45,5 +45,19 @@ namespace LunarLambda.Data.Zones
 		{
 			return GetAllThatMatch(filter.Filter);
 		}
-	}
+
+        public static BaseEntity GetFirstMatch(Zone.EntityFilter filter)
+        {
+            List<BaseEntity> list = GetAllThatMatch(filter);
+            if (list.Count == 0)
+                return null;
+
+            return list[0];
+        }
+
+        public static BaseEntity GetFirstMatch(EntityFinder filter)
+        {
+            return GetFirstMatch(filter.Filter);
+        }
+    }
 }

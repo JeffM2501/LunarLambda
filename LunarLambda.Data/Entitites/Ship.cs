@@ -9,7 +9,15 @@ namespace LunarLambda.Data.Entitites
 
         public Ship(ShipTemplate template) : base()
         {
+            SetTemplate(template);
+        }
+
+        public override void SetTemplate(BaseTemplate template)
+        {
+            if (template as ShipTemplate == null)
+                return;
             Template = template;
+            Name = template.Name;
         }
 
         public override void OnCollide(ICollisionable other)

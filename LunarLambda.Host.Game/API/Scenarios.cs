@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-
 using LunarLambda.Data;
 using LunarLambda.Data.Databases;
 using LunarLambda.Data.Entitites;
+using LunarLambda.Data.Zones;
+using OpenTK;
 
 namespace LunarLambda.API
 {
@@ -20,9 +21,11 @@ namespace LunarLambda.API
 
         List<ShipTemplate> GetPlayableShips();
 
-		void SpawnPlayableShip(string requester, string requestedType, string requestedName);
+		int SpawnPlayableShip(string requester, string requestedType, string requestedName);
 
 		void OnCrewJoinShip(string crewName, string[] crewConsoles, Ship joinedShip);
+
+        string GetDefaultZoneName();
 	}
 
 	public class LLScenario : ILLScenario
@@ -58,16 +61,53 @@ namespace LunarLambda.API
 			return TemplateDatabase.GetAllShipsThatMatch((x) => x.IsPlayable);
 		}
 
-		public virtual void SpawnPlayableShip(string requester, string requestedType, string requestedName)
+		public virtual int SpawnPlayableShip(string requester, string requestedType, string requestedName)
 		{
-			// something wants a new player ship to be spawned
+            // something wants a new player ship to be spawned
+            if (requestedType == string.Empty)
+                requestedType = GetPlayerShipTemplate();
+
+            ShipTemplate template = TemplateDatabase.GetTemplate(requestedType) as ShipTemplate;
+            if (!GetPlayableShips().Contains(template) && GetPlayableShips().Count > 0)
+                template = GetPlayableShips()[0];
+
+            Zone spawnZone = ZoneManager.FindZone(GetDefaultZoneName());
+            if (spawnZone == null)
+            {
+                var zones = ZoneManager.GetZones();
+                if (zones.Length == 0)
+                    return -1; // no zones to spawn a ship in
+
+                spawnZone = zones[0];
+            }
+
+            var ship = new Ship(template);
+           ship.Name = FilterShipName(requestedName, requestedType);
+
+            spawnZone.Add(ship);
+
+            return ship.GUID;
 		}
+
+        protected virtual string FilterShipName(string requestedName, string templateName)
+        {
+            return requestedName == string.Empty ? templateName : requestedName;
+        }
 
 		public virtual void OnCrewJoinShip(string crewName, string[] crewConsoles, Ship joinedShip)
 		{
 			// called when a crew member joins a ship
 		}
-	}
+
+        public virtual string GetDefaultZoneName()
+        {
+            var zones = ZoneManager.GetZones();
+            if (zones.Length == 0)
+                return string.Empty;
+
+            return ZoneManager.GetZones()[0].Name;
+        }
+    }
 
 	public static class Scenarios
 	{

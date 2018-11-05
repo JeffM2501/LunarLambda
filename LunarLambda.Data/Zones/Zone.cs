@@ -12,7 +12,7 @@ namespace LunarLambda.Data.Zones
     {
         protected SortedDictionary<int, BaseEntity> Entities = new SortedDictionary<int, BaseEntity>();
 
-        protected int LastID = 0;
+        private static int LastID = 0;// IDs are global
 
 		public string Name = string.Empty;
 		public Vector3 Center = Vector3.Zero;
@@ -107,10 +107,26 @@ namespace LunarLambda.Data.Zones
 
 	public class PlayableShipFinder : EntityFinder
 	{
-		public override bool Filter(BaseEntity entity)
+        protected int ID = -1;
+
+        public PlayableShipFinder() { }
+        public PlayableShipFinder(int id) { ID = id; }
+
+        public override bool Filter(BaseEntity entity)
 		{
 			Ship ship = entity as Ship;
-			return ship != null && ship.ShipInfo.IsPlayable;
+			return ship != null && ship.ShipInfo.IsPlayable && (ID < 0 || ship.GUID == ID);
 		}
 	}
+
+    public class FindByID : EntityFinder
+    {
+        protected int ID = -1;
+        public FindByID(int id) { ID = id; }
+
+        public override bool Filter(BaseEntity entity)
+        {
+            return ID >= 0 && entity.GUID == ID; ;
+        }
+    }
 }

@@ -21,7 +21,6 @@ namespace LunarLambda.Campaigns.BasicScenarios
 			var zone = ZoneManager.GetZone("Test Zone", Vector3.Zero);
 
 			zone.Add(ShipFactory.FromRandomTemplate(Finders.Destroyers));
-
 		}
 	}
 }
