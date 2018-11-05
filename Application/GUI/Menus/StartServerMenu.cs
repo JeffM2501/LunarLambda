@@ -326,7 +326,7 @@ namespace LunarLambda.GUI.Menus
                 GameHost.ActiveGameHost.Shutdown();
 
             GameHost.StartGame(StartupInfo);
-            ShipClient.ActiveShipClient = new ShipClient("localhost", StartupInfo.Port);
+            ShipClient.ActiveShipClient = new ShipClient("localhost", StartupInfo.Port, null);
 
             MenuManager.ReplaceAndPushMenu(MenuAPI.GameStatusMenu, MenuAPI.JoinGameMenuName);
         }

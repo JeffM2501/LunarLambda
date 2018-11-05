@@ -12,15 +12,21 @@ namespace LunarLambda.Data.Zones
     {
         protected SortedDictionary<int, BaseEntity> Entities = new SortedDictionary<int, BaseEntity>();
 
+        private static object IDLocker = new object();
         private static int LastID = 0;// IDs are global
+
+        private static int GetNewID()
+        {
+            lock (IDLocker)
+                return LastID++;
+        }
 
 		public string Name = string.Empty;
 		public Vector3 Center = Vector3.Zero;
 
         public int Add(BaseEntity entity)
         {
-            LastID++;
-            entity.GUID = LastID;
+            entity.GUID = GetNewID();
             Entities.Add(entity.GUID, entity);
 
             CollideableElements.Add(entity);
@@ -28,7 +34,7 @@ namespace LunarLambda.Data.Zones
             return entity.GUID;
         }
 
-		public Ship Add(Ship entity)
+		public Ship AddShip(Ship entity)
 		{
 			Add(entity);
 
@@ -126,7 +132,7 @@ namespace LunarLambda.Data.Zones
 
         public override bool Filter(BaseEntity entity)
         {
-            return ID >= 0 && entity.GUID == ID; ;
+            return ID >= 0 && entity.GUID == ID;
         }
     }
 }

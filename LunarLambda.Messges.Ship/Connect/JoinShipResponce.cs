@@ -10,11 +10,16 @@ namespace LunarLambda.Messges.Ship.Connect
 
         public int ShipID = -1;
 
+        public string ShipName = string.Empty;
+        public string ShipClass = string.Empty;
+
         public override bool Pack(NetOutgoingMessage buffer)
         {
             buffer.Write(Error);
             buffer.Write(Message);
             buffer.Write(ShipID);
+            buffer.Write(ShipName);
+            buffer.Write(ShipClass);
             return true;
         }
 
@@ -25,6 +30,8 @@ namespace LunarLambda.Messges.Ship.Connect
                 Error = message.ReadBoolean();
                 Message = message.ReadString();
                 ShipID = message.ReadInt32();
+                ShipName = message.ReadString();
+                ShipClass = message.ReadString();
             }
             catch (Exception)
             {

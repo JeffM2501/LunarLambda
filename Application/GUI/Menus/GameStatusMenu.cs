@@ -45,7 +45,7 @@ namespace LunarLambda.GUI.Menus
         private void Join_Clicked(object sender, UIButton e)
         {
             if (ShipClient.ActiveShipClient == null && GameHost.ActiveGameHost != null)
-                ShipClient.ActiveShipClient = new ShipClient("localhost", GameHost.ActiveGameHost.StartupInfo.Port);
+                ShipClient.ActiveShipClient = new ShipClient("localhost", GameHost.ActiveGameHost.StartupInfo.Port, null);
 
             MenuManager.PushMenu(MenuAPI.JoinGameMenuName);
         }

@@ -20,7 +20,8 @@ namespace LunarLambda.Campaigns.BasicScenarios
 
 			var zone = ZoneManager.GetZone("Test Zone", Vector3.Zero);
 
-			zone.Add(ShipFactory.FromRandomTemplate(Finders.Destroyers));
+			var ship = zone.AddShip(ShipFactory.FromRandomTemplate(Finders.Destroyers));
+            ship.Postion = new Vector3d(100, 100, 0);
 		}
 	}
 }

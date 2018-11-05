@@ -19,9 +19,13 @@ namespace LunarLambda.Client.Ship
 
         protected MessageDispatcher Dispatcher = new MessageDispatcher();
 
-        public ShipClient(string host, int port)
+        protected ConnectRequest ConnectionData = null;
+
+        public ShipClient(string host, int port, ConnectRequest request)
         {
             SetupMessages();
+
+            ConnectionData = request;
 
             NetPeerConfiguration config = new NetPeerConfiguration("LL_ShipHost_" + ShipMessage.ProtocolVersion.ToString());
    
@@ -41,6 +45,7 @@ namespace LunarLambda.Client.Ship
 
         public void SetupMessages()
         {
+            Dispatcher.RegisterHandler(typeof(JoinShipResponce), HandleJoinShipResponce);
             Dispatcher.RegisterHandler(typeof(ConnectResponce), HandleConnectResponce);
             Dispatcher.RegisterHandler(typeof(UpdateShipList), HandleUpdateShipList);
         }
@@ -71,7 +76,10 @@ namespace LunarLambda.Client.Ship
                         switch (peerStateMsg.SenderConnection.Status)
                         {
                             case NetConnectionStatus.Connected:
-                                Send(new ConnectRequest());
+                                if (ConnectionData == null)
+                                    ConnectionData = new ConnectRequest();
+
+                                Send(ConnectionData);
                                 Connected?.Invoke(this, EventArgs.Empty);
                                 break;
 

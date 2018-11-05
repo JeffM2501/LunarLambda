@@ -61,6 +61,10 @@
       <Project>{fb7f6b89-80bb-4f09-8384-39107b57b754}</Project>
       <Name>LudicrousElectron.Types</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LunarLambda.Data\LunarLambda.Data.csproj">
+      <Project>{B26B3C18-676F-4E87-A1F2-2B49DB59BDFD}</Project>
+      <Name>LunarLambda.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LunarLambda.Messges.Ship\LunarLambda.Messges.Ship.csproj">
       <Project>{bcbfb0c8-6853-4fbd-a9ff-3a115f63a24e}</Project>
       <Name>LunarLambda.Messges.Ship</Name>

@@ -63,11 +63,12 @@ namespace LunarLambda.API
 
 		public virtual int SpawnPlayableShip(string requester, string requestedType, string requestedName)
 		{
+            string typeToUse = requestedType;
             // something wants a new player ship to be spawned
-            if (requestedType == string.Empty)
-                requestedType = GetPlayerShipTemplate();
+            if (typeToUse == string.Empty)
+                typeToUse = GetPlayerShipTemplate();
 
-            ShipTemplate template = TemplateDatabase.GetTemplate(requestedType) as ShipTemplate;
+            ShipTemplate template = TemplateDatabase.GetTemplate(typeToUse) as ShipTemplate;
             if (!GetPlayableShips().Contains(template) && GetPlayableShips().Count > 0)
                 template = GetPlayableShips()[0];
 
